@@ -40,6 +40,6 @@ jobs:
           script: |
             docker login -u ${{ secrets.NCP_ACCESS_KEY }} -p ${{ secrets.NCP_SECRET_KEY }} ${{ secrets.NCP_CONTAINER_REGISTRY }}
             docker pull ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest
-            docker stop my-app || true
-            docker rm my-app || true
+            docker stop referlink-front || true
+            docker rm referlink-front || true
             docker run -d --restart unless-stopped -p 80:80 --name referlink-front ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest
