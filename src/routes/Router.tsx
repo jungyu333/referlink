@@ -1,3 +1,4 @@
+import { Layout } from '@components/common';
 import { Landing } from '@page/Landing';
 import { SignIn, SignUp } from '@page/auth';
 import { MyPage } from '@page/my';
@@ -7,11 +8,13 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
 
-        <Route path="/mypage/:userId" element={<MyPage />} />
+          <Route path="/mypage/:userId" element={<MyPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
