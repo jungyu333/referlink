@@ -18,7 +18,7 @@ const colors = {
   white: '#FFFFFF',
 };
 
-export const TColorsTypes = typeof colors;
+export type TColorsTypes = typeof colors;
 
 export const theme: DefaultTheme = {
   colors,
