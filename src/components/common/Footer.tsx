@@ -65,21 +65,18 @@ const HeaderText = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-shrink: 0;
-  position: relative;
 
   & > div {
     color: ${({ theme }) => theme.colors.gray2};
     text-align: left;
-    font: var(--caption, 400 13px/150% 'Noto Sans KR', sans-serif);
-    position: relative;
+    font: ${({ theme }) => theme.fonts.caption};
   }
 `;
 
 const Text = styled.div`
   color: ${({ theme }) => theme.colors.gray2};
   text-align: left;
-  font: var(--caption, 400 13px/150% 'Noto Sans KR', sans-serif);
-  position: relative;
+  font: ${({ theme }) => theme.fonts.caption};
 `;
 
 const InputContainer = styled.div`
@@ -103,7 +100,7 @@ const EmailInput = styled.div`
     gap: 4px;
 
     border-radius: 8px;
-    border: 1px solid var(--grey1, rgba(96, 95, 95, 0.35));
+    border: 1px solid ${({ theme }) => theme.colors.gray1};
   }
 `;
 
@@ -127,7 +124,7 @@ const Subscribe = styled.div`
   & div {
     color: ${({ theme }) => theme.colors.white};
     text-align: left;
-    font: var(--body, 400 16px/130% 'Noto Sans KR', sans-serif);
+    font: ${({ theme }) => theme.fonts.body};
     position: relative;
   }
 `;
