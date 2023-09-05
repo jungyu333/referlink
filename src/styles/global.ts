@@ -27,6 +27,13 @@ time, mark, audio, video {
   	-moz-user-select:none;
   	-ms-user-select:none;
   	user-select:none;
+
+}
+
+
+* {
+	box-sizing: border-box;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
