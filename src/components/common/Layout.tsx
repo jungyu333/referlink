@@ -27,5 +27,4 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   flex: 1;
-  overflow: auto;
 `;
