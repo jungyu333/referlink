@@ -16,6 +16,9 @@ const colors = {
 
   //white color
   white: '#FFFFFF',
+
+  //error color
+  error: '#D32F2F',
 };
 
 const fonts = {

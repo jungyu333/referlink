@@ -31,8 +31,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const MainContainer = styled.div``;
-
 const MainText = styled.div`
   color: ${({ theme }) => theme.colors.gray4};
   text-align: center;

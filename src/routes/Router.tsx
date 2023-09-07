@@ -10,10 +10,12 @@ export const Router = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Landing />} />
+          <Route path="/mypage/:userId" element={<MyPage />} />
+        </Route>
+
+        <Route element={<Layout isFooter={false} />}>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-
-          <Route path="/mypage/:userId" element={<MyPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
