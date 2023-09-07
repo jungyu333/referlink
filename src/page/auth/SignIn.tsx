@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
+import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
 
 export const SignIn = () => {
   return (
@@ -32,7 +33,23 @@ export const SignIn = () => {
           <HelpText>비밀번호를 잊으셨나요?</HelpText>
         </InputContainer>
 
-        <ButtonContainer></ButtonContainer>
+        <ButtonContainer>
+          <ButtonInner>
+            <PrimaryButton>로그인</PrimaryButton>
+            <NormalButton>회원가입</NormalButton>
+          </ButtonInner>
+
+          <LineText>
+            <div />
+            SNS 간편 로그인
+            <div />
+          </LineText>
+
+          <OnGoogle>
+            <GoogleSVG />
+            Google로 계속하기
+          </OnGoogle>
+        </ButtonContainer>
       </AuthForm>
     </Wrapper>
   );
@@ -146,4 +163,76 @@ const HelpText = styled.div`
   letter-spacing: -0.32px;
   height: 42px;
   width: 155px;
+`;
+
+const ButtonInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+`;
+
+const PrimaryButton = styled.button`
+  display: flex;
+  width: 400px;
+  height: 58px;
+  padding: 24px 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.white};
+  font: ${({ theme }) => theme.fonts.subtitle2};
+  letter-spacing: -0.36px;
+  border: none;
+  cursor: pointer;
+`;
+
+const NormalButton = styled.button`
+  display: flex;
+  width: 400px;
+  height: 58px;
+  padding: 24px 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.primary1};
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.primary1};
+  font: ${({ theme }) => theme.fonts.subtitle2};
+  letter-spacing: -0.36px;
+  cursor: pointer;
+`;
+
+const LineText = styled.div`
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.gray3};
+  font: ${({ theme }) => theme.fonts.body};
+  letter-spacing: -0.32px;
+  & div {
+    width: 113px;
+    height: 1px;
+    background: rgba(96, 95, 95, 0.35);
+  }
+`;
+
+const OnGoogle = styled.button`
+  display: flex;
+  height: 58px;
+  padding: 19px 128px 19px 24px;
+  align-items: flex-start;
+  gap: 84px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  color: ${({ theme }) => theme.colors.gray3};
+  font: ${({ theme }) => theme.fonts.subtitle2};
+  letter-spacing: -0.36px;
+  background-color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+  width: 400px;
 `;
