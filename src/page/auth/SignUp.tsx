@@ -94,8 +94,15 @@ export const SignUp = () => {
               </Terms>
             </TermsContainer>
           </InputContainer>
+
+          <PrimaryButton>가입하기</PrimaryButton>
         </SignUpForm>
       </SignUpContainer>
+
+      <BottomText>
+        이미 계정이 있으신가요?
+        <b>로그인</b>
+      </BottomText>
     </Wrapper>
   );
 };
@@ -106,6 +113,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 16px;
   margin-top: 130px;
+  margin-bottom: 91px;
 `;
 
 const SignUpContainer = styled.div`
@@ -271,4 +279,38 @@ const View = styled.div`
   color: ${({ theme }) => theme.colors.gray1};
   font: ${({ theme }) => theme.fonts.body};
   letter-spacing: -0.32px;
+`;
+
+const BottomText = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  color: ${({ theme }) => theme.colors.gray3};
+  font: ${({ theme }) => theme.fonts.body};
+  letter-spacing: -0.32px;
+
+  & b {
+    color: ${({ theme }) => theme.colors.primary1};
+    font: ${({ theme }) => theme.fonts.body};
+    font-weight: 700;
+    letter-spacing: -0.32px;
+    cursor: pointer;
+  }
+`;
+
+const PrimaryButton = styled.button`
+  display: flex;
+  width: 400px;
+  height: 58px;
+  padding: 24px 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.white};
+  font: ${({ theme }) => theme.fonts.subtitle2};
+  letter-spacing: -0.36px;
+  border: none;
+  cursor: pointer;
 `;
