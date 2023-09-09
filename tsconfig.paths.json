@@ -6,7 +6,7 @@
       "@hooks/*": ["./hooks/*"],
       "@styles/*": ["./styles/*"],
       "@page/*": ["./page/*"],
-      "@types/*": ["./_types/*"],
+      "_types/*": ["./_types/*"],
       "@constant/*": ["./constant/*"]
     }
   }
