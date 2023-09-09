@@ -1,9 +1,10 @@
 import { styled } from 'styled-components';
 import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
-import { EmailInput, PasswordInput } from '@components/common';
 import { useForm } from 'react-hook-form';
 import { ISignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
+import { EmailInput, PasswordInput } from '@components/common/input';
+import { Button } from '@components/common/button';
 
 export const SignIn = () => {
   const {
@@ -11,6 +12,10 @@ export const SignIn = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ISignInFormData>();
+
+  const onValid = (formData: ISignInFormData) => {
+    console.log(formData);
+  };
   return (
     <Wrapper>
       <h1>로그인</h1>
@@ -34,6 +39,7 @@ export const SignIn = () => {
         <InputContainer>
           <PasswordInput
             label="비밀번호"
+            error={errors.password?.message}
             placeholder="비밀번호를 입력해주세요."
             register={register('password', {
               pattern: {
@@ -54,8 +60,8 @@ export const SignIn = () => {
 
         <ButtonContainer>
           <ButtonInner>
-            <PrimaryButton>로그인</PrimaryButton>
-            <NormalButton>회원가입</NormalButton>
+            <Button buttonText="로그인" onClick={handleSubmit(onValid)} />
+            <Button buttonText="회원가입" isPrimary={false} />
           </ButtonInner>
 
           <LineText>
@@ -119,6 +125,7 @@ const HelpText = styled.div`
   letter-spacing: -0.32px;
   height: 42px;
   width: 155px;
+  cursor: pointer;
 `;
 
 const ButtonInner = styled.div`
@@ -126,40 +133,6 @@ const ButtonInner = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-`;
-
-const PrimaryButton = styled.button`
-  display: flex;
-  width: 400px;
-  height: 58px;
-  padding: 24px 36px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary1};
-  color: ${({ theme }) => theme.colors.white};
-  font: ${({ theme }) => theme.fonts.subtitle2};
-  letter-spacing: -0.36px;
-  border: none;
-  cursor: pointer;
-`;
-
-const NormalButton = styled.button`
-  display: flex;
-  width: 400px;
-  height: 58px;
-  padding: 24px 36px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.primary1};
-  background: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.primary1};
-  font: ${({ theme }) => theme.fonts.subtitle2};
-  letter-spacing: -0.36px;
-  cursor: pointer;
 `;
 
 const LineText = styled.div`
