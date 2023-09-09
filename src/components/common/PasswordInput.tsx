@@ -1,24 +1,30 @@
-import { UseFormRegisterReturn } from 'react-hook-form';
 import { styled } from 'styled-components';
+import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 type Props = {
   label: string;
+
   placeholder: string;
-  error?: string;
   register: UseFormRegisterReturn;
+  isLabel?: boolean;
+  error?: string;
 };
 
-export const EmailInput = ({ label, placeholder, error, register }: Props) => {
+export const PasswordInput = ({
+  label,
+  placeholder,
+  register,
+  error,
+  isLabel = true,
+}: Props) => {
   return (
     <Input>
       <InnerContainer>
-        <label>{label}</label>
-        <input
-          {...register}
-          autoComplete="off"
-          type="email"
-          placeholder={placeholder}
-        />
+        {isLabel && <label>{label}</label>}
+        <input {...register} type="password" placeholder={placeholder} />
+
+        <EyeSVG />
       </InnerContainer>
 
       {error && <Validation>{error}</Validation>}
