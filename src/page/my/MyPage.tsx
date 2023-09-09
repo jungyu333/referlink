@@ -1,6 +1,5 @@
 import { emailRegex, phoneRegex } from '@constant/regex';
 import { IMyPageEditFormData } from '_types/my';
-
 import { useForm } from 'react-hook-form';
 
 export const MyPage = () => {

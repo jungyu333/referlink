@@ -1,22 +1,35 @@
 import { styled } from 'styled-components';
 import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
 import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
+import { EmailInput } from '@components/common';
+import { useForm } from 'react-hook-form';
+import { ISignInFormData } from '_types/auth';
+import { emailRegex } from '@constant/regex';
 
 export const SignIn = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ISignInFormData>();
   return (
     <Wrapper>
       <HeaderText>로그인</HeaderText>
 
       <AuthForm>
         <InputContainer>
-          <Input>
-            <InnerContainer>
-              <label>이메일</label>
-              <input type="email" placeholder="이메일을 입력해주세요." />
-            </InnerContainer>
-
-            {/* <Validation>support text</Validation> */}
-          </Input>
+          <EmailInput
+            label="이메일"
+            placeholder="이메일을 입력해주세요."
+            error={errors.email?.message}
+            register={register('email', {
+              pattern: {
+                value: emailRegex,
+                message: '형식에 맞지 않는 이메일입니다.',
+              },
+              required: '이메일을 입력해주세요.',
+            })}
+          />
         </InputContainer>
 
         <InputContainer>
