@@ -81,7 +81,7 @@ const InnerContainer = styled.div`
   & svg {
     position: absolute;
     left: 350px;
-    top: 53px;
+    bottom: 15px;
   }
 `;
 

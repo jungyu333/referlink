@@ -1,8 +1,18 @@
 import { styled } from 'styled-components';
 import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
 import { ReactComponent as UnCheckSVG } from '@styles/images/svg/uncheck.svg';
+import { useForm } from 'react-hook-form';
+import { ISignUpFormData } from '_types/auth';
+import { EmailInput, PasswordInput } from '@components/common';
+import { emailRegex, passwordRegex } from '@constant/regex';
 
 export const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<ISignUpFormData>();
   return (
     <Wrapper>
       <SignUpContainer>
@@ -10,36 +20,61 @@ export const SignUp = () => {
         <SignUpForm>
           <InputContainer>
             <Inner>
-              <Input>
-                <InnerContainer>
-                  <label>이메일</label>
-                  <input type="email" placeholder="이메일을 입력해주세요." />
-                </InnerContainer>
+              <EmailInput
+                placeholder="이메일을 입력해주세요."
+                label="이메일"
+                error={errors.email?.message}
+                register={register('email', {
+                  pattern: {
+                    value: emailRegex,
+                    message: '형식에 맞지 않는 이메일입니다.',
+                  },
+                  required: '이메일을 입력해주세요.',
+                })}
+              />
 
-                {/* <Validation>support text</Validation> */}
-              </Input>
+              <PasswordInput
+                label="비밀번호"
+                placeholder="8글자 작성"
+                register={register('password', {
+                  pattern: {
+                    value: passwordRegex,
+                    message:
+                      '8 자리 이상의 영문 , 숫자 조합의 비밀번호를 입력해주세요.',
+                  },
+                  minLength: {
+                    value: 8,
+                    message:
+                      '8 자리 이상의 영문 , 숫자 조합의 비밀번호를 입력해주세요.',
+                  },
+                  required: '비밀번호를 입력해주세요.',
+                })}
+              />
 
-              <Input>
-                <InnerContainer>
-                  <label>비밀번호</label>
-                  <input type="password" placeholder="8글자 작성" />
-
-                  <EyeSVG />
-                </InnerContainer>
-
-                {/* <Validation>support text</Validation> */}
-              </Input>
-
-              <Input>
-                <InnerContainer>
-                  {/* <label>비밀번호</label> */}
-                  <input type="password" placeholder="비밀번호 재확인." />
-
-                  {/* <EyeSVG /> */}
-                </InnerContainer>
-
-                {/* <Validation>support text</Validation> */}
-              </Input>
+              <PasswordInput
+                isLabel={false}
+                label="비밀번호"
+                placeholder="비밀번호 재확인"
+                error={
+                  errors.password?.message || errors.passwordCheck?.message
+                }
+                register={register('passwordCheck', {
+                  validate: {
+                    matchesPreviousPassword: (value) => {
+                      const { password } = getValues();
+                      return (
+                        password === value || '비밀번호가 일치하지 않습니다.'
+                      );
+                    },
+                  },
+                  minLength: {
+                    value: 8,
+                    message:
+                      '8 자리 이상의 영문 , 숫자 조합의 비밀번호를 입력해주세요.',
+                  },
+                  required: '비밀번호를 다시 한번 입력해주세요.',
+                })}
+              />
             </Inner>
 
             <TermsContainer>
