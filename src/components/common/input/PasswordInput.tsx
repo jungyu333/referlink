@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
+import { ReactComponent as CloseEyeSVG } from '@styles/images/svg/closeeye.svg';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { useState } from 'react';
 
@@ -17,6 +18,7 @@ export const PasswordInput = ({
   error,
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [isShowPassWord, setIsShowPassWord] = useState(false);
 
   return (
     <Input>
@@ -27,11 +29,13 @@ export const PasswordInput = ({
             onFocus={() => setIsFocused(true)}
             {...register}
             onBlur={() => setIsFocused(false)}
-            type="password"
+            type={isShowPassWord ? 'text' : 'password'}
             placeholder={placeholder}
           />
 
-          <EyeSVG />
+          <span onClick={() => setIsShowPassWord((prev) => !prev)}>
+            {!isShowPassWord ? <CloseEyeSVG /> : <EyeSVG />}
+          </span>
         </div>
       </InnerContainer>
 
@@ -101,6 +105,18 @@ const InnerContainer = styled.div<{ $isFocused: boolean; $isError: boolean }>`
     &:focus {
       outline: none;
     }
+  }
+
+  & span {
+    display: flex;
+    padding: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+  }
+
+  & svg {
+    cursor: pointer;
   }
 `;
 
