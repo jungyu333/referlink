@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
 import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useState } from 'react';
 
 type Props = {
   label: string;
   placeholder: string;
   register: UseFormRegisterReturn;
-  isLabel?: boolean;
   error?: string;
 };
 
@@ -15,15 +15,24 @@ export const PasswordInput = ({
   placeholder,
   register,
   error,
-  isLabel = true,
 }: Props) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <Input>
-      <InnerContainer>
-        {isLabel && <label>{label}</label>}
-        <input {...register} type="password" placeholder={placeholder} />
+      <InnerContainer $isFocused={isFocused} $isError={error ? true : false}>
+        {<label>{label}</label>}
+        <div>
+          <input
+            onFocus={() => setIsFocused(true)}
+            {...register}
+            onBlur={() => setIsFocused(false)}
+            type="password"
+            placeholder={placeholder}
+          />
 
-        <EyeSVG />
+          <EyeSVG />
+        </div>
       </InnerContainer>
 
       {error && <Validation>{error}</Validation>}
@@ -36,52 +45,62 @@ const Input = styled.div`
   width: 400px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 4px;
 `;
 
-const InnerContainer = styled.div`
+const InnerContainer = styled.div<{ $isFocused: boolean; $isError: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 12px;
   align-self: stretch;
   position: relative;
   & label {
     display: flex;
     align-items: center;
     align-self: stretch;
-
+    gap: 10px;
     color: ${({ theme }) => theme.colors.gray4};
     font: ${({ theme }) => theme.fonts.subtitle2};
+    letter-spacing: -0.36px;
+  }
+
+  & > div {
+    display: flex;
+    padding: 8px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid
+      ${({ theme, $isFocused, $isError }) => {
+        if ($isError) return theme.colors.error;
+        if ($isFocused) return theme.colors.primary1;
+        return theme.colors.gray1;
+      }};
+    height: 56px;
+    font: ${({ theme }) => theme.fonts.body};
+    color: ${({ theme }) => theme.colors.gray4};
+    letter-spacing: -0.32px;
   }
 
   & input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: stretch;
-    height: 58px;
-    background-color: ${({ theme }) => theme.colors.white};
-    border-radius: 8px;
-    border: 1px solid ${({ theme }) => theme.colors.gray1};
-
-    display: flex;
-    padding: 10px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    align-self: stretch;
-
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray1};
       font: ${({ theme }) => theme.fonts.body};
+      letter-spacing: -0.32px;
     }
-  }
 
-  & svg {
-    position: absolute;
-    left: 350px;
-    bottom: 15px;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+    border: none;
+    height: 100%;
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
