@@ -1,12 +1,14 @@
 import { styled } from 'styled-components';
 import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
+import { ReactComponent as CloseEyeSVG } from '@styles/images/svg/closeeye.svg';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useState } from 'react';
+import * as S from '@styles/components/common/input/passwordInput.styles';
 
 type Props = {
   label: string;
   placeholder: string;
   register: UseFormRegisterReturn;
-  isLabel?: boolean;
   error?: string;
 };
 
@@ -15,82 +17,30 @@ export const PasswordInput = ({
   placeholder,
   register,
   error,
-  isLabel = true,
 }: Props) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [isShowPassWord, setIsShowPassWord] = useState(false);
+
   return (
-    <Input>
-      <InnerContainer>
-        {isLabel && <label>{label}</label>}
-        <input {...register} type="password" placeholder={placeholder} />
+    <S.Input>
+      <S.InnerContainer $isFocused={isFocused} $isError={error ? true : false}>
+        {<label>{label}</label>}
+        <div>
+          <input
+            onFocus={() => setIsFocused(true)}
+            {...register}
+            onBlur={() => setIsFocused(false)}
+            type={isShowPassWord ? 'text' : 'password'}
+            placeholder={placeholder}
+          />
 
-        <EyeSVG />
-      </InnerContainer>
+          <span onClick={() => setIsShowPassWord((prev) => !prev)}>
+            {!isShowPassWord ? <CloseEyeSVG /> : <EyeSVG />}
+          </span>
+        </div>
+      </S.InnerContainer>
 
-      {error && <Validation>{error}</Validation>}
-    </Input>
+      {error && <S.Validation>{error}</S.Validation>}
+    </S.Input>
   );
 };
-
-const Input = styled.div`
-  display: flex;
-  width: 400px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  align-self: stretch;
-  position: relative;
-  & label {
-    display: flex;
-    align-items: center;
-    align-self: stretch;
-
-    color: ${({ theme }) => theme.colors.gray4};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-  }
-
-  & input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: stretch;
-    height: 58px;
-    background-color: ${({ theme }) => theme.colors.white};
-    border-radius: 8px;
-    border: 1px solid ${({ theme }) => theme.colors.gray1};
-
-    display: flex;
-    padding: 10px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    align-self: stretch;
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.gray1};
-      font: ${({ theme }) => theme.fonts.body};
-    }
-  }
-
-  & svg {
-    position: absolute;
-    left: 350px;
-    bottom: 15px;
-  }
-`;
-
-const Validation = styled.span`
-  display: flex;
-  align-items: center;
-  align-self: stretch;
-
-  color: ${({ theme }) => theme.colors.error};
-  font: ${({ theme }) => theme.fonts.caption};
-  letter-spacing: -0.26px;
-`;

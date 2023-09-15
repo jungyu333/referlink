@@ -88,7 +88,7 @@ const Wrapper = styled.div`
   gap: 64px;
   margin: 0 auto;
   margin-top: 130px;
-  margin-bottom: 219px;
+  margin-bottom: 235px;
   background-color: ${({ theme }) => theme.colors.white};
 
   & h1 {

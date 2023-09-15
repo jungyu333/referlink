@@ -41,6 +41,7 @@ export const SignUp = () => {
               <PasswordInput
                 label="비밀번호"
                 placeholder="8글자 작성"
+                error={errors.password?.message}
                 register={register('password', {
                   pattern: {
                     value: passwordRegex,
@@ -57,12 +58,9 @@ export const SignUp = () => {
               />
 
               <PasswordInput
-                isLabel={false}
-                label="비밀번호"
+                label="비밀번호 재확인"
                 placeholder="비밀번호 재확인"
-                error={
-                  errors.password?.message || errors.passwordCheck?.message
-                }
+                error={errors.passwordCheck?.message}
                 register={register('passwordCheck', {
                   validate: {
                     matchesPreviousPassword: (value) => {
@@ -153,7 +151,8 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 16px;
   margin-top: 130px;
-  margin-bottom: 91px;
+  margin-bottom: 181px;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const SignUpContainer = styled.div`
