@@ -90,7 +90,7 @@ export const TermItem = styled.div`
   width: 368px;
 `;
 
-export const TermContent = styled.div`
+export const TermContent = styled.div<{ $isOptional: boolean }>`
   display: flex;
   align-items: center;
   gap: 4px;
@@ -101,7 +101,8 @@ export const TermContent = styled.div`
     letter-spacing: -0.32px;
 
     & b {
-      color: ${({ theme }) => theme.colors.primary1};
+      color: ${({ theme, $isOptional }) =>
+        $isOptional ? theme.colors.gray1 : theme.colors.primary1};
     }
   }
 `;
