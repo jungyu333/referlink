@@ -1,10 +1,11 @@
-import { ReactComponent as UnCheckSVG } from '@styles/images/svg/uncheck.svg';
 import { useForm } from 'react-hook-form';
 import { ISignUpFormData } from '_types/auth';
 import { EmailInput, PasswordInput } from '@components/common';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import { Button } from '@components/common/button';
 import * as S from '@styles/page/auth/signUp.styles';
+import { Term } from '@components/auth';
+import useAgreements from '@hooks/useAgreements';
 
 export const SignUp = () => {
   const {
@@ -14,8 +15,20 @@ export const SignUp = () => {
     getValues,
   } = useForm<ISignUpFormData>();
 
+  const {
+    agreements,
+    toggleAgreement,
+    toggleAll,
+    areRequiredChecked,
+    allChecked,
+  } = useAgreements();
+
   const onValid = (formData: ISignUpFormData) => {
-    console.log(formData);
+    if (areRequiredChecked()) {
+      console.log(formData);
+    } else {
+      alert('약관 동의를 해주세요');
+    }
   };
 
   return (
@@ -79,58 +92,12 @@ export const SignUp = () => {
                 })}
               />
             </S.Inner>
-
-            <S.TermsContainer>
-              <S.AllTerms>
-                <UnCheckSVG />
-                모든 약관에 동의합니다.
-              </S.AllTerms>
-              <S.Line />
-              <S.Terms>
-                <S.TermItem>
-                  <S.TermContent>
-                    <UnCheckSVG />
-                    <h2>
-                      <b>(필수) </b>
-                      서비스 이용약관
-                    </h2>
-                  </S.TermContent>
-                  <S.View>보기</S.View>
-                </S.TermItem>
-
-                <S.TermItem>
-                  <S.TermContent>
-                    <UnCheckSVG />
-                    <h2>
-                      <b>(필수) </b>
-                      개인정보 수집 및 이용
-                    </h2>
-                  </S.TermContent>
-                  <S.View>보기</S.View>
-                </S.TermItem>
-
-                <S.TermItem>
-                  <S.TermContent>
-                    <UnCheckSVG />
-                    <h2>
-                      <b>(필수) </b>제 3자 정보제공 동의
-                    </h2>
-                  </S.TermContent>
-                  <S.View>보기</S.View>
-                </S.TermItem>
-
-                <S.TermItem>
-                  <S.TermContent>
-                    <UnCheckSVG />
-                    <h2>
-                      <b>(선택) </b>
-                      광고성 정보 수신
-                    </h2>
-                  </S.TermContent>
-                  <S.View>보기</S.View>
-                </S.TermItem>
-              </S.Terms>
-            </S.TermsContainer>
+            <Term
+              allChecked={allChecked}
+              toggleAgreement={toggleAgreement}
+              toggleAll={toggleAll}
+              agreements={agreements}
+            />
           </S.InputContainer>
 
           <Button buttonText="가입하기" onClick={handleSubmit(onValid)} />
