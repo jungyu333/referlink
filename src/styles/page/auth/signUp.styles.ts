@@ -110,6 +110,7 @@ export const View = styled.div`
   color: ${({ theme }) => theme.colors.gray1};
   font: ${({ theme }) => theme.fonts.body};
   letter-spacing: -0.32px;
+  cursor: pointer;
 `;
 
 export const BottomText = styled.div`
