@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { styled } from 'styled-components';
+import * as S from '@styles/components/common/input/emailInput.styles';
 
 type Props = {
   label: string;
@@ -9,83 +10,25 @@ type Props = {
 };
 
 export const EmailInput = ({ label, placeholder, error, register }: Props) => {
-  return (
-    <Input>
-      <InnerContainer>
-        <label>{label}</label>
-        <input
-          {...register}
-          autoComplete="off"
-          type="email"
-          placeholder={placeholder}
-        />
-      </InnerContainer>
+  const [isFocused, setIsFocused] = useState(false);
 
-      {error && <Validation>{error}</Validation>}
-    </Input>
+  return (
+    <S.Input>
+      <S.InnerContainer $isFocused={isFocused} $isError={error ? true : false}>
+        <label>{label}</label>
+        <div>
+          <input
+            onFocus={() => setIsFocused(true)}
+            {...register}
+            onBlur={() => setIsFocused(false)}
+            autoComplete="off"
+            type="email"
+            placeholder={placeholder}
+          />
+        </div>
+      </S.InnerContainer>
+
+      {error && <S.Validation>{error}</S.Validation>}
+    </S.Input>
   );
 };
-
-const Input = styled.div`
-  display: flex;
-  width: 400px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  align-self: stretch;
-  position: relative;
-  & label {
-    display: flex;
-    align-items: center;
-    align-self: stretch;
-
-    color: ${({ theme }) => theme.colors.gray4};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-  }
-
-  & input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: stretch;
-    height: 58px;
-    background-color: ${({ theme }) => theme.colors.white};
-    border-radius: 8px;
-    border: 1px solid ${({ theme }) => theme.colors.gray1};
-
-    display: flex;
-    padding: 10px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    align-self: stretch;
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.gray1};
-      font: ${({ theme }) => theme.fonts.body};
-    }
-  }
-
-  & svg {
-    position: absolute;
-    left: 350px;
-    top: 53px;
-  }
-`;
-
-const Validation = styled.span`
-  display: flex;
-  align-items: center;
-  align-self: stretch;
-
-  color: ${({ theme }) => theme.colors.error};
-  font: ${({ theme }) => theme.fonts.caption};
-  letter-spacing: -0.26px;
-`;

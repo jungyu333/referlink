@@ -24,7 +24,7 @@ export const PasswordInput = ({
   return (
     <S.Input>
       <S.InnerContainer $isFocused={isFocused} $isError={error ? true : false}>
-        {<label>{label}</label>}
+        <label>{label}</label>
         <div>
           <input
             onFocus={() => setIsFocused(true)}
