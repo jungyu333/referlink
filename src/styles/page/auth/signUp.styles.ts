@@ -63,6 +63,10 @@ export const AllTerms = styled.div`
   color: ${({ theme }) => theme.colors.gray3};
   font: ${({ theme }) => theme.fonts.subtitle2};
   letter-spacing: -0.36px;
+
+  & svg {
+    cursor: pointer;
+  }
 `;
 
 export const Line = styled.div`
@@ -104,6 +108,10 @@ export const TermContent = styled.div<{ $isOptional: boolean }>`
       color: ${({ theme, $isOptional }) =>
         $isOptional ? theme.colors.gray1 : theme.colors.primary1};
     }
+  }
+
+  & svg {
+    cursor: pointer;
   }
 `;
 

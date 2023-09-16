@@ -2,16 +2,20 @@ import * as S from '@styles/page/auth/signUp.styles';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as UnCheckSVG } from '@styles/images/svg/uncheck.svg';
 import { signUpTerms } from '@constant/terms';
-import useAgreements from '@hooks/useAgreements';
 
-export const Term = () => {
-  const {
-    agreements,
-    toggleAgreement,
-    toggleAll,
-    areRequiredChecked,
-    allChecked,
-  } = useAgreements();
+type Props = {
+  agreements: { [key: number]: boolean };
+  allChecked: boolean;
+  toggleAll: () => void;
+  toggleAgreement: (value: number) => void;
+};
+
+export const Term = ({
+  agreements,
+  allChecked,
+  toggleAgreement,
+  toggleAll,
+}: Props) => {
   return (
     <S.TermsContainer>
       <S.AllTerms>
@@ -25,7 +29,7 @@ export const Term = () => {
 
       <S.Terms>
         {signUpTerms.map((element) => (
-          <S.TermItem>
+          <S.TermItem key={element.id}>
             <S.TermContent
               $isOptional={element.option === 'optional' ? true : false}
             >

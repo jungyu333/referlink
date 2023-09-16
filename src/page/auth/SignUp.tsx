@@ -5,6 +5,7 @@ import { emailRegex, passwordRegex } from '@constant/regex';
 import { Button } from '@components/common/button';
 import * as S from '@styles/page/auth/signUp.styles';
 import { Term } from '@components/auth';
+import useAgreements from '@hooks/useAgreements';
 
 export const SignUp = () => {
   const {
@@ -14,8 +15,20 @@ export const SignUp = () => {
     getValues,
   } = useForm<ISignUpFormData>();
 
+  const {
+    agreements,
+    toggleAgreement,
+    toggleAll,
+    areRequiredChecked,
+    allChecked,
+  } = useAgreements();
+
   const onValid = (formData: ISignUpFormData) => {
-    console.log(formData);
+    if (areRequiredChecked()) {
+      console.log(formData);
+    } else {
+      alert('약관 동의를 해주세요');
+    }
   };
 
   return (
@@ -79,7 +92,12 @@ export const SignUp = () => {
                 })}
               />
             </S.Inner>
-            <Term />
+            <Term
+              allChecked={allChecked}
+              toggleAgreement={toggleAgreement}
+              toggleAll={toggleAll}
+              agreements={agreements}
+            />
           </S.InputContainer>
 
           <Button buttonText="가입하기" onClick={handleSubmit(onValid)} />
