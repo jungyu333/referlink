@@ -1,6 +1,6 @@
 import { Header, Footer } from '@components/common';
 import { Outlet } from 'react-router-dom';
-import { styled } from 'styled-components';
+import * as S from '@styles/components/common/layout.styles';
 
 type Props = {
   isFooter?: boolean;
@@ -8,24 +8,13 @@ type Props = {
 
 export const Layout = ({ isFooter = true }: Props) => {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <Header />
-      <Content>
+      <S.Content>
         <Outlet />
-      </Content>
+      </S.Content>
 
       {isFooter && <Footer />}
-    </Wrapper>
+    </S.Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: ${({ theme }) => theme.colors.white};
-`;
-
-const Content = styled.div`
-  flex: 1;
-`;
