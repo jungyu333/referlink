@@ -1,4 +1,4 @@
-import * as S from '@styles/page/auth/signUp.styles';
+import * as S from '@styles/components/auth/signUp/term.styles';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as UnCheckSVG } from '@styles/images/svg/uncheck.svg';
 import { signUpTerms } from '@constant/terms';
