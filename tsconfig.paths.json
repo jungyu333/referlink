@@ -7,7 +7,8 @@
       "@styles/*": ["./styles/*"],
       "@page/*": ["./page/*"],
       "_types/*": ["./_types/*"],
-      "@constant/*": ["./constant/*"]
+      "@constant/*": ["./constant/*"],
+      "@hoc/*": ["./hoc/*"]
     }
   }
 }
