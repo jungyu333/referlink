@@ -6,6 +6,7 @@ const colors = {
   primary2: '#007AD6',
 
   //gray color
+  gray0: '#605F5F0D',
   gray1: '#605F5F59',
   gray2: '#605F5F',
   gray3: '#414040',

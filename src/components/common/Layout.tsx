@@ -1,4 +1,4 @@
-import { Header, Footer } from '@components/common';
+import { Header, Footer, Menu } from '@components/common';
 import { Outlet } from 'react-router-dom';
 import * as S from '@styles/components/common/layout.styles';
 
@@ -10,6 +10,7 @@ export const Layout = ({ isFooter = true }: Props) => {
   return (
     <S.Wrapper>
       <Header />
+      <Menu />
       <S.Content>
         <Outlet />
       </S.Content>
