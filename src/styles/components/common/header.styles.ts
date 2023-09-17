@@ -17,6 +17,7 @@ export const Logo = styled.div`
   left: 162px;
   top: 20px;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const AcceptReputation = styled.div`

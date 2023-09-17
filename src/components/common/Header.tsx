@@ -1,11 +1,14 @@
 import { ReactComponent as LogoSVG } from '@styles/images/svg/logo.svg';
 import { ReactComponent as MyPageSVG } from '@styles/images/svg/mypage.svg';
 import * as S from '@styles/components/common/header.styles';
+import useDetailNavigation from '@hooks/useDetailNavigation';
 
 export const Header = () => {
+  const { pathNavigation } = useDetailNavigation('');
+
   return (
     <S.Wrapper>
-      <S.Logo>
+      <S.Logo onClick={pathNavigation}>
         <LogoSVG />
       </S.Logo>
 
