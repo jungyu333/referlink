@@ -10,6 +10,9 @@ export const Router = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Landing />} />
+        </Route>
+
+        <Route element={<Layout isMenu={true} mainText="마이페이지" />}>
           <Route path="/mypage/:userId" element={<MyPage />} />
         </Route>
 

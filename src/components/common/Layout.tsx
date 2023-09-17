@@ -4,13 +4,23 @@ import * as S from '@styles/components/common/layout.styles';
 
 type Props = {
   isFooter?: boolean;
+  isMenu?: boolean;
+  mainText?: string;
+  subText?: string;
 };
 
-export const Layout = ({ isFooter = true }: Props) => {
+export const Layout = ({
+  isFooter = true,
+  isMenu = false,
+  mainText,
+  subText,
+}: Props) => {
   return (
     <S.Wrapper>
       <Header />
-      <Menu />
+      {isMenu && mainText && (
+        <Menu mainText={mainText} subText={subText && subText} />
+      )}
       <S.Content>
         <Outlet />
       </S.Content>
