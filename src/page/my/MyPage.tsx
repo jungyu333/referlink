@@ -1,8 +1,9 @@
 import { emailRegex, phoneRegex } from '@constant/regex';
+import { withMenuLayout } from '@hoc/withMenuLayout';
 import { IMyPageEditFormData } from '_types/my';
 import { useForm } from 'react-hook-form';
 
-export const MyPage = () => {
+const MyPage = () => {
   const {
     register,
     handleSubmit,
@@ -120,3 +121,5 @@ export const MyPage = () => {
     </>
   );
 };
+
+export const MyPageWithMenu = withMenuLayout('마이페이지')(MyPage);

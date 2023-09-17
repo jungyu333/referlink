@@ -10,6 +10,7 @@ export const Layout = ({ isFooter = true }: Props) => {
   return (
     <S.Wrapper>
       <Header />
+
       <S.Content>
         <Outlet />
       </S.Content>
