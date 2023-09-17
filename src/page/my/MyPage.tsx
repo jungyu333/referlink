@@ -2,6 +2,11 @@ import { emailRegex, phoneRegex } from '@constant/regex';
 import { withMenuLayout } from '@hoc/withMenuLayout';
 import { IMyPageEditFormData } from '_types/my';
 import { useForm } from 'react-hook-form';
+import { ReactComponent as AddPhotoSVG } from '@styles/images/svg/addPhoto.svg';
+import { ReactComponent as CloseButtonSVG } from '@styles/images/svg/closeButton.svg';
+import { Button } from '@components/common/button';
+import { EmailInput, TextInput } from '@components/common';
+import * as S from '@styles/page/my/myPage.styles';
 
 const MyPage = () => {
   const {
@@ -15,110 +20,102 @@ const MyPage = () => {
   };
 
   return (
-    <>
-      <h1>마이 페이지</h1>
+    <S.Wrapper>
+      <S.AvatarContainer>
+        <S.AvatarContent>
+          <S.Information>
+            <S.Avatar />
 
-      <section>
-        <div />
+            <S.TextContainer>
+              <h1>강민지</h1>
+              <h2>한 줄 자기소개입니다.</h2>
+            </S.TextContainer>
+          </S.Information>
+          <S.UploadContainer>
+            <CloseButtonSVG />
+            <AddPhotoSVG />
+          </S.UploadContainer>
+        </S.AvatarContent>
+        <section />
+      </S.AvatarContainer>
 
-        <div>
-          <div>등록</div>
-          <div>제거</div>
-        </div>
-      </section>
+      <S.InputContainer onSubmit={handleSubmit(onValid)}>
+        <S.InputContent>
+          <TextInput
+            register={register('comment', {
+              maxLength: {
+                value: 50,
+                message: '50자 이내로 입력해주세요.',
+              },
+              required: '한 줄 자기소개를 입력해주세요.',
+            })}
+            label="한 줄 자기소개"
+            placeholder="한 줄 자기소개를 입력해보세요"
+            width="700px"
+            error={errors.comment?.message}
+          />
+          <section>
+            <TextInput
+              register={register('name', {
+                maxLength: {
+                  value: 10,
+                  message: '10자 이내로 입력해주세요.',
+                },
+                required: '이름을 입력해주세요.',
+              })}
+              label="이름"
+              placeholder="이름을 입력해주세요"
+              width="330px"
+              error={errors.name?.message}
+            />
 
-      <main>
-        <form onSubmit={handleSubmit(onValid)}>
-          <div>
-            <div>
-              <label>한줄 자기소개</label>
-              <input
-                type="text"
-                placeholder="한줄 자기소개를 입력해보세요"
-                {...register('comment', {
-                  maxLength: {
-                    value: 50,
-                    message: '50자 이내로 입력해주세요.',
-                  },
-                  required: '한줄 자기소개를 입력해주세요.',
-                })}
-              />
-              {errors.comment && <span>{errors.comment.message}</span>}
-            </div>
+            <TextInput
+              register={register('job', {
+                maxLength: {
+                  value: 10,
+                  message: '10자 이내로 입력해주세요.',
+                },
+                required: '직무를 입력해주세요.',
+              })}
+              label="직무"
+              placeholder="직무를 입력해주세요"
+              width="330px"
+              error={errors.job?.message}
+            />
+          </section>
+          <section>
+            <TextInput
+              register={register('phone', {
+                pattern: {
+                  value: phoneRegex,
+                  message: '형식에 맞지 않는 번호입니다.',
+                },
+                required: '휴대폰 번호를 입력해주세요.',
+              })}
+              label="휴대폰 번호"
+              placeholder="휴대폰 번호를 입력해주세요"
+              width="330px"
+              error={errors.phone?.message}
+            />
+            <EmailInput
+              register={register('email', {
+                pattern: {
+                  value: emailRegex,
+                  message: '형식에 맞지 않는 이메일입니다.',
+                },
+                required: '이메일을 입력해주세요.',
+              })}
+              label="이메일 주소"
+              placeholder="이메일을 입력해주세요."
+              width="330px"
+              error={errors.email?.message}
+            />
+          </section>
+        </S.InputContent>
 
-            <div>
-              <label>이름</label>
-              <input
-                type="text"
-                placeholder="이름을 입력해주세요"
-                {...register('name', {
-                  maxLength: {
-                    value: 10,
-                    message: '10자 이내로 입력해주세요.',
-                  },
-                  required: '이름을 입력해주세요.',
-                })}
-              />
-              {errors.name && <span>{errors.name.message}</span>}
-            </div>
-
-            <div>
-              <label>직무</label>
-              <input
-                type="text"
-                placeholder="직무를 입력해주세요"
-                {...register('job', {
-                  maxLength: {
-                    value: 10,
-                    message: '10자 이내로 입력해주세요.',
-                  },
-                  required: '직무를 입력해주세요.',
-                })}
-              />
-
-              {errors.job && <span>{errors.job.message}</span>}
-            </div>
-
-            <div>
-              <label>휴대폰 번호</label>
-              <input
-                type="number"
-                placeholder="휴대폰 번호를 입력해주세요"
-                {...register('phone', {
-                  pattern: {
-                    value: phoneRegex,
-                    message: '형식에 맞지 않는 번호입니다.',
-                  },
-                  required: '휴대폰 번호를 입력해주세요.',
-                })}
-              />
-
-              {errors.phone && <span>{errors.phone.message}</span>}
-            </div>
-
-            <div>
-              <label>이메일 주소</label>
-              <input
-                autoComplete="off"
-                type="email"
-                placeholder="이메일을 입력해주세요"
-                {...register('email', {
-                  pattern: {
-                    value: emailRegex,
-                    message: '형식에 맞지 않는 이메일입니다.',
-                  },
-                  required: '이메일을 입력해주세요.',
-                })}
-              />
-
-              {errors.email && <span>{errors.email.message}</span>}
-            </div>
-          </div>
-
-          <button>저장하기</button>
-        </form>
-      </main>
-    </>
+        <Button width="700px" buttonText="저장하기" />
+      </S.InputContainer>
+    </S.Wrapper>
   );
 };
 
