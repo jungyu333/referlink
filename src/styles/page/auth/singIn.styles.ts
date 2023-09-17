@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 64px;
-  margin: 0 auto;
   margin-top: 130px;
   margin-bottom: 235px;
   background-color: ${({ theme }) => theme.colors.white};

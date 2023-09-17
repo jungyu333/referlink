@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import * as S from '@styles/components/common/input/emailInput.styles';
+import * as S from '@styles/components/common/input/textInput.styles';
 
 type Props = {
   label: string;
@@ -10,7 +10,7 @@ type Props = {
   width?: string;
 };
 
-export const EmailInput = ({
+export const TextInput = ({
   label,
   placeholder,
   error,
@@ -28,8 +28,8 @@ export const EmailInput = ({
             onFocus={() => setIsFocused(true)}
             {...register}
             onBlur={() => setIsFocused(false)}
+            type="text"
             autoComplete="off"
-            type="email"
             placeholder={placeholder}
           />
         </div>

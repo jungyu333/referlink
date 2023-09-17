@@ -2,21 +2,27 @@ import { styled } from 'styled-components';
 
 type Props = {
   buttonText: string;
+  width?: string;
   onClick?: () => void;
   isPrimary?: boolean;
 };
 
-export const Button = ({ buttonText, onClick, isPrimary = true }: Props) => {
+export const Button = ({
+  buttonText,
+  onClick,
+  isPrimary = true,
+  width = '400px',
+}: Props) => {
   return (
-    <ButtonWrapper $isPrimary={isPrimary} onClick={onClick}>
+    <ButtonWrapper $width={width} $isPrimary={isPrimary} onClick={onClick}>
       {buttonText}
     </ButtonWrapper>
   );
 };
 
-const ButtonWrapper = styled.button<{ $isPrimary: boolean }>`
+const ButtonWrapper = styled.button<{ $isPrimary: boolean; $width: string }>`
   display: flex;
-  width: 400px;
+  width: ${({ $width }) => $width};
   height: 58px;
   padding: 24px 36px;
   justify-content: center;

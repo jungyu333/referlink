@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   height: 296px;
   position: relative;
   overflow: hidden;
-  margin: 0 auto;
   flex-shrink: 0;
 `;
 

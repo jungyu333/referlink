@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { ReactComponent as AddPhotoSVG } from '@styles/images/svg/addPhoto.svg';
 import { ReactComponent as CloseButtonSVG } from '@styles/images/svg/closeButton.svg';
+import { Button } from '@components/common/button';
+import { EmailInput, TextInput } from '@components/common';
 
 const MyPage = () => {
   const {
@@ -18,111 +20,6 @@ const MyPage = () => {
   };
 
   return (
-    // <>
-    //   <h1>마이 페이지</h1>
-
-    //   <section>
-    //     <div />
-
-    //     <div>
-    //       <div>등록</div>
-    //       <div>제거</div>
-    //     </div>
-    //   </section>
-
-    //   <main>
-    //     <form onSubmit={handleSubmit(onValid)}>
-    //       <div>
-    //         <div>
-    //           <label>한줄 자기소개</label>
-    //           <input
-    //             type="text"
-    //             placeholder="한줄 자기소개를 입력해보세요"
-    //             {...register('comment', {
-    //               maxLength: {
-    //                 value: 50,
-    //                 message: '50자 이내로 입력해주세요.',
-    //               },
-    //               required: '한줄 자기소개를 입력해주세요.',
-    //             })}
-    //           />
-    //           {errors.comment && <span>{errors.comment.message}</span>}
-    //         </div>
-
-    //         <div>
-    //           <label>이름</label>
-    //           <input
-    //             type="text"
-    //             placeholder="이름을 입력해주세요"
-    //             {...register('name', {
-    //               maxLength: {
-    //                 value: 10,
-    //                 message: '10자 이내로 입력해주세요.',
-    //               },
-    //               required: '이름을 입력해주세요.',
-    //             })}
-    //           />
-    //           {errors.name && <span>{errors.name.message}</span>}
-    //         </div>
-
-    //         <div>
-    //           <label>직무</label>
-    //           <input
-    //             type="text"
-    //             placeholder="직무를 입력해주세요"
-    //             {...register('job', {
-    //               maxLength: {
-    //                 value: 10,
-    //                 message: '10자 이내로 입력해주세요.',
-    //               },
-    //               required: '직무를 입력해주세요.',
-    //             })}
-    //           />
-
-    //           {errors.job && <span>{errors.job.message}</span>}
-    //         </div>
-
-    //         <div>
-    //           <label>휴대폰 번호</label>
-    //           <input
-    //             type="number"
-    //             placeholder="휴대폰 번호를 입력해주세요"
-    //             {...register('phone', {
-    //               pattern: {
-    //                 value: phoneRegex,
-    //                 message: '형식에 맞지 않는 번호입니다.',
-    //               },
-    //               required: '휴대폰 번호를 입력해주세요.',
-    //             })}
-    //           />
-
-    //           {errors.phone && <span>{errors.phone.message}</span>}
-    //         </div>
-
-    //         <div>
-    //           <label>이메일 주소</label>
-    //           <input
-    //             autoComplete="off"
-    //             type="email"
-    //             placeholder="이메일을 입력해주세요"
-    //             {...register('email', {
-    //               pattern: {
-    //                 value: emailRegex,
-    //                 message: '형식에 맞지 않는 이메일입니다.',
-    //               },
-    //               required: '이메일을 입력해주세요.',
-    //             })}
-    //           />
-
-    //           {errors.email && <span>{errors.email.message}</span>}
-    //         </div>
-    //       </div>
-
-    //       <button>저장하기</button>
-    //     </form>
-    //   </main>
-    // </>
-
     <Wrapper>
       <AvatarContainer>
         <AvatarContent>
@@ -142,7 +39,77 @@ const MyPage = () => {
         <section />
       </AvatarContainer>
 
-      <div></div>
+      <InputContainer>
+        <InputContent>
+          <TextInput
+            register={register('comment', {
+              maxLength: {
+                value: 50,
+                message: '50자 이내로 입력해주세요.',
+              },
+              required: '한줄 자기소개를 입력해주세요.',
+            })}
+            label="한 줄 자기소개"
+            placeholder="한 줄 자기소개를 입력해보세요"
+            width="700px"
+          />
+          <section>
+            <TextInput
+              register={register('name', {
+                maxLength: {
+                  value: 10,
+                  message: '10자 이내로 입력해주세요.',
+                },
+                required: '이름을 입력해주세요.',
+              })}
+              label="이름"
+              placeholder="이름을 입력해주세요"
+              width="330px"
+            />
+
+            <TextInput
+              register={register('job', {
+                maxLength: {
+                  value: 10,
+                  message: '10자 이내로 입력해주세요.',
+                },
+                required: '이름을 입력해주세요.',
+              })}
+              label="직무"
+              placeholder="직무를 입력해주세요"
+              width="330px"
+            />
+          </section>
+          <section>
+            <TextInput
+              register={register('phone', {
+                pattern: {
+                  value: phoneRegex,
+                  message: '형식에 맞지 않는 번호입니다.',
+                },
+                required: '휴대폰 번호를 입력해주세요.',
+              })}
+              label="휴대폰 번호"
+              placeholder="휴대폰 번호를 입력해주세요"
+              width="330px"
+            />
+            <EmailInput
+              register={register('email', {
+                pattern: {
+                  value: emailRegex,
+                  message: '형식에 맞지 않는 이메일입니다.',
+                },
+                required: '이메일을 입력해주세요.',
+              })}
+              label="이메일 주소"
+              placeholder="이메일을 입력해주세요."
+              width="330px"
+            />
+          </section>
+        </InputContent>
+
+        <Button width="700px" buttonText="저장하기" />
+      </InputContainer>
     </Wrapper>
   );
 };
@@ -153,6 +120,8 @@ const Wrapper = styled.div`
   align-items: flex-start;
   gap: 40px;
   margin-top: 100px;
+  margin-bottom: 164px;
+  width: 700px;
 `;
 
 const AvatarContainer = styled.div`
@@ -215,6 +184,27 @@ const TextContainer = styled.div`
     color: ${({ theme }) => theme.colors.gray3};
     font: ${({ theme }) => theme.fonts.subtitle2};
     letter-spacing: -0.36px;
+  }
+`;
+
+const InputContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 56px;
+`;
+
+const InputContent = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  & section {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
   }
 `;
 

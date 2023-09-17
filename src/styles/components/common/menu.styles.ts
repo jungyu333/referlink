@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   padding: 38px 1002px 27px 162px;
   align-items: center;
   flex-shrink: 0;
-  margin: 0 auto;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray0};
   background: rgba(2, 141, 233, 0.03);
