@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.white};
   border-style: solid;
-  border-color: ${({ theme }) => theme.colors.gray1};
+  border-color: ${({ theme }) => theme.colors.grey1};
   border-width: 1px 0px 0px 0px;
   width: 1440px;
   height: 296px;
@@ -32,14 +32,14 @@ export const HeaderText = styled.div`
   flex-shrink: 0;
 
   & > div {
-    color: ${({ theme }) => theme.colors.gray2};
+    color: ${({ theme }) => theme.colors.grey2};
     text-align: left;
     font: ${({ theme }) => theme.fonts.caption};
   }
 `;
 
 export const Text = styled.div`
-  color: ${({ theme }) => theme.colors.gray2};
+  color: ${({ theme }) => theme.colors.grey2};
   text-align: left;
   font: ${({ theme }) => theme.fonts.caption};
 `;
@@ -65,7 +65,7 @@ export const EmailInput = styled.div`
     gap: 4px;
 
     border-radius: 8px;
-    border: 1px solid ${({ theme }) => theme.colors.gray1};
+    border: 1px solid ${({ theme }) => theme.colors.grey1};
   }
 `;
 

@@ -5,7 +5,7 @@ export const TermsContainer = styled.div`
   height: 248px;
   border-radius: 8px;
   display: flex;
-  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  border: 1px solid ${({ theme }) => theme.colors.grey1};
   position: relative;
 `;
 
@@ -16,7 +16,7 @@ export const AllTerms = styled.div`
   position: absolute;
   top: 20px;
   left: 16px;
-  color: ${({ theme }) => theme.colors.gray3};
+  color: ${({ theme }) => theme.colors.grey3};
   font: ${({ theme }) => theme.fonts.subtitle2};
   letter-spacing: -0.36px;
 
@@ -56,13 +56,13 @@ export const TermContent = styled.div<{ $isOptional: boolean }>`
   gap: 4px;
 
   & h2 {
-    color: ${({ theme }) => theme.colors.gray3};
+    color: ${({ theme }) => theme.colors.grey3};
     font: ${({ theme }) => theme.fonts.body};
     letter-spacing: -0.32px;
 
     & b {
       color: ${({ theme, $isOptional }) =>
-        $isOptional ? theme.colors.gray1 : theme.colors.primary1};
+        $isOptional ? theme.colors.grey1 : theme.colors.primary1};
     }
   }
 
@@ -72,7 +72,7 @@ export const TermContent = styled.div<{ $isOptional: boolean }>`
 `;
 
 export const View = styled.div`
-  color: ${({ theme }) => theme.colors.gray1};
+  color: ${({ theme }) => theme.colors.grey1};
   font: ${({ theme }) => theme.fonts.body};
   letter-spacing: -0.32px;
   cursor: pointer;

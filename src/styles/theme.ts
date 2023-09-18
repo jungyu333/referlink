@@ -6,11 +6,11 @@ const colors = {
   primary2: '#007AD6',
 
   //gray color
-  gray0: '#605F5F0D',
-  gray1: '#605F5F59',
-  gray2: '#605F5F',
-  gray3: '#414040',
-  gray4: '#201F1F',
+  grey0: '#605F5F0D',
+  grey1: '#605F5F59',
+  grey2: '#605F5F',
+  grey3: '#414040',
+  grey4: '#201F1F',
 
   //black color
   black: '#000000',
@@ -28,6 +28,7 @@ const fonts = {
   headline2: '700 24px/100% "Noto Sans KR", sans-serif',
   subtitle1: '700 20px/100% "Noto Sans KR", sans-serif',
   subtitle2: '400 18px/100% "Noto Sans KR", sans-serif',
+  subtitle3: '700 18px/100% "Noto Sans KR", sans-serif',
   body: '400 16px/130% "Noto Sans KR", sans-serif',
   body2: '700 16px/100% "Noto Sans KR", sans-serif',
   caption: '400 13px/150% "Noto Sans KR", sans-serif',

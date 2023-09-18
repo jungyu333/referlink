@@ -23,7 +23,7 @@ export const InnerContainer = styled.div<{
     align-items: center;
     align-self: stretch;
     gap: 10px;
-    color: ${({ theme }) => theme.colors.gray4};
+    color: ${({ theme }) => theme.colors.grey4};
     font: ${({ theme }) => theme.fonts.subtitle2};
     letter-spacing: -0.36px;
   }
@@ -39,17 +39,17 @@ export const InnerContainer = styled.div<{
       ${({ theme, $isFocused, $isError }) => {
         if ($isError) return theme.colors.error;
         if ($isFocused) return theme.colors.primary1;
-        return theme.colors.gray1;
+        return theme.colors.grey1;
       }};
     height: 56px;
     font: ${({ theme }) => theme.fonts.body};
-    color: ${({ theme }) => theme.colors.gray4};
+    color: ${({ theme }) => theme.colors.grey4};
     letter-spacing: -0.32px;
   }
 
   & input {
     &::placeholder {
-      color: ${({ theme }) => theme.colors.gray1};
+      color: ${({ theme }) => theme.colors.grey1};
       font: ${({ theme }) => theme.fonts.body};
       letter-spacing: -0.32px;
     }

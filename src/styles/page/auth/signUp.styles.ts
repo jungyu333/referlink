@@ -48,7 +48,7 @@ export const BottomText = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 4px;
-  color: ${({ theme }) => theme.colors.gray3};
+  color: ${({ theme }) => theme.colors.grey3};
   font: ${({ theme }) => theme.fonts.body};
   letter-spacing: -0.32px;
 
