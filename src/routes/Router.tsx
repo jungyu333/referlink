@@ -13,7 +13,7 @@ export const Router = () => {
           <Route path="/mypage/:userId" element={<MyPageWithMenu />} />
         </Route>
 
-        <Route element={<Layout isFooter={false} />}>
+        <Route element={<Layout isFooter={false} isHeaderMenu={false} />}>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>

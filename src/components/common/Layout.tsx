@@ -4,12 +4,13 @@ import * as S from '@styles/components/common/layout.styles';
 
 type Props = {
   isFooter?: boolean;
+  isHeaderMenu?: boolean;
 };
 
-export const Layout = ({ isFooter = true }: Props) => {
+export const Layout = ({ isFooter = true, isHeaderMenu = true }: Props) => {
   return (
     <S.Wrapper>
-      <Header />
+      <Header isHeaderMenu={isHeaderMenu} />
 
       <S.Content>
         <Outlet />
