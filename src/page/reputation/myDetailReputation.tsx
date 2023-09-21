@@ -50,6 +50,24 @@ const myDetailReputation = () => {
           </CheckBox>
         </div>
       </DisclosureContainer>
+
+      <NondisclosureContainer>
+        <h1>2. 기업 담당자만 확인할 수 있는 내용입니다.</h1>
+
+        <QuestionContainer>
+          <h2>
+            <b>2-1. </b>지원자님의 일하는 성향은?
+          </h2>
+
+          <SelectContainer>
+            <Select $isPrimary={true}>📝 과정이 중요</Select>
+            <Select>매우 그러함</Select>
+            <Select>다소 그러함</Select>
+            <Select>매우 그러함</Select>
+            <Select $isPrimary={true}>🥇 결과가 중요</Select>
+          </SelectContainer>
+        </QuestionContainer>
+      </NondisclosureContainer>
     </Wrapper>
   );
 };
@@ -198,6 +216,63 @@ const CheckBox = styled.div`
   gap: 8px;
 
   color: ${({ theme }) => theme.colors.grey3};
+  font: ${({ theme }) => theme.fonts.subtitle2};
+  letter-spacing: -0.36px;
+`;
+
+const NondisclosureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 63px;
+  margin-left: 162px;
+  margin-bottom: 112px;
+  & h1 {
+    width: 738px;
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.subtitle1};
+
+    letter-spacing: -0.4px;
+  }
+`;
+
+const QuestionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  & h2 {
+    width: 738px;
+    padding: 0 6px;
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.subtitle2};
+    letter-spacing: -0.36px;
+
+    & b {
+      color: ${({ theme }) => theme.colors.primary1};
+    }
+  }
+`;
+
+const SelectContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+`;
+
+const Select = styled.div<{ $isPrimary?: boolean }>`
+  display: inline-flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.grey5};
+  color: ${({ theme, $isPrimary }) =>
+    $isPrimary ? theme.colors.primary2 : theme.colors.grey1};
   font: ${({ theme }) => theme.fonts.subtitle2};
   letter-spacing: -0.36px;
 `;
