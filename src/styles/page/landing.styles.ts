@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MainText = styled.div`
-  color: ${({ theme }) => theme.colors.gray4};
+  color: ${({ theme }) => theme.colors.grey4};
   text-align: center;
   font: ${({ theme }) => theme.fonts.display};
   position: absolute;

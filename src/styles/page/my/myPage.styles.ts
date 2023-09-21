@@ -50,7 +50,7 @@ export const Avatar = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  border: 1px solid ${({ theme }) => theme.colors.grey1};
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 `;
 
@@ -61,13 +61,13 @@ export const TextContainer = styled.div`
   gap: 12px;
 
   & h1 {
-    color: ${({ theme }) => theme.colors.gray4};
+    color: ${({ theme }) => theme.colors.grey4};
     font: ${({ theme }) => theme.fonts.headline2};
     letter-spacing: -0.48px;
   }
 
   & h2 {
-    color: ${({ theme }) => theme.colors.gray3};
+    color: ${({ theme }) => theme.colors.grey3};
     font: ${({ theme }) => theme.fonts.subtitle2};
     letter-spacing: -0.36px;
   }

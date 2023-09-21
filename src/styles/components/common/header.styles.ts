@@ -45,7 +45,7 @@ export const PassReputation = styled.div`
 `;
 
 export const ButtonText = styled.div`
-  color: ${({ theme }) => theme.colors.gray3};
+  color: ${({ theme }) => theme.colors.grey3};
   font: ${({ theme }) => theme.fonts.body};
   letter-spacing: -0.32px;
   text-align: left;
@@ -56,7 +56,7 @@ export const ButtonText = styled.div`
 export const MyPageButton = styled.div`
   border-radius: 8px;
   border-style: solid;
-  border-color: ${({ theme }) => theme.colors.gray1};
+  border-color: ${({ theme }) => theme.colors.grey1};
   border-width: 1px;
   padding: 10px 16px 10px 16px;
   display: flex;

@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-shrink: 0;
 
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray0};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey0};
   background: rgba(2, 141, 233, 0.03);
 
   & h1 {
@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
     letter-spacing: -0.48px;
 
     & b {
-      color: ${({ theme }) => theme.colors.gray4};
+      color: ${({ theme }) => theme.colors.grey4};
     }
   }
 `;

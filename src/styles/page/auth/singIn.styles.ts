@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 
   & h1 {
-    color: ${({ theme }) => theme.colors.gray4};
+    color: ${({ theme }) => theme.colors.grey4};
     font: ${({ theme }) => theme.fonts.headline1};
     letter-spacing: -0.68px;
   }
@@ -60,7 +60,7 @@ export const LineText = styled.div`
   width: 400px;
   justify-content: space-between;
   align-items: center;
-  color: ${({ theme }) => theme.colors.gray3};
+  color: ${({ theme }) => theme.colors.grey3};
   font: ${({ theme }) => theme.fonts.body};
   letter-spacing: -0.32px;
   & div {
@@ -77,8 +77,8 @@ export const OnGoogle = styled.button`
   align-items: flex-start;
   gap: 84px;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.gray1};
-  color: ${({ theme }) => theme.colors.gray3};
+  border: 1px solid ${({ theme }) => theme.colors.grey1};
+  color: ${({ theme }) => theme.colors.grey3};
   font: ${({ theme }) => theme.fonts.subtitle2};
   letter-spacing: -0.36px;
   background-color: ${({ theme }) => theme.colors.white};
