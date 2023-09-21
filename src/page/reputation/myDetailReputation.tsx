@@ -1,5 +1,6 @@
 import { withMenuLayout } from '@hoc/withMenuLayout';
 import styled from 'styled-components';
+import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as DateSVG } from '@styles/images/svg/date.svg';
 
 const myDetailReputation = () => {
@@ -29,6 +30,26 @@ const myDetailReputation = () => {
           대상이 될 수 있습니다.
         </h2>
       </WriterInforContainer>
+
+      <DisclosureContainer>
+        <div>
+          <Disclosure>
+            <h1>1. 전체공개 평판 내역입니다.</h1>
+            <p>
+              지원자님은 평소 행실이 바르고 기획적인 역량이나 디자인적인
+              역량이나 개발적인 역량 모두를 갖춘 이시대의 진정한 풀스텍 IT
+              인재입니다. 이러한 인재를 놓친다면 커다란 국가적 낭비이며, 이는 큰
+              손실을 초래할 것 입니다. 하지만 단 한가지 단점이 있습니다. 그
+              단점은....(더보기)
+            </p>
+          </Disclosure>
+
+          <CheckBox>
+            <CheckSVG />
+            평판 비공개
+          </CheckBox>
+        </div>
+      </DisclosureContainer>
     </Wrapper>
   );
 };
@@ -124,4 +145,59 @@ const InforItem = styled.div`
     font: ${({ theme }) => theme.fonts.subtitle3};
     letter-spacing: -0.36px;
   }
+`;
+
+const DisclosureContainer = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 56px;
+  margin-top: 63px;
+  margin-left: 162px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+`;
+
+const Disclosure = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  & h1 {
+    width: 738px;
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.subtitle1};
+    letter-spacing: -0.4px;
+  }
+
+  & p {
+    display: flex;
+    width: 1116px;
+    padding: 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 16px;
+    background: ${({ theme }) => theme.colors.grey5};
+
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.body};
+    letter-spacing: -0.32px;
+  }
+`;
+
+const CheckBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: ${({ theme }) => theme.colors.grey3};
+  font: ${({ theme }) => theme.fonts.subtitle2};
+  letter-spacing: -0.36px;
 `;

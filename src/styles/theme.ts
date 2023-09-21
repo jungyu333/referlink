@@ -11,6 +11,7 @@ const colors = {
   grey2: '#605F5F',
   grey3: '#414040',
   grey4: '#201F1F',
+  grey5: '#F8F9FB',
 
   //black color
   black: '#000000',
