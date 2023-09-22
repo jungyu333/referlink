@@ -2,7 +2,7 @@ import { withMenuLayout } from '@hoc/withMenuLayout';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as DateSVG } from '@styles/images/svg/date.svg';
 import * as S from '@styles/page/reput/myDetailReputation.styles';
-const myDetailReputation = () => {
+const MyDetailReputation = () => {
   return (
     <S.Wrapper>
       <S.HeaderContainer>
@@ -78,4 +78,4 @@ const myDetailReputation = () => {
 export const MyDetailReputationWithMenu = withMenuLayout(
   '평판상세',
   '평판 작성자 이름',
-)(myDetailReputation);
+)(MyDetailReputation);
