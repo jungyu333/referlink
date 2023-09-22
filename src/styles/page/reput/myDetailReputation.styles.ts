@@ -5,6 +5,13 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+
+  & main {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 63px;
+  }
 `;
 
 export const HeaderContainer = styled.div`
@@ -88,13 +95,22 @@ export const InforItem = styled.div`
   }
 `;
 
+export const ReputConatainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  padding: 0 162px;
+`;
+
 export const DisclosureContainer = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 56px;
-  margin-top: 63px;
-  margin-left: 162px;
+  gap: 40px;
+  height: 211px;
+
+  // margin-left: 162px;
 
   & > div {
     display: flex;
@@ -147,10 +163,8 @@ export const NondisclosureContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
-  margin-top: 63px;
-  margin-left: 162px;
-  margin-bottom: 112px;
+  gap: 40px;
+  margin-bottom: 91px;
   & h1 {
     width: 738px;
     color: ${({ theme }) => theme.colors.grey3};
@@ -165,6 +179,8 @@ export const QuestionContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+  width: 1025px;
+  height: 92px;
 
   & h2 {
     width: 738px;
@@ -181,13 +197,13 @@ export const QuestionContainer = styled.div`
 
 export const SelectContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
 `;
 
 export const Select = styled.div<{ $isPrimary?: boolean }>`
   display: inline-flex;
-  padding: 12px;
+  padding: 16px 32px;
   justify-content: center;
   align-items: center;
   gap: 12px;
