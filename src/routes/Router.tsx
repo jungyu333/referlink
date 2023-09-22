@@ -2,7 +2,10 @@ import { Layout } from '@components/common';
 import { Landing } from '@page/Landing';
 import { SignIn, SignUp } from '@page/auth';
 import { MyPageWithMenu } from '@page/my';
-import { MyDetailReputationWithMenu } from '@page/reputation';
+import {
+  MyDetailReputationWithMenu,
+  WriteReputationWithMenu,
+} from '@page/reputation';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 export const Router = () => {
@@ -16,6 +19,7 @@ export const Router = () => {
             path="/myreput/:userId"
             element={<MyDetailReputationWithMenu />}
           />
+          <Route path="/writereput" element={<WriteReputationWithMenu />} />
         </Route>
 
         <Route element={<Layout isFooter={false} isHeaderMenu={false} />}>

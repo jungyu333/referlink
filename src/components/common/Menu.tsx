@@ -10,7 +10,7 @@ export const Menu = ({ mainText, subText }: Props) => {
     <S.Wrapper>
       <h1>
         {mainText}
-        {subText && <b>({subText})</b>}
+        {subText && <b> ({subText})</b>}
       </h1>
     </S.Wrapper>
   );

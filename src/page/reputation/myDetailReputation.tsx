@@ -76,6 +76,6 @@ const MyDetailReputation = () => {
 };
 
 export const MyDetailReputationWithMenu = withMenuLayout(
-  '평판상세',
+  '평판 상세',
   '평판 작성자 이름',
 )(MyDetailReputation);
