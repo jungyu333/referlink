@@ -1,5 +1,4 @@
 import { withMenuLayout } from '@hoc/withMenuLayout';
-import styled from 'styled-components';
 import { ReactComponent as MyPageSVG } from '@styles/images/svg/mypage.svg';
 import { EmailInput, TextInput } from '@components/common';
 import { useForm } from 'react-hook-form';
