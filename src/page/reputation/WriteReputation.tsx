@@ -98,6 +98,15 @@ const WriteReputation = () => {
           </div>
         </div>
       </InputContainer>
+      <ShortAnswerContainer>
+        <h1>1. 전체공개 평판 내역입니다.</h1>
+        <TextAreaContainer>
+          <h2>
+            <b>1-1. </b>지원자님의 장/단점을 작성해주세요.
+          </h2>
+          <textarea placeholder="지원자님에 대한 솔직한 의견을 작성해주세요" />
+        </TextAreaContainer>
+      </ShortAnswerContainer>
     </Wrapper>
   );
 };
@@ -147,6 +156,61 @@ const InputContainer = styled.div`
       font: ${({ theme }) => theme.fonts.subtitle2};
 
       letter-spacing: -0.36px;
+    }
+  }
+`;
+
+const ShortAnswerContainer = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 33px;
+  margin-top: 69px;
+
+  & h1 {
+    width: 738px;
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.subtitle1};
+    letter-spacing: -0.4px;
+  }
+`;
+
+const TextAreaContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  & h2 {
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.subtitle2};
+    letter-spacing: -0.36px;
+
+    & b {
+      color: ${({ theme }) => theme.colors.primary1};
+    }
+  }
+
+  & textarea {
+    display: flex;
+    width: 1116px;
+    height: 170px;
+    padding: 32px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 16px;
+    resize: none;
+    border: 1px solid ${({ theme }) => theme.colors.grey1};
+    &:focus {
+      outline: 1px solid ${({ theme }) => theme.colors.primary1};
+      border: none;
+    }
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.grey1};
+      font: ${({ theme }) => theme.fonts.body};
+      letter-spacing: -0.32px;
     }
   }
 `;
