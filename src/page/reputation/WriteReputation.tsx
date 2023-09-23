@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { IWriteReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
-
+import * as S from '@styles/page/reput/writeReputation.styles';
 import { ReputQuestion } from '@components/common/selector';
 
 const WriteReputation = () => {
@@ -16,13 +16,13 @@ const WriteReputation = () => {
     formState: { errors },
   } = useForm<IWriteReputationFormData>();
   return (
-    <Wrapper>
-      <HeaderContainer>
+    <S.Wrapper>
+      <S.HeaderContainer>
         <MyPageSVG />
         <h1>작성자 정보를 입력해주세요</h1>
-      </HeaderContainer>
+      </S.HeaderContainer>
 
-      <InputContainer>
+      <S.InputContainer>
         <TextInput
           label="이름"
           placeholder="이름을 작성해주세요."
@@ -99,171 +99,27 @@ const WriteReputation = () => {
             익명
           </div>
         </div>
-      </InputContainer>
-      <ShortAnswerContainer>
+      </S.InputContainer>
+      <S.ShortAnswerContainer>
         <h1>1. 전체공개 평판 내역입니다.</h1>
-        <TextAreaContainer>
+        <S.TextAreaContainer>
           <h2>
             <b>1-1. </b>지원자님의 장/단점을 작성해주세요.
           </h2>
           <textarea placeholder="지원자님에 대한 솔직한 의견을 작성해주세요" />
-        </TextAreaContainer>
-      </ShortAnswerContainer>
-      <NondisclosureContainer>
+        </S.TextAreaContainer>
+      </S.ShortAnswerContainer>
+      <S.NondisclosureContainer>
         <h1>2. 기업 채용담당자만 확인할 수 있는 내역입니다.</h1>
         <section>
           <ReputQuestion />
           <ReputQuestion />
           <ReputQuestion />
         </section>
-      </NondisclosureContainer>
-    </Wrapper>
+      </S.NondisclosureContainer>
+    </S.Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  padding: 0 162px;
-  padding-top: 74px;
-  padding-bottom: 148px;
-`;
-
-const HeaderContainer = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  & h1 {
-    color: ${({ theme }) => theme.colors.grey2};
-    font: ${({ theme }) => theme.fonts.headline2};
-    line-height: 146%;
-    letter-spacing: -0.48px;
-  }
-`;
-
-const InputContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
-  margin-top: 40px;
-
-  & > div:last-child {
-    display: flex;
-    width: 1115px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-
-    & div {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: ${({ theme }) => theme.colors.grey3};
-      font: ${({ theme }) => theme.fonts.subtitle2};
-
-      letter-spacing: -0.36px;
-    }
-  }
-`;
-
-const ShortAnswerContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 33px;
-  margin-top: 69px;
-
-  & h1 {
-    width: 738px;
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle1};
-    letter-spacing: -0.4px;
-  }
-`;
-
-const TextAreaContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-
-  & h2 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-    letter-spacing: -0.36px;
-
-    & b {
-      color: ${({ theme }) => theme.colors.primary1};
-    }
-  }
-
-  & textarea {
-    display: flex;
-    width: 1116px;
-    height: 170px;
-    padding: 32px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-    border-radius: 16px;
-    resize: none;
-    border: 1px solid ${({ theme }) => theme.colors.grey1};
-    &:focus {
-      outline: 1px solid ${({ theme }) => theme.colors.primary1};
-      border: none;
-    }
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.grey1};
-      font: ${({ theme }) => theme.fonts.body};
-      letter-spacing: -0.32px;
-    }
-  }
-`;
-
-const NondisclosureContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 33px;
-  margin-top: 56px;
-
-  & h1 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle1};
-    width: 738px;
-    letter-spacing: -0.4px;
-  }
-
-  & section {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-  }
-`;
-
-const QuestionContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-
-  & h2 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-
-    letter-spacing: -0.36px;
-
-    & b {
-      color: ${({ theme }) => theme.colors.primary1};
-    }
-  }
-`;
 
 export const WriteReputationWithMenu =
   withMenuLayout('평판 작성')(WriteReputation);
