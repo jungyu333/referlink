@@ -6,10 +6,8 @@ import { useForm } from 'react-hook-form';
 import { IWriteReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
-import {
-  Select,
-  SelectContainer,
-} from '@styles/page/reput/myDetailReputation.styles';
+
+import { ReputQuestion } from '@components/common/selector';
 
 const WriteReputation = () => {
   const {
@@ -114,43 +112,9 @@ const WriteReputation = () => {
       <NondisclosureContainer>
         <h1>2. 기업 채용담당자만 확인할 수 있는 내역입니다.</h1>
         <section>
-          <QuestionContainer>
-            <h2>
-              <b>2-1. </b>지원자님의 일하는 성향은?
-            </h2>
-
-            <SelectContainer>
-              <Select $isPrimary={true}>📝 과정이 중요</Select>
-              <Select>매우 그러함</Select>
-              <Select>다소 그러함</Select>
-              <Select>매우 그러함</Select>
-              <Select $isPrimary={true}>🥇 결과가 중요</Select>
-            </SelectContainer>
-          </QuestionContainer>
-          <QuestionContainer>
-            <h2>
-              <b>2-1. </b>지원자님의 일하는 성향은?
-            </h2>
-            <SelectContainer>
-              <Select $isPrimary={true}>📝 과정이 중요</Select>
-              <Select>매우 그러함</Select>
-              <Select>다소 그러함</Select>
-              <Select>매우 그러함</Select>
-              <Select $isPrimary={true}>🥇 결과가 중요</Select>
-            </SelectContainer>
-          </QuestionContainer>
-          <QuestionContainer>
-            <h2>
-              <b>2-1. </b>지원자님의 일하는 성향은?
-            </h2>
-            <SelectContainer>
-              <Select $isPrimary={true}>📝 과정이 중요</Select>
-              <Select>매우 그러함</Select>
-              <Select>다소 그러함</Select>
-              <Select>매우 그러함</Select>
-              <Select $isPrimary={true}>🥇 결과가 중요</Select>
-            </SelectContainer>
-          </QuestionContainer>
+          <ReputQuestion />
+          <ReputQuestion />
+          <ReputQuestion />
         </section>
       </NondisclosureContainer>
     </Wrapper>

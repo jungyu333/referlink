@@ -1,3 +1,4 @@
+import { ReputQuestion } from '@components/common/selector';
 import { withMenuLayout } from '@hoc/withMenuLayout';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as DateSVG } from '@styles/images/svg/date.svg';
@@ -55,7 +56,7 @@ const MyDetailReputation = () => {
           <S.NondisclosureContainer>
             <h1>2. 기업 담당자만 확인할 수 있는 내용입니다.</h1>
 
-            <S.QuestionContainer>
+            {/* <S.QuestionContainer>
               <h2>
                 <b>2-1. </b>지원자님의 일하는 성향은?
               </h2>
@@ -67,7 +68,8 @@ const MyDetailReputation = () => {
                 <S.Select>매우 그러함</S.Select>
                 <S.Select $isPrimary={true}>🥇 결과가 중요</S.Select>
               </S.SelectContainer>
-            </S.QuestionContainer>
+            </S.QuestionContainer> */}
+            <ReputQuestion />
           </S.NondisclosureContainer>
         </S.ReputConatainer>
       </main>
