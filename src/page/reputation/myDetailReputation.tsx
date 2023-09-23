@@ -1,4 +1,4 @@
-import { ReputQuestion } from '@components/common/selector';
+import { ReputQuestion } from '@components/common';
 import { withMenuLayout } from '@hoc/withMenuLayout';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as DateSVG } from '@styles/images/svg/date.svg';
