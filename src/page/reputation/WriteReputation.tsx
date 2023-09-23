@@ -1,12 +1,11 @@
 import { withMenuLayout } from '@hoc/withMenuLayout';
 import { ReactComponent as MyPageSVG } from '@styles/images/svg/mypage.svg';
-import { EmailInput, TextInput } from '@components/common';
+import { EmailInput, ReputQuestion, TextInput } from '@components/common';
 import { useForm } from 'react-hook-form';
 import { IWriteReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import * as S from '@styles/page/reput/writeReputation.styles';
-import { ReputQuestion } from '@components/common/selector';
 
 const WriteReputation = () => {
   const {
