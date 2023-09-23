@@ -1,4 +1,3 @@
-import { styled } from 'styled-components';
 import { ReactComponent as EyeSVG } from '@styles/images/svg/eye.svg';
 import { ReactComponent as CloseEyeSVG } from '@styles/images/svg/closeeye.svg';
 import { UseFormRegisterReturn } from 'react-hook-form';
