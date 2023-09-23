@@ -6,6 +6,10 @@ import { useForm } from 'react-hook-form';
 import { IWriteReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
+import {
+  Select,
+  SelectContainer,
+} from '@styles/page/reput/myDetailReputation.styles';
 
 const WriteReputation = () => {
   const {
@@ -107,6 +111,48 @@ const WriteReputation = () => {
           <textarea placeholder="지원자님에 대한 솔직한 의견을 작성해주세요" />
         </TextAreaContainer>
       </ShortAnswerContainer>
+      <NondisclosureContainer>
+        <h1>2. 기업 채용담당자만 확인할 수 있는 내역입니다.</h1>
+        <section>
+          <QuestionContainer>
+            <h2>
+              <b>2-1. </b>지원자님의 일하는 성향은?
+            </h2>
+
+            <SelectContainer>
+              <Select $isPrimary={true}>📝 과정이 중요</Select>
+              <Select>매우 그러함</Select>
+              <Select>다소 그러함</Select>
+              <Select>매우 그러함</Select>
+              <Select $isPrimary={true}>🥇 결과가 중요</Select>
+            </SelectContainer>
+          </QuestionContainer>
+          <QuestionContainer>
+            <h2>
+              <b>2-1. </b>지원자님의 일하는 성향은?
+            </h2>
+            <SelectContainer>
+              <Select $isPrimary={true}>📝 과정이 중요</Select>
+              <Select>매우 그러함</Select>
+              <Select>다소 그러함</Select>
+              <Select>매우 그러함</Select>
+              <Select $isPrimary={true}>🥇 결과가 중요</Select>
+            </SelectContainer>
+          </QuestionContainer>
+          <QuestionContainer>
+            <h2>
+              <b>2-1. </b>지원자님의 일하는 성향은?
+            </h2>
+            <SelectContainer>
+              <Select $isPrimary={true}>📝 과정이 중요</Select>
+              <Select>매우 그러함</Select>
+              <Select>다소 그러함</Select>
+              <Select>매우 그러함</Select>
+              <Select $isPrimary={true}>🥇 결과가 중요</Select>
+            </SelectContainer>
+          </QuestionContainer>
+        </section>
+      </NondisclosureContainer>
     </Wrapper>
   );
 };
@@ -211,6 +257,46 @@ const TextAreaContainer = styled.div`
       color: ${({ theme }) => theme.colors.grey1};
       font: ${({ theme }) => theme.fonts.body};
       letter-spacing: -0.32px;
+    }
+  }
+`;
+
+const NondisclosureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 33px;
+  margin-top: 56px;
+
+  & h1 {
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.subtitle1};
+    width: 738px;
+    letter-spacing: -0.4px;
+  }
+
+  & section {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+`;
+
+const QuestionContainer = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  & h2 {
+    color: ${({ theme }) => theme.colors.grey3};
+    font: ${({ theme }) => theme.fonts.subtitle2};
+
+    letter-spacing: -0.36px;
+
+    & b {
+      color: ${({ theme }) => theme.colors.primary1};
     }
   }
 `;
