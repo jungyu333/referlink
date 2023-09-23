@@ -1,1 +1,2 @@
-export * from './myDetailReputation';
+export * from './MyDetailReputation';
+export * from './WriteReputation';
