@@ -6,6 +6,8 @@ import { Button } from '@components/common/button';
 import * as S from '@styles/page/auth/signUp.styles';
 import { Term } from '@components/auth';
 import useAgreements from '@hooks/useAgreements';
+import { useApi } from '@hooks/useApi';
+import { registerByEmail } from 'api';
 
 export const SignUp = () => {
   const {
@@ -15,6 +17,8 @@ export const SignUp = () => {
     getValues,
   } = useForm<ISignUpFormData>();
 
+  const { execute, error } = useApi(registerByEmail);
+
   const {
     agreements,
     toggleAgreement,
@@ -23,9 +27,15 @@ export const SignUp = () => {
     allChecked,
   } = useAgreements();
 
-  const onValid = (formData: ISignUpFormData) => {
+  const onValid = async (formData: ISignUpFormData) => {
     if (areRequiredChecked()) {
-      console.log(formData);
+      const response = await execute({
+        email: formData.email,
+        password: formData.password,
+        passwordCheck: formData.passwordCheck,
+      });
+
+      console.log(response);
     } else {
       alert('약관 동의를 해주세요');
     }
