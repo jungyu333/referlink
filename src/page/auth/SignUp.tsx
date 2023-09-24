@@ -41,11 +41,7 @@ export const SignUp = () => {
       if (response && response.result) {
         apiNavigation('signin', response);
       } else {
-        alert(
-          response && response.message
-            ? response?.message
-            : '이미 사용중인 이메일입니다.',
-        );
+        alert(error ? '이미 사용중인 이메일입니다.' : response?.message);
       }
     } else {
       alert('약관 동의를 해주세요');
