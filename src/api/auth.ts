@@ -34,7 +34,6 @@ export const registerByEmail = async (params: ISignUpFormData) => {
       throw new Error('Failed to create user with Firebase Auth.');
     }
   } catch (error) {
-    console.error('Error during sign-up:', error);
     throw error;
   }
 };

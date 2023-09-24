@@ -8,6 +8,7 @@ import { Term } from '@components/auth';
 import useAgreements from '@hooks/useAgreements';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
+import useApiNavigation from '@hooks/useApiNavigation';
 
 export const SignUp = () => {
   const {
@@ -27,6 +28,8 @@ export const SignUp = () => {
     allChecked,
   } = useAgreements();
 
+  const apiNavigation = useApiNavigation();
+
   const onValid = async (formData: ISignUpFormData) => {
     if (areRequiredChecked()) {
       const response = await execute({
@@ -35,7 +38,15 @@ export const SignUp = () => {
         passwordCheck: formData.passwordCheck,
       });
 
-      console.log(response);
+      if (response && response.result) {
+        apiNavigation('signin', response);
+      } else {
+        alert(
+          response && response.message
+            ? response?.message
+            : '이미 사용중인 이메일입니다.',
+        );
+      }
     } else {
       alert('약관 동의를 해주세요');
     }
