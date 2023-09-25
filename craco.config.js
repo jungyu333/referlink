@@ -11,4 +11,14 @@ module.exports = {
       },
     },
   ],
+  webpack: {
+    configure: (webpackConfig, { env, paths }) => {
+      if (env === 'production') {
+        webpackConfig.resolve.alias = {
+          ...webpackConfig.resolve.alias,
+        };
+      }
+      return webpackConfig;
+    },
+  },
 };
