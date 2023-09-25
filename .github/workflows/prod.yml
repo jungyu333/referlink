@@ -22,6 +22,10 @@ jobs:
           username: ${{ secrets.NCP_ACCESS_KEY }}
           password: ${{ secrets.NCP_SECRET_KEY }}
 
+      - name: Setting .env
+        run: |
+          echo "REACT_APP_SIGNUP_URL=${{ secrets.REACT_APP_SIGNUP_URL }}" >> .env
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -43,4 +47,4 @@ jobs:
             docker pull ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest
             docker stop referlink-front || true
             docker rm referlink-front || true
-            docker run -d --restart unless-stopped -p 80:80 --name referlink-front --env-file .env ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest
+            docker run -d --restart unless-stopped -p 80:80 --name referlink-front ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest
