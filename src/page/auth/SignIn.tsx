@@ -5,6 +5,7 @@ import { emailRegex, passwordRegex } from '@constant/regex';
 import { EmailInput, PasswordInput } from '@components/common/input';
 import { Button } from '@components/common/button';
 import * as S from '@styles/page/auth/singIn.styles';
+import useDetailNavigation from '@hooks/useDetailNavigation';
 
 export const SignIn = () => {
   const {
@@ -12,6 +13,8 @@ export const SignIn = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ISignInFormData>();
+
+  const { pathNavigation } = useDetailNavigation('signup');
 
   const onValid = (formData: ISignInFormData) => {
     console.log(formData);
@@ -61,7 +64,11 @@ export const SignIn = () => {
         <S.ButtonContainer>
           <S.ButtonInner>
             <Button buttonText="로그인" onClick={handleSubmit(onValid)} />
-            <Button buttonText="회원가입" isPrimary={false} />
+            <Button
+              buttonText="회원가입"
+              isPrimary={false}
+              onClick={pathNavigation}
+            />
           </S.ButtonInner>
 
           <S.LineText>
