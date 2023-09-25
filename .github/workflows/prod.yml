@@ -43,4 +43,4 @@ jobs:
             docker pull ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest
             docker stop referlink-front || true
             docker rm referlink-front || true
-            docker run -d --restart unless-stopped -p 80:80 --name referlink-front --env-file /home/.env ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest
+            docker run -d --restart unless-stopped -p 80:80 --name referlink-front --env-file .env ${{ secrets.NCP_CONTAINER_REGISTRY }}/referlink:latest

@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY package*.json ./
 
-ENV NODE_ENV production
-
 RUN npm install
 
 COPY . .
@@ -13,7 +11,6 @@ COPY . .
 RUN npm run build
 
 FROM nginx:stable-alpine
-
 
 COPY --from=build /app/build /usr/share/nginx/html
 
