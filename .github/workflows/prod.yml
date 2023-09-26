@@ -24,6 +24,13 @@ jobs:
 
       - name: Setting .env
         run: |
+          echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
+          echo "REACT_APP_AUTH_DOMAIN=${{ secrets.REACT_APP_AUTH_DOMAIN }}" >> .env
+          echo "REACT_APP_PROJECT_ID=${{ secrets.REACT_APP_PROJECT_ID }}" >> .env
+          echo "REACT_APP_STORAGE_BUCKET=${{ secrets.REACT_APP_STORAGE_BUCKET }}" >> .env
+          echo "REACT_APP_MESSAGIN_ID=${{ secrets.REACT_APP_MESSAGIN_ID }}" >> .env
+          echo "REACT_APP_ID=${{ secrets.REACT_APP_ID }}" >> .env
+          echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> .env
           echo "REACT_APP_SIGNUP_URL=${{ secrets.REACT_APP_SIGNUP_URL }}" >> .env
 
       - name: Build and push Docker image
