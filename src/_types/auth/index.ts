@@ -10,4 +10,15 @@ export interface ISignUpFormData extends ISignInFormData {
 }
 
 //회원 가입 api response
-export interface IRegisterByEmailApiResponse extends IApiResponse {}
+export interface IRegisterByEmailApiResponse extends IApiResponse {
+  data: boolean;
+}
+
+//로그인 api response
+export interface ISignInByEmailApiResponse extends IApiResponse {
+  data: {
+    firebase_token: string;
+    email: string;
+    uid: string;
+  };
+}
