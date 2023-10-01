@@ -18,7 +18,7 @@ export const SignUp = () => {
     getValues,
   } = useForm<ISignUpFormData>();
 
-  const { execute, error } = useApi(registerByEmail);
+  const { execute } = useApi(registerByEmail);
 
   const {
     agreements,
@@ -32,16 +32,16 @@ export const SignUp = () => {
 
   const onValid = async (formData: ISignUpFormData) => {
     if (areRequiredChecked()) {
-      const response = await execute({
+      const responseOrError = await execute({
         email: formData.email,
         password: formData.password,
         passwordCheck: formData.passwordCheck,
       });
 
-      if (response && response.result) {
-        apiNavigation('signin', response);
+      if (responseOrError instanceof Error) {
+        alert('이미 사용중인 이메일입니다.');
       } else {
-        alert(error ? '이미 사용중인 이메일입니다.' : response?.message);
+        apiNavigation('/signin', responseOrError);
       }
     } else {
       alert('약관 동의를 해주세요');

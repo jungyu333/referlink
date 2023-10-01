@@ -10,9 +10,7 @@ export interface ISignUpFormData extends ISignInFormData {
 }
 
 //회원 가입 api response
-export interface IRegisterByEmailApiResponse extends IApiResponse {
-  data: boolean;
-}
+export interface IRegisterByEmailApiResponse extends IApiResponse {}
 
 //로그인 api response
 export interface ISignInByEmailApiResponse extends IApiResponse {
