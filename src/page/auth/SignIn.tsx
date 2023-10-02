@@ -6,6 +6,9 @@ import { EmailInput, PasswordInput } from '@components/common/input';
 import { Button } from '@components/common/button';
 import * as S from '@styles/page/auth/singIn.styles';
 import useDetailNavigation from '@hooks/useDetailNavigation';
+import { useApi } from '@hooks/useApi';
+import { signInByEmail } from 'api';
+import useApiNavigation from '@hooks/useApiNavigation';
 
 export const SignIn = () => {
   const {
@@ -16,8 +19,22 @@ export const SignIn = () => {
 
   const { pathNavigation } = useDetailNavigation('signup');
 
-  const onValid = (formData: ISignInFormData) => {
-    console.log(formData);
+  const { execute } = useApi(signInByEmail);
+
+  const apiNavigation = useApiNavigation();
+
+  const onValid = async (formData: ISignInFormData) => {
+    const { email, password } = formData;
+    const responseOrError = await execute({
+      email,
+      password,
+    });
+
+    if (responseOrError instanceof Error) {
+      alert('로그인에 실패했습니다.');
+    } else {
+      apiNavigation('/', responseOrError);
+    }
   };
   return (
     <S.Wrapper>
