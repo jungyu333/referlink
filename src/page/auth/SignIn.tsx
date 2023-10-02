@@ -25,7 +25,14 @@ export const SignIn = () => {
   const apiNavigation = useApiNavigation();
 
   const onClickToast = () => {
-    showToast.info('성공');
+    showToast.info(
+      <>
+        <h1>
+          <b>평판공유 URL</b>이 복사되었습니다.
+        </h1>
+        <p>붙여넣기하여 내 평판을 공유해보세요</p>
+      </>,
+    );
   };
 
   const onValid = async (formData: ISignInFormData) => {
