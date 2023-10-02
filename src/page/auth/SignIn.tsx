@@ -9,6 +9,7 @@ import useDetailNavigation from '@hooks/useDetailNavigation';
 import { useApi } from '@hooks/useApi';
 import { signInByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
+import { Toast, showToast } from '@components/common';
 
 export const SignIn = () => {
   const {
@@ -22,6 +23,10 @@ export const SignIn = () => {
   const { execute } = useApi(signInByEmail);
 
   const apiNavigation = useApiNavigation();
+
+  const onClickToast = () => {
+    showToast.info('성공');
+  };
 
   const onValid = async (formData: ISignInFormData) => {
     const { email, password } = formData;
@@ -100,6 +105,8 @@ export const SignIn = () => {
           </S.OnGoogle>
         </S.ButtonContainer>
       </S.AuthForm>
+      <button onClick={onClickToast}>토스트</button>
+      <Toast />
     </S.Wrapper>
   );
 };
