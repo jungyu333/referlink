@@ -9,6 +9,7 @@ import useAgreements from '@hooks/useAgreements';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
+import { showAlertToast } from '@components/common/toast';
 
 export const SignUp = () => {
   const {
@@ -39,12 +40,17 @@ export const SignUp = () => {
       });
 
       if (responseOrError instanceof Error) {
-        alert('이미 사용중인 이메일입니다.');
+        showAlertToast.info('이미 사용중인 이메일입니다.');
       } else {
-        apiNavigation('/signin', responseOrError);
+        apiNavigation(
+          '/signin',
+          '회원가입에 성공하였습니다.',
+          responseOrError,
+          showAlertToast,
+        );
       }
     } else {
-      alert('약관 동의를 해주세요');
+      showAlertToast.info('약관 동의를 해주세요');
     }
   };
 

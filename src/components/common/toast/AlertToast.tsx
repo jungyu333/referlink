@@ -1,8 +1,6 @@
-import { ReactNode } from 'react';
 import { ToastOptions, toast } from 'react-toastify';
-import { ReactComponent as TickCircleSVG } from '@styles/images/svg/tickCircle.svg';
 import 'react-toastify/dist/ReactToastify.css';
-import * as S from '@styles/components/common/toast/customToast.styles';
+import * as S from '@styles/components/common/toast/alertToast.styles';
 
 const defaultToastOption: ToastOptions = {
   position: 'top-center',
@@ -14,21 +12,20 @@ const defaultToastOption: ToastOptions = {
   closeButton: false,
 };
 
-export const showToast = {
-  info: (message: ReactNode, options: ToastOptions = {}) => {
+export const showAlertToast = {
+  info: (message: string, options: ToastOptions = {}) => {
     toast.info(message, {
       ...defaultToastOption,
-      icon: <TickCircleSVG />,
       ...options,
     });
   },
-  success: (message: ReactNode, options: ToastOptions = {}) => {
+  success: (message: string, options: ToastOptions = {}) => {
     toast.success(message, {
       ...defaultToastOption,
       ...options,
     });
   },
-  error: (message: ReactNode, options: ToastOptions = {}) => {
+  error: (message: string, options: ToastOptions = {}) => {
     toast.error(message, {
       ...defaultToastOption,
       ...options,
@@ -36,8 +33,8 @@ export const showToast = {
   },
 };
 
-export type TShowToast = typeof showToast;
+export type TShowAlertToast = typeof showAlertToast;
 
-export const CustomToast = () => {
+export const AlertToast = () => {
   return <S.Container />;
 };

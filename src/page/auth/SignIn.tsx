@@ -4,11 +4,12 @@ import { ISignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import { EmailInput, PasswordInput } from '@components/common/input';
 import { Button } from '@components/common/button';
-import * as S from '@styles/page/auth/singIn.styles';
+import * as S from '@styles/page/auth/signIn.styles';
 import useDetailNavigation from '@hooks/useDetailNavigation';
 import { useApi } from '@hooks/useApi';
 import { signInByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
+import { showAlertToast } from '@components/common/toast';
 
 export const SignIn = () => {
   const {
@@ -31,11 +32,17 @@ export const SignIn = () => {
     });
 
     if (responseOrError instanceof Error) {
-      alert('로그인에 실패했습니다.');
+      showAlertToast.info('로그인에 실패하였습니다.');
     } else {
-      apiNavigation('/', responseOrError);
+      apiNavigation(
+        '/',
+        '로그인에 성공하였습니다.',
+        responseOrError,
+        showAlertToast,
+      );
     }
   };
+
   return (
     <S.Wrapper>
       <h1>로그인</h1>
