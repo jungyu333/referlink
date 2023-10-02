@@ -44,21 +44,4 @@ export const Container = styled(ToastContainer)`
     align-items: center;
     margin: 0;
   }
-
-  & h1 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.headline2};
-    letter-spacing: -0.48px;
-    line-height: 146%;
-
-    & b {
-      color: ${({ theme }) => theme.colors.primary1};
-    }
-  }
-
-  & p {
-    color: ${({ theme }) => theme.colors.grey2};
-    font: ${({ theme }) => theme.fonts.body};
-    letter-spacing: -0.32px;
-  }
 `;

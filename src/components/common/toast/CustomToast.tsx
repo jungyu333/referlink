@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { ToastOptions, toast } from 'react-toastify';
 import { ReactComponent as TickCircleSVG } from '@styles/images/svg/tickCircle.svg';
 import 'react-toastify/dist/ReactToastify.css';
-import * as S from '@styles/components/common/Toast.styles';
+import * as S from '@styles/components/common/toast/customToast.styles';
 
 const defaultToastOption: ToastOptions = {
   position: 'top-center',
@@ -36,6 +36,6 @@ export const showToast = {
   },
 };
 
-export const Toast = () => {
+export const CustomToast = () => {
   return <S.Container />;
 };
