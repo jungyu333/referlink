@@ -1,8 +1,8 @@
 import { ReputQuestion } from '@components/common';
+import { ReputButton } from '@components/common/button';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as DateSVG } from '@styles/images/svg/date.svg';
-import { ReactComponent as ShareSVG } from '@styles/images/svg/octicon_share-16.svg';
-import { ReactComponent as NoteSVG } from '@styles/images/svg/mdi_note-edit.svg';
+
 import * as S from '@styles/page/reput/myDetailReputation.styles';
 export const MyDetailReputation = () => {
   return (
@@ -22,14 +22,8 @@ export const MyDetailReputation = () => {
               </S.Date>
             </S.Header>
             <S.ButtonContainer>
-              <S.Button>
-                <NoteSVG />
-                평판 작성 요청
-              </S.Button>
-              <S.Button>
-                <ShareSVG />
-                평판 작성 요청
-              </S.Button>
+              <ReputButton text="평판 작성 요청" />
+              <ReputButton text="평판 공유하기" isShare />
             </S.ButtonContainer>
           </section>
 

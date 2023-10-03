@@ -89,23 +89,6 @@ export const ButtonContainer = styled.div`
   gap: 20px;
 `;
 
-export const Button = styled.div`
-  display: flex;
-  padding: 16px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary1};
-  width: 177px;
-  height: 64px;
-  cursor: pointer;
-
-  color: ${({ theme }) => theme.colors.white};
-  font: ${({ theme }) => theme.fonts.subtitle2};
-  letter-spacing: -0.36px;
-`;
-
 export const WriterInforContainer = styled.div`
   display: flex;
   flex-direction: column;
