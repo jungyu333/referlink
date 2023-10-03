@@ -10,7 +10,6 @@ import { AxiosResponse } from 'axios';
 import { authService } from 'firebase-config';
 import {
   createUserWithEmailAndPassword,
-  getIdToken,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 
@@ -26,9 +25,9 @@ export const registerByEmail = async (params: ISignUpFormData) => {
     const user = userCredential.user;
 
     if (user) {
-      const token = await getIdToken(user);
+      const userId = user.uid;
 
-      const url = `?firebase_token=${token}&email=${email}`;
+      const url = `?firebase_token=${userId}&email=${email}`;
 
       const response = await SignUpApi.post<
         ISignUpFormData,
@@ -57,9 +56,9 @@ export const signInByEmail = async (params: ISignInFormData) => {
     const user = userCredential.user;
 
     if (user) {
-      const token = await getIdToken(user);
+      const userId = user.uid;
 
-      const url = `?firebase_token=${token}&email=${email}`;
+      const url = `?firebase_token=${userId}&email=${email}`;
 
       const response = await SignInApi.get<
         ISignInFormData,

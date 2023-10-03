@@ -25,10 +25,10 @@ const colors = {
 
 const fonts = {
   display: '700 48px/140% "Noto Sans KR", sans-serif',
-  headline1: '700 34px/100% "Noto Sans KR", sans-serif',
-  headline2: '700 24px/100% "Noto Sans KR", sans-serif',
+  headline1: '700 34px/150% "Noto Sans KR", sans-serif',
+  headline2: '700 24px/146% "Noto Sans KR", sans-serif',
   subtitle1: '700 20px/100% "Noto Sans KR", sans-serif',
-  subtitle2: '400 18px/100% "Noto Sans KR", sans-serif',
+  subtitle2: '400 18px/180% "Noto Sans KR", sans-serif',
   subtitle3: '700 18px/100% "Noto Sans KR", sans-serif',
   body: '400 16px/130% "Noto Sans KR", sans-serif',
   body2: '700 16px/100% "Noto Sans KR", sans-serif',
