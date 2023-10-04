@@ -4,10 +4,28 @@ export const Wrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
-  margin-top: 100px;
-  margin-bottom: 164px;
-  width: 700px;
+  gap: 56px;
+  background-color: ${({ theme }) => theme.colors.grey5};
+  width: 100%;
+  padding: 0 162px;
+  padding-top: 90px;
+  padding-bottom: 45px;
+  & h1 {
+    color: ${({ theme }) => theme.colors.primary1};
+    font: ${({ theme }) => theme.fonts.headline1};
+    letter-spacing: -0.68px;
+  }
+
+  & main {
+    display: inline-flex;
+    padding: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    border-radius: 8px;
+    background: ${({ theme }) => theme.colors.white};
+    align-self: center;
+  }
 `;
 
 export const AvatarContainer = styled.div`
