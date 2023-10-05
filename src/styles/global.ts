@@ -33,7 +33,6 @@ time, mark, audio, video {
 
 * {
 	box-sizing: border-box;
-
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
