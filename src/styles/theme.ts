@@ -23,7 +23,7 @@ const colors = {
   error: '#D32F2F',
 };
 
-const fonts = {
+export const fonts = {
   display: '700 48px/140% "Noto Sans KR", sans-serif',
   headline1: '700 34px/150% "Noto Sans KR", sans-serif',
   headline2: '700 24px/146% "Noto Sans KR", sans-serif',
