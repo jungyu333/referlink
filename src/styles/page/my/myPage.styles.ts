@@ -62,14 +62,23 @@ export const UploadContainer = styled.div`
   & svg {
     cursor: pointer;
   }
+
+  & input {
+    display: none;
+  }
 `;
 
-export const Avatar = styled.div`
+export const Avatar = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 100px;
   border: 1px solid ${({ theme }) => theme.colors.grey1};
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  object-fit: cover;
+  background: lightgray 50%;
+`;
+
+export const NoAvatar = styled(Avatar)`
+  background: url() lightgray 50%;
 `;
 
 export const TextContainer = styled.div`
