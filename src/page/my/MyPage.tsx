@@ -6,6 +6,7 @@ import { ReactComponent as CloseButtonSVG } from '@styles/images/svg/closeButton
 import { Button } from '@components/common/button';
 import { EmailInput, TextInput } from '@components/common';
 import * as S from '@styles/page/my/myPage.styles';
+import { useRef, useState } from 'react';
 
 export const MyPage = () => {
   const {
@@ -13,9 +14,32 @@ export const MyPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IMyPageEditFormData>();
+  const [avatarFile, setAvaterFile] = useState<File | null>(null);
+  const [previewAvatar, setPreviewAvatar] = useState('');
+  const avatarRef = useRef<HTMLInputElement>(null);
 
   const onValid = (formData: IMyPageEditFormData) => {
     console.log(formData);
+  };
+
+  const onChangeAvater = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event && event.target.files) {
+      const file = event.target.files[0];
+
+      if (file) {
+        setAvaterFile(file);
+        setPreviewAvatar(URL.createObjectURL(file));
+      }
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setAvaterFile(null);
+    setPreviewAvatar('');
+
+    if (avatarRef.current) {
+      avatarRef.current.value = '';
+    }
   };
 
   return (
@@ -25,7 +49,11 @@ export const MyPage = () => {
         <S.AvatarContainer>
           <S.AvatarContent>
             <S.Information>
-              <S.Avatar />
+              {previewAvatar.length > 0 ? (
+                <S.Avatar src={previewAvatar} />
+              ) : (
+                <S.NoAvatar />
+              )}
 
               <S.TextContainer>
                 <h1>강민지</h1>
@@ -33,8 +61,18 @@ export const MyPage = () => {
               </S.TextContainer>
             </S.Information>
             <S.UploadContainer>
-              <CloseButtonSVG />
-              <AddPhotoSVG />
+              <CloseButtonSVG onClick={handleRemoveImage} />
+
+              <label htmlFor="avatar">
+                <AddPhotoSVG />
+              </label>
+              <input
+                type="file"
+                accept="imgae/*"
+                id="avatar"
+                onChange={onChangeAvater}
+                ref={avatarRef}
+              />
             </S.UploadContainer>
           </S.AvatarContent>
           <section />

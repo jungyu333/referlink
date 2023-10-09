@@ -1,5 +1,4 @@
 import * as S from '@styles/page/landing.styles';
-import { useState } from 'react';
 
 export const Landing = () => {
   return (

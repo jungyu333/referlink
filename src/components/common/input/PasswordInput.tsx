@@ -9,6 +9,7 @@ type Props = {
   placeholder: string;
   register: UseFormRegisterReturn;
   error?: string;
+  isLabel?: boolean;
 };
 
 export const PasswordInput = ({
@@ -16,6 +17,7 @@ export const PasswordInput = ({
   placeholder,
   register,
   error,
+  isLabel = true,
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isShowPassWord, setIsShowPassWord] = useState(false);
@@ -23,7 +25,7 @@ export const PasswordInput = ({
   return (
     <S.Input>
       <S.InnerContainer $isFocused={isFocused} $isError={error ? true : false}>
-        <label>{label}</label>
+        {isLabel && <label>{label}</label>}
         <div>
           <input
             onFocus={() => setIsFocused(true)}

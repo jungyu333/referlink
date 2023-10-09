@@ -48,7 +48,7 @@ const ButtonWrapper = styled.button<{
   display: flex;
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
-  padding: ${({ $px }) => $px} ${({ $py }) => $py};
+  padding: ${({ $py }) => $py} ${({ $px }) => $px};
   justify-content: center;
   align-items: center;
   gap: 10px;
