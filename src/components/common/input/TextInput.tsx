@@ -8,6 +8,7 @@ type Props = {
   register: UseFormRegisterReturn;
   error?: string;
   width?: string;
+  isLabel?: boolean;
 };
 
 export const TextInput = ({
@@ -16,13 +17,14 @@ export const TextInput = ({
   error,
   register,
   width = '400px',
+  isLabel = true,
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <S.Input $width={width}>
       <S.InnerContainer $isFocused={isFocused} $isError={error ? true : false}>
-        <label>{label}</label>
+        {isLabel && <label>{label}</label>}
         <div>
           <input
             onFocus={() => setIsFocused(true)}

@@ -1,7 +1,13 @@
+import { RequestReputModal } from '@components/common';
 import * as S from '@styles/page/landing.styles';
 import { useState } from 'react';
 
 export const Landing = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onConfirm = () => {
+    setIsOpen(false);
+  };
   return (
     <S.Wrapper>
       <S.MainText>
@@ -10,9 +16,15 @@ export const Landing = () => {
         평판조회의 시작, 레퍼링크
       </S.MainText>
 
-      <S.Button>
+      <S.Button onClick={() => setIsOpen(true)}>
         <div>평판 작성하기</div>
       </S.Button>
+
+      <RequestReputModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onConfirm={onConfirm}
+      />
     </S.Wrapper>
   );
 };
