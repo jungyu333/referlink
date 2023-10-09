@@ -1,5 +1,5 @@
 import ReactModal from 'react-modal';
-import styled from 'styled-components';
+import * as S from '@styles/components/common/modal/requestReputModal.styles';
 import { ReactComponent as PhxSVG } from '@styles/images/svg/ph_x.svg';
 import { ReactComponent as FrameSVG } from '@styles/images/svg/Frame 36767.svg';
 import { Button } from '@components/common/button';
@@ -48,13 +48,13 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
       onRequestClose={onClose}
       contentLabel="Custom Modal"
     >
-      <Header>
+      <S.Header>
         <FrameSVG />
         <h1>평판 작성 요청</h1>
         <PhxSVG />
-      </Header>
-      <Content>
-        <InputContainer>
+      </S.Header>
+      <S.Content>
+        <S.InputContainer>
           <section>
             <TextInput
               label="함께 근무한 정보"
@@ -142,7 +142,7 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
               //error={errors.writerRole?.message}
             />
           </section>
-        </InputContainer>
+        </S.InputContainer>
 
         <Button
           onClick={handleSubmit(onValid)}
@@ -152,69 +152,7 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
           height="68px"
           px="36px"
         />
-      </Content>
+      </S.Content>
     </ReactModal>
   );
 };
-
-const Header = styled.div`
-  display: flex;
-  width: 628px;
-  padding: 50px 24px;
-  justify-content: center;
-  align-items: flex-end;
-  align-content: flex-end;
-  gap: 12px 467px;
-  flex-wrap: wrap;
-  position: relative;
-
-  & h1 {
-    color: ${({ theme }) => theme.colors.primary1};
-    font: ${({ theme }) => theme.fonts.headline2};
-    letter-spacing: -0.48px;
-  }
-
-  & svg:first-child {
-    width: 72px;
-    height: 72px;
-    flex-shrink: 0;
-    fill: ${({ theme }) => theme.colors.white};
-  }
-
-  & svg:last-child {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    right: 14px;
-    top: 4px;
-  }
-`;
-
-const Content = styled.form`
-  display: flex;
-  padding: 10px 24px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
-
-  & section:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  & section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-`;
