@@ -1,13 +1,37 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 130px;
+  margin-bottom: 138px;
+
+  & h2 {
+    color: ${({ theme }) => theme.colors.grey2};
+    font: ${({ theme }) => theme.fonts.caption};
+    letter-spacing: -0.32px;
+    font-size: 16px;
+
+    & b {
+      color: ${({ theme }) => theme.colors.primary1};
+      font: ${({ theme }) => theme.fonts.body2};
+      line-height: 150%;
+      letter-spacing: -0.32px;
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+  }
+`;
+
+export const SignInForm = styled.div`
   display: flex;
-  width: 400px;
+
   flex-direction: column;
   align-items: center;
   gap: 64px;
-  margin-top: 130px;
-  margin-bottom: 235px;
+
   background-color: ${({ theme }) => theme.colors.white};
 
   & h1 {
@@ -48,13 +72,6 @@ export const HelpText = styled.div`
   cursor: pointer;
 `;
 
-export const ButtonInner = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-`;
-
 export const LineText = styled.div`
   display: flex;
   width: 400px;
@@ -72,16 +89,15 @@ export const LineText = styled.div`
 
 export const OnGoogle = styled.button`
   display: flex;
-  height: 58px;
-  padding: 19px 128px 19px 24px;
-  align-items: flex-start;
-  gap: 84px;
+  padding: 13px 118px 13px 24px;
+  align-items: center;
+  gap: 94px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.grey1};
+  width: 400px;
   color: ${({ theme }) => theme.colors.grey3};
-  font: ${({ theme }) => theme.fonts.subtitle2};
-  letter-spacing: -0.36px;
   background-color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  width: 400px;
+  font: ${({ theme }) => theme.fonts.subtitle2};
+  letter-spacing: -0.36px;
 `;
