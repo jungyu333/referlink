@@ -17,7 +17,7 @@ export const Router = () => {
           <Route path="/writereput" element={<WriteReputationWithMenu />} />
         </Route>
 
-        <Route element={<Layout isFooter={false} isHeaderMenu={false} />}>
+        <Route element={<Layout isHeaderMenu={false} />}>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
