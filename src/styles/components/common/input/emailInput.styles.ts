@@ -11,6 +11,7 @@ export const Input = styled.div<{ $width: string }>`
 export const InnerContainer = styled.div<{
   $isFocused: boolean;
   $isError: boolean;
+  $height: string;
 }>`
   display: flex;
   flex-direction: column;
@@ -41,7 +42,7 @@ export const InnerContainer = styled.div<{
         if ($isFocused) return theme.colors.primary1;
         return theme.colors.grey1;
       }};
-    height: 56px;
+    height: ${({ $height }) => $height};
     font: ${({ theme }) => theme.fonts.body};
     color: ${({ theme }) => theme.colors.grey4};
     letter-spacing: -0.32px;
@@ -61,6 +62,7 @@ export const InnerContainer = styled.div<{
     flex-grow: 1;
     border: none;
     height: 100%;
+
     &:focus {
       outline: none;
     }
