@@ -13,10 +13,12 @@ export const ToastBody = ({
 }: Props) => {
   return (
     <>
-      <S.Header>
-        <b>{boldText}</b>
-        {mainText}
-      </S.Header>
+      {(boldText || mainText) && (
+        <S.Header>
+          <b>{boldText}</b>
+          {mainText}
+        </S.Header>
+      )}
       <S.SubText>{subText}</S.SubText>
     </>
   );
