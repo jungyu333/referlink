@@ -1,19 +1,12 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div<{ $isFooter: boolean }>`
-  display: flex;
+export const Wrapper = styled.div`
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 52px;
-  flex-shrink: 1;
-  margin-top: 286px;
-  margin-bottom: ${({ $isFooter }) => ($isFooter ? '217px' : '')};
-  justify-content: center;
-  & svg {
-    width: 475px;
-    height: 213.706px;
-    flex-shrink: 0;
-  }
+  gap: 40px;
+  margin-top: 165px;
+  margin-bottom: 150px;
 
   & main {
     display: inline-flex;
