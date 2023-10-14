@@ -15,14 +15,13 @@ export const Router = () => {
           <Route path="/mypage/:userId" element={<MyPage />} />
           <Route path="/myreput/:userId" element={<MyDetailReputation />} />
           <Route path="/writereput" element={<WriteReputationWithMenu />} />
+          <Route path="/myreput" element={<MyReputation />} />
         </Route>
 
         <Route element={<Layout isHeaderMenu={false} />}>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-
-        <Route path="/myreput" element={<MyReputation />} />
       </Routes>
     </BrowserRouter>
   );

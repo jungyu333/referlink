@@ -30,7 +30,7 @@ export const fonts = {
   subtitle1: '700 20px/100% "Noto Sans KR", sans-serif',
   subtitle2: '400 18px/180% "Noto Sans KR", sans-serif',
   subtitle3: '700 18px/100% "Noto Sans KR", sans-serif',
-  body: '400 16px/130% "Noto Sans KR", sans-serif',
+  body: '400 16px/150% "Noto Sans KR", sans-serif',
   body2: '700 16px/100% "Noto Sans KR", sans-serif',
   caption: '400 13px/150% "Noto Sans KR", sans-serif',
 };

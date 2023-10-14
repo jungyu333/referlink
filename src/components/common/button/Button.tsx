@@ -58,6 +58,7 @@ const ButtonWrapper = styled.button<{
   color: ${({ theme, $isPrimary }) =>
     $isPrimary ? theme.colors.white : theme.colors.primary1};
   font: ${({ $fontStyle }) => $fontStyle};
+  line-height: 150%;
   letter-spacing: -0.36px;
   border: ${({ $isPrimary, theme }) =>
     !$isPrimary
