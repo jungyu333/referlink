@@ -1,5 +1,5 @@
 import ReactModal from 'react-modal';
-import styled from 'styled-components';
+import * as S from '@styles/components/common/modal/emailConfirmModal.styles';
 import { ReactComponent as EmailSVG } from '@styles/images/svg/ic_round-mail.svg';
 import { Button } from '@components/common/button';
 import { fonts } from '@styles/theme';
@@ -36,16 +36,16 @@ export const EmailConfirmModal = ({ isOpen, onClose, onConfirm }: Props) => {
       onRequestClose={onClose}
       contentLabel="Custom Modal"
     >
-      <Content>
+      <S.Content>
         <section>
           <EmailSVG />
 
-          <TextContainer>
+          <S.TextContainer>
             <h1>
               가입 이메일로 <b>인증을 요청하였습니다.</b>
             </h1>
             <p>인증확인 버튼을 통해 회원가입을 완료해주세요</p>
-          </TextContainer>
+          </S.TextContainer>
         </section>
         <Button
           onClick={onClose}
@@ -56,46 +56,7 @@ export const EmailConfirmModal = ({ isOpen, onClose, onConfirm }: Props) => {
           py="10px"
           fontStyle={fonts.body}
         />
-      </Content>
+      </S.Content>
     </ReactModal>
   );
 };
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-
-  & section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-  }
-`;
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-
-  & h1 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.headline2};
-    letter-spacing: -0.48px;
-
-    & b {
-      color: ${({ theme }) => theme.colors.primary1};
-    }
-  }
-
-  & p {
-    color: ${({ theme }) => theme.colors.grey2};
-    font: ${({ theme }) => theme.fonts.body};
-    line-height: 150%;
-    letter-spacing: -0.32px;
-  }
-`;
