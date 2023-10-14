@@ -1,9 +1,10 @@
 import { Button } from '@components/common/button';
+import { ReputCard } from '@components/reput';
 import { ReactComponent as IllustSVG } from '@styles/images/svg/Group 3028.svg';
 import * as S from '@styles/page/reput/myReputation.styles';
 import { fonts } from '@styles/theme';
 
-export const MyReputation = () => {
+const EmptyContent = () => {
   return (
     <S.Wrapper>
       <IllustSVG />
@@ -25,4 +26,12 @@ export const MyReputation = () => {
       </main>
     </S.Wrapper>
   );
+};
+
+const Content = () => {
+  return <ReputCard />;
+};
+
+export const MyReputation = () => {
+  return <EmptyContent />;
 };
