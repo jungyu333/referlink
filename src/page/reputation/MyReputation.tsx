@@ -39,6 +39,12 @@ const Content = () => {
           <ReputButton text="평판 공유하기" isShare />
         </div>
       </Header>
+
+      <Main>
+        {[1, 2, 3].map((item) => (
+          <ReputCard key={item} />
+        ))}
+      </Main>
     </Wrapper>
   );
 };
@@ -50,12 +56,13 @@ export const MyReputation = () => {
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.grey5};
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   gap: 101px;
   flex-direction: column;
   padding: 0 162px;
   padding-top: 103px;
+  padding-bottom: 157px;
 `;
 
 const Header = styled.header`
@@ -83,4 +90,11 @@ const Header = styled.header`
     gap: 20px;
     flex-shrink: 0;
   }
+`;
+
+const Main = styled.main`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 40px;
+  column-gap: 24px;
 `;
