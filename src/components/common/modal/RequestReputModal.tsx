@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { EmailInput, TextInput } from '@components/common/input';
 import { IRequestReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
+import { fonts } from '@styles/theme';
 
 type Props = {
   isOpen: boolean;
@@ -51,7 +52,7 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
       <S.Header>
         <FrameSVG />
         <h1>평판 작성 요청</h1>
-        <PhxSVG />
+        <PhxSVG onClick={onClose} />
       </S.Header>
       <S.Content>
         <S.InputContainer>
@@ -72,9 +73,9 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
             <TextInput
               isLabel={false}
               width="580px"
-              label="함께 근무한 정보"
-              placeholder="placeholder"
-              register={register('temp', {
+              label=""
+              placeholder="당시 내 직책/직무"
+              register={register('job', {
                 maxLength: {
                   value: 10,
                   message: '10자 이내로 입력해주세요.',
@@ -151,6 +152,7 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
           width="580px"
           height="68px"
           px="36px"
+          fontStyle={fonts.subtitle1}
         />
       </S.Content>
     </ReactModal>

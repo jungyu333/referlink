@@ -30,6 +30,7 @@ export const Header = styled.div`
     position: absolute;
     right: 14px;
     top: 4px;
+    cursor: pointer;
   }
 `;
 
