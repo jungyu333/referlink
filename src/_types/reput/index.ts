@@ -12,5 +12,5 @@ export interface IRequestReputationFormData {
   writerRole: string;
   writerEmail: string;
   writerCompany: string;
-  temp: string;
+  job: string;
 }

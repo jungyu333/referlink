@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.div<{ $isShare: boolean }>`
   display: flex;
-  padding: 16px 20px;
+  padding: 10px 20px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -12,7 +12,7 @@ export const Button = styled.div<{ $isShare: boolean }>`
   background: ${({ theme, $isShare }) =>
     $isShare ? theme.colors.white : theme.colors.primary1};
   width: 177px;
-  height: 64px;
+  height: 52px;
   cursor: pointer;
 
   color: ${({ theme, $isShare }) =>

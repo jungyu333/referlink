@@ -29,6 +29,30 @@ time, mark, audio, video {
   	user-select:none;
 
 }
+:root {
+      --toastify-toast-width: max-content;
+  }
+
+
+.Toastify__toast-container {
+	padding : 0;
+}
+
+
+.Toastify__toast {
+	transition: none;
+	width: var(--toastify-toast-width);
+	min-width: 304px;
+	padding: 16px 32px 16px 24px;
+	flex-direction: column;
+	align-items: center;
+	gap: 35px;
+	border-radius: 8px;
+	display: inline-flex;
+	margin: 0;
+	height: 78px;
+}
+
 
 
 * {

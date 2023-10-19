@@ -13,7 +13,6 @@ export const Header = styled.div`
 
 export const SubText = styled.p`
   color: ${({ theme }) => theme.colors.grey2};
-  font: ${({ theme }) => theme.fonts.body};
+  font: ${({ theme }) => theme.fonts.caption};
   letter-spacing: -0.32px;
-  font-size: 13px;
 `;
