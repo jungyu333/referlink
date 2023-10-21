@@ -1,6 +1,8 @@
-import { TShowAlertToast } from '@components/common/toast';
 import { IApiResponse } from '_types/common';
+import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastOptions } from 'react-toastify';
+import { ToastBody } from '@components/common/toast/ToastBody';
 
 export default function useApiNavigation<T extends IApiResponse>() {
   const navigate = useNavigate();
@@ -9,13 +11,16 @@ export default function useApiNavigation<T extends IApiResponse>() {
     path: string,
     successText: string,
     response: T,
-    showToast: TShowAlertToast,
+    showToast: (message: ReactNode, options: ToastOptions) => void,
   ) => {
     if (response.result) {
-      showToast.info(successText);
+      showToast(React.createElement(ToastBody, { subText: successText }), {});
       navigate(path, { replace: true });
     } else if (response.message) {
-      showToast.info(response.message);
+      showToast(
+        React.createElement(ToastBody, { subText: response.message }),
+        {},
+      );
     }
   };
 

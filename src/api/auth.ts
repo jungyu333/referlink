@@ -27,7 +27,7 @@ export const registerByEmail = async (params: ISignUpFormData) => {
     if (user) {
       const userId = user.uid;
 
-      const url = `?firebase_token=${userId}&email=${email}`;
+      const url = `?uid=${userId}&email=${email}`;
 
       const response = await SignUpApi.post<
         ISignUpFormData,
@@ -58,7 +58,7 @@ export const signInByEmail = async (params: ISignInFormData) => {
     if (user) {
       const userId = user.uid;
 
-      const url = `?firebase_token=${userId}&email=${email}`;
+      const url = `?uid=${userId}&email=${email}`;
 
       const response = await SignInApi.get<
         ISignInFormData,

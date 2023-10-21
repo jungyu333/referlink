@@ -9,7 +9,8 @@ import useDetailNavigation from '@hooks/useDetailNavigation';
 import { useApi } from '@hooks/useApi';
 import { signInByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
-import { showAlertToast } from '@components/common/toast';
+import { ToastBody } from '@components/common/toast';
+import useCustomToast from '@hooks/useCustomToast';
 
 export const SignIn = () => {
   const {
@@ -21,7 +22,7 @@ export const SignIn = () => {
   const { pathNavigation } = useDetailNavigation('signup');
 
   const { execute } = useApi(signInByEmail);
-
+  const { info } = useCustomToast();
   const apiNavigation = useApiNavigation();
 
   const onValid = async (formData: ISignInFormData) => {
@@ -32,14 +33,9 @@ export const SignIn = () => {
     });
 
     if (responseOrError instanceof Error) {
-      showAlertToast.info('로그인에 실패하였습니다.');
+      info(<ToastBody subText="로그인에 실패하였습니다." />);
     } else {
-      apiNavigation(
-        '/',
-        '로그인에 성공하였습니다.',
-        responseOrError,
-        showAlertToast,
-      );
+      apiNavigation('/', '로그인에 성공하였습니다.', responseOrError, info);
     }
   };
 
