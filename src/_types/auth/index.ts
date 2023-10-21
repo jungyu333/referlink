@@ -15,8 +15,6 @@ export interface IRegisterByEmailApiResponse extends IApiResponse {}
 //로그인 api response
 export interface ISignInByEmailApiResponse extends IApiResponse {
   data: {
-    firebase_token: string;
-    email: string;
-    uid: string;
+    m_id: string;
   };
 }
