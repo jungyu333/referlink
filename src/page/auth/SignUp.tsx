@@ -9,7 +9,8 @@ import useAgreements from '@hooks/useAgreements';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
-import { showAlertToast } from '@components/common/toast';
+import { ToastBody, showAlertToast } from '@components/common/toast';
+import useCustomToast from '@hooks/useCustomToast';
 
 export const SignUp = () => {
   const {
@@ -20,6 +21,7 @@ export const SignUp = () => {
   } = useForm<ISignUpFormData>();
 
   const { execute } = useApi(registerByEmail);
+  const { info } = useCustomToast();
 
   const {
     agreements,
@@ -40,17 +42,17 @@ export const SignUp = () => {
       });
 
       if (responseOrError instanceof Error) {
-        showAlertToast.info('이미 사용중인 이메일입니다.');
+        info(<ToastBody subText="이미 사용중인 이메일입니다." />);
       } else {
         apiNavigation(
           '/signin',
           '회원가입에 성공하였습니다.',
           responseOrError,
-          showAlertToast,
+          info,
         );
       }
     } else {
-      showAlertToast.info('약관 동의를 해주세요');
+      info(<ToastBody subText="약관 동의를 해주세요" />);
     }
   };
 

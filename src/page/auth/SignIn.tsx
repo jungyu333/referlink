@@ -31,16 +31,16 @@ export const SignIn = () => {
       password,
     });
 
-    if (responseOrError instanceof Error) {
-      showAlertToast.info('로그인에 실패하였습니다.');
-    } else {
-      apiNavigation(
-        '/',
-        '로그인에 성공하였습니다.',
-        responseOrError,
-        showAlertToast,
-      );
-    }
+    // if (responseOrError instanceof Error) {
+    //   showAlertToast.info('로그인에 실패하였습니다.');
+    // } else {
+    //   apiNavigation(
+    //     '/',
+    //     '로그인에 성공하였습니다.',
+    //     responseOrError,
+    //     showAlertToast,
+    //   );
+    // }
   };
 
   return (

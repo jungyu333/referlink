@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { ToastOptions, toast } from 'react-toastify';
 import { ReactComponent as TickCircleSVG } from '@styles/images/svg/tickCircle.svg';
 
-const defaultToastOption: ToastOptions = {
+export const defaultToastOption: ToastOptions = {
   position: 'top-center',
   autoClose: 2000,
   hideProgressBar: true,
