@@ -9,7 +9,7 @@ import useAgreements from '@hooks/useAgreements';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
-import { ToastBody, showAlertToast } from '@components/common/toast';
+import { ToastBody } from '@components/common/toast';
 import useCustomToast from '@hooks/useCustomToast';
 
 export const SignUp = () => {
