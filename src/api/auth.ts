@@ -12,6 +12,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+import Cookies from 'js-cookie';
 
 export const registerByEmail = async (params: ISignUpFormData) => {
   try {
@@ -64,6 +65,12 @@ export const signInByEmail = async (params: ISignInFormData) => {
         ISignInFormData,
         AxiosResponse<ISignInByEmailApiResponse>
       >(url);
+
+      if (response.data.result) {
+        Cookies.set('accessToken', response.data.data.m_id, {
+          expires: 1 / 12,
+        });
+      }
 
       return response.data;
     } else {
