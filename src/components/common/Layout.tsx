@@ -1,20 +1,22 @@
 import { Header, Footer } from '@components/common';
-import { Outlet } from 'react-router-dom';
 import * as S from '@styles/components/common/layout.styles';
 
-type Props = {
+export type LayoutProps = {
   isFooter?: boolean;
   isHeaderMenu?: boolean;
+  children: React.ReactElement;
 };
 
-export const Layout = ({ isFooter = true, isHeaderMenu = true }: Props) => {
+export const Layout = ({
+  isFooter = true,
+  isHeaderMenu = true,
+  children,
+}: LayoutProps) => {
   return (
     <S.Wrapper>
       <Header isHeaderMenu={isHeaderMenu} />
 
-      <S.Content>
-        <Outlet />
-      </S.Content>
+      <S.Content>{children}</S.Content>
 
       {isFooter && <Footer />}
     </S.Wrapper>
