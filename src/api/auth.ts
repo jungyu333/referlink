@@ -80,3 +80,17 @@ export const signInByEmail = async (params: ISignInFormData) => {
     throw error;
   }
 };
+
+export const signOut = async () => {
+  try {
+    const currentUser = authService.currentUser;
+    if (currentUser) {
+      await authService.signOut();
+      Cookies.remove('accessToken');
+    } else {
+      return;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
