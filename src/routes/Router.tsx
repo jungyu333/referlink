@@ -5,23 +5,75 @@ import { MyPage } from '@page/my';
 import { MyDetailReputation, WriteReputationWithMenu } from '@page/reputation';
 import { MyReputation } from '@page/reputation/MyReputation';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ProtectRouter } from 'routes/ProtectRouter';
 
 export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Landing />} />
-          <Route path="/mypage/:userId" element={<MyPage />} />
-          <Route path="/myreput/:userId" element={<MyDetailReputation />} />
-          <Route path="/writereput" element={<WriteReputationWithMenu />} />
-          <Route path="/myreput" element={<MyReputation />} />
-        </Route>
+        <Route
+          path="/"
+          element={<ProtectRouter layout={Layout} component={Landing} />}
+        />
+        <Route
+          path="/mypage/:userId"
+          element={
+            <ProtectRouter layout={Layout} component={MyPage} requiresAuth />
+          }
+        />
+        <Route
+          path="/myreput/:userId"
+          element={
+            <ProtectRouter
+              layout={Layout}
+              component={MyDetailReputation}
+              requiresAuth
+            />
+          }
+        />
+        <Route
+          path="/writereput"
+          element={
+            <ProtectRouter
+              layout={Layout}
+              component={WriteReputationWithMenu}
+              requiresAuth
+            />
+          }
+        />
+        <Route
+          path="/myreput"
+          element={
+            <ProtectRouter
+              layout={Layout}
+              component={MyReputation}
+              requiresAuth
+            />
+          }
+        />
 
-        <Route element={<Layout isHeaderMenu={false} />}>
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Route>
+        <Route
+          path="/signin"
+          element={
+            <ProtectRouter
+              layout={Layout}
+              component={SignIn}
+              isHeaderMenu={false}
+              isAuth
+            />
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <ProtectRouter
+              layout={Layout}
+              component={SignUp}
+              isHeaderMenu={false}
+              isAuth
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
