@@ -6,8 +6,6 @@ import {
 } from '_types/auth';
 import { apiConfig } from 'api/config';
 import Api from 'api/core/Api';
-import SignInApi from 'api/core/SignInApi';
-import SignUpApi from 'api/core/SignUpApi';
 import { AxiosResponse } from 'axios';
 import { authService } from 'firebase-config';
 import {
@@ -30,12 +28,12 @@ export const registerByEmail = async (params: ISignUpFormData) => {
     if (user) {
       const userId = user.uid;
 
-      const url = `?uid=${userId}&email=${email}`;
+      const endPoint = `?uid=${userId}&email=${email}`;
 
-      const response = await SignUpApi.post<
+      const response = await Api.post<
         ISignUpFormData,
         AxiosResponse<IRegisterByEmailApiResponse>
-      >(url);
+      >(endPoint, { prefix: apiConfig.SignUp.prefix });
 
       return response.data;
     } else {
