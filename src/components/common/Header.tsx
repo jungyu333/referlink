@@ -2,6 +2,7 @@ import { ReactComponent as LogoSVG } from '@styles/images/svg/logo.svg';
 import { ReactComponent as MyPageSVG } from '@styles/images/svg/mypage.svg';
 import * as S from '@styles/components/common/header.styles';
 import useDetailNavigation from '@hooks/useDetailNavigation';
+import useGetToken from '@hooks/useGetToken';
 
 type Props = {
   isHeaderMenu?: boolean;
@@ -9,6 +10,11 @@ type Props = {
 
 export const Header = ({ isHeaderMenu = true }: Props) => {
   const { pathNavigation } = useDetailNavigation('');
+  const { detailNavigation } = useDetailNavigation('mypage');
+  const userId = useGetToken();
+  const onClickMypage = () => {
+    if (userId) detailNavigation(userId);
+  };
 
   return (
     <S.Wrapper>
@@ -25,7 +31,7 @@ export const Header = ({ isHeaderMenu = true }: Props) => {
             <S.ButtonText>내가 작성한 평판</S.ButtonText>
           </S.PassReputation>
 
-          <S.MyPageButton>
+          <S.MyPageButton onClick={onClickMypage}>
             <MyPageSVG />
             <S.ButtonText>마이페이지</S.ButtonText>
           </S.MyPageButton>
