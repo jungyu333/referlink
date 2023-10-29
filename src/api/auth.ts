@@ -4,6 +4,8 @@ import {
   ISignInFormData,
   ISignUpFormData,
 } from '_types/auth';
+import { apiConfig } from 'api/config';
+import Api from 'api/core/Api';
 import SignInApi from 'api/core/SignInApi';
 import SignUpApi from 'api/core/SignUpApi';
 import { AxiosResponse } from 'axios';
@@ -59,12 +61,12 @@ export const signInByEmail = async (params: ISignInFormData) => {
     if (user) {
       const userId = user.uid;
 
-      const url = `?uid=${userId}&email=${email}`;
+      const endPoint = `?uid=${userId}&email=${email}`;
 
-      const response = await SignInApi.get<
+      const response = await Api.get<
         ISignInFormData,
         AxiosResponse<ISignInByEmailApiResponse>
-      >(url);
+      >(endPoint, { prefix: apiConfig.SignIn.prefix });
 
       if (response.data.result) {
         Cookies.set('accessToken', response.data.data.m_id, {

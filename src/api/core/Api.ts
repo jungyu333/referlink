@@ -7,10 +7,11 @@ const Api = axios.create({
   },
 });
 
-Api.interceptors.request.use((config: any) => {
+Api.interceptors.request.use((config) => {
   if (config.prefix) {
-    config.url = config.prefix + (config.url || '');
+    config.url = config.prefix + config.baseURL + config.url;
   }
+
   return config;
 });
 

@@ -15,8 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "typeRoots": ["./node_modules/@types", "./src/customTypes"]
   },
-  "include": ["src"],
+  "include": ["src", "src/**/*.ts", "src/**/*.d.ts"],
   "extends": "./tsconfig.paths.json"
 }
