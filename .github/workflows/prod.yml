@@ -31,8 +31,6 @@ jobs:
           echo "REACT_APP_MESSAGIN_ID=${{ secrets.REACT_APP_MESSAGIN_ID }}" >> .env
           echo "REACT_APP_ID=${{ secrets.REACT_APP_ID }}" >> .env
           echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> .env
-          echo "REACT_APP_SIGNUP_URL=${{ secrets.REACT_APP_SIGNUP_URL }}" >> .env
-          echo "REACT_APP_SIGNIN_URL=${{ secrets.REACT_APP_SIGNIN_URL }}" >> .env
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
