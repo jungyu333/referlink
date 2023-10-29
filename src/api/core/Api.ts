@@ -7,4 +7,11 @@ const Api = axios.create({
   },
 });
 
+Api.interceptors.request.use((config: any) => {
+  if (config.prefix) {
+    config.url = config.prefix + (config.url || '');
+  }
+  return config;
+});
+
 export default Api;
