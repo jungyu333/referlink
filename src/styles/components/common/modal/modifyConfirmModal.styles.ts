@@ -11,7 +11,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
+  gap: 24px;
 `;
 
 export const Content = styled.div`

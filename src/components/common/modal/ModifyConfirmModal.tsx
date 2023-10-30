@@ -49,20 +49,20 @@ export const ModifyConfirmModal = ({ isOpen, onClose, onConfirm }: Props) => {
 
           <S.ButtonContainer>
             <Button
-              onClick={onConfirm}
-              buttonText="확인"
-              width="80px"
-              height="40px"
+              onClick={onClose}
+              buttonText="취소"
+              isPrimary={false}
+              width="200px"
+              height="44px"
               px="16px"
               py="10px"
               fontStyle={fonts.body}
             />
             <Button
-              onClick={onClose}
-              buttonText="취소"
-              isPrimary={false}
-              width="80px"
-              height="40px"
+              onClick={onConfirm}
+              buttonText="완료"
+              width="200px"
+              height="44px"
               px="16px"
               py="10px"
               fontStyle={fonts.body}
