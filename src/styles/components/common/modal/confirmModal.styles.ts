@@ -1,5 +1,19 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+`;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,7 +26,6 @@ export const Content = styled.div`
     align-items: center;
     gap: 12px;
   }
-
   & h1 {
     color: ${({ theme }) => theme.colors.grey3};
     text-align: center;
@@ -25,11 +38,4 @@ export const Content = styled.div`
     font: ${({ theme }) => theme.fonts.body};
     letter-spacing: -0.32px;
   }
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 16px;
 `;
