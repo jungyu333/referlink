@@ -1,4 +1,8 @@
-import { ModifyConfirmModal } from '@components/common';
+import {
+  CompleteConfirmModal,
+  ConfirmModal,
+  ModifyConfirmModal,
+} from '@components/common';
 import { Button } from '@components/common/button';
 import { useSwitch } from '@hooks/useSwitch';
 import * as S from '@styles/page/landing.styles';
@@ -24,10 +28,15 @@ export const Landing = () => {
           px="36px"
         />
 
-        <ModifyConfirmModal
+        <ConfirmModal
           isOpen={isOpen}
           onClose={onClose}
           onConfirm={onClose}
+          confirmLabel="완료"
+          cancleLabel="취소"
+          mainText="작성 완료하신 평판은 수정/삭제 할 수 없습니다."
+          secondLineText="작성을 완료하시겠습니까?"
+          subText="작성된 평판의 권한은 지원자에게 귀속됩니다."
         />
       </main>
     </S.Wrapper>
