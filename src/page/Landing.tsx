@@ -1,8 +1,4 @@
-import {
-  CompleteConfirmModal,
-  ConfirmModal,
-  ModifyConfirmModal,
-} from '@components/common';
+import { ConfirmModal, ModifyConfirmModal } from '@components/common';
 import { Button } from '@components/common/button';
 import { useSwitch } from '@hooks/useSwitch';
 import * as S from '@styles/page/landing.styles';
