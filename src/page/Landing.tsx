@@ -1,7 +1,10 @@
 import * as S from '@styles/page/landing.styles';
 import { Button } from 'referlink-ui';
+import { useSwitch } from '../hooks/useSwitch';
+import { ConfirmModal, EmailConfirmModal } from '../components';
 
 export const Landing = () => {
+  const [isOpen, onOpen, onClose] = useSwitch();
   return (
     <S.Wrapper>
       <main>
@@ -17,6 +20,17 @@ export const Landing = () => {
           width="225px"
           height="68px"
           px="36px"
+          onClick={onOpen}
+        />
+
+        <EmailConfirmModal
+          isOpen={isOpen}
+          onClose={onClose}
+          //confirmLabel="dd"
+          //cancelLable="dd"
+          onConfirm={onClose}
+          //mainText="dd"
+          //subText="dd"
         />
       </main>
     </S.Wrapper>
