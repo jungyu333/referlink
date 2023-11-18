@@ -21,16 +21,20 @@ export const Header = styled.div`
     width: 72px;
     height: 72px;
     flex-shrink: 0;
-    fill: ${({ theme }) => theme.colors.white};
   }
 
-  & svg:last-child {
+  & > div {
     width: 24px;
     height: 24px;
     position: absolute;
     right: 14px;
     top: 4px;
     cursor: pointer;
+
+    & > svg:last-child {
+      width: 24px;
+      height: 24px;
+    }
   }
 `;
 

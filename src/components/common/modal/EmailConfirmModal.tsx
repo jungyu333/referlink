@@ -1,7 +1,5 @@
-import ReactModal from 'react-modal';
 import * as S from '@styles/components/common/modal/emailConfirmModal.styles';
-import { ReactComponent as EmailSVG } from '@styles/images/svg/ic_round-mail.svg';
-import { Button, Fonts } from 'referlink-ui';
+import { Button, Fonts, Modal, svgEmail } from 'referlink-ui';
 
 type Props = {
   isOpen: boolean;
@@ -11,33 +9,10 @@ type Props = {
 
 export const EmailConfirmModal = ({ isOpen, onClose, onConfirm }: Props) => {
   return (
-    <ReactModal
-      style={{
-        content: {
-          display: 'inline-flex',
-          padding: '32px 60px',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '35px',
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          transform: 'translate(-50%, -50%)',
-          overflow: 'auto',
-          borderRadius: '16px',
-        },
-        overlay: {
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        },
-      }}
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      contentLabel="Custom Modal"
-    >
+    <Modal isOpen={isOpen} onClose={onClose}>
       <S.Content>
         <section>
-          <EmailSVG />
+          {svgEmail}
 
           <S.TextContainer>
             <h1>
@@ -56,6 +31,6 @@ export const EmailConfirmModal = ({ isOpen, onClose, onConfirm }: Props) => {
           fontStyle={Fonts.body}
         />
       </S.Content>
-    </ReactModal>
+    </Modal>
   );
 };
