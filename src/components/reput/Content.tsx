@@ -1,6 +1,11 @@
-import { ReputCard } from '@components/reput/ReputCard';
 import * as S from '@styles/components/reput/content.styles';
-import { Button, ButtonTypes, svgNote, svgShare } from 'referlink-ui';
+import {
+  Button,
+  ButtonTypes,
+  ReputCard,
+  svgNote,
+  svgShare,
+} from 'referlink-ui';
 
 export const Content = () => {
   return (
@@ -30,7 +35,13 @@ export const Content = () => {
 
       <S.Main>
         {[1, 2, 3].map((item) => (
-          <ReputCard key={item} />
+          <ReputCard
+            mainContent="temp"
+            headContent="temp"
+            date="temp"
+            key={item}
+            onClick={() => console.log(item)}
+          />
         ))}
       </S.Main>
     </S.Wrapper>
