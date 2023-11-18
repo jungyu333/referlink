@@ -3,10 +3,9 @@ import { IMyPageEditFormData } from '_types/my';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as AddPhotoSVG } from '@styles/images/svg/addPhoto.svg';
 import { ReactComponent as CloseButtonSVG } from '@styles/images/svg/closeButton.svg';
-import { TextInput } from '@components/common';
 import * as S from '@styles/page/my/myPage.styles';
 import { useRef, useState } from 'react';
-import { Button, EmailInput } from 'referlink-ui';
+import { Button, EmailInput, TextInput } from 'referlink-ui';
 
 export const MyPage = () => {
   const {
