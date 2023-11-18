@@ -3,10 +3,10 @@ import { IMyPageEditFormData } from '_types/my';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as AddPhotoSVG } from '@styles/images/svg/addPhoto.svg';
 import { ReactComponent as CloseButtonSVG } from '@styles/images/svg/closeButton.svg';
-import { Button } from '@components/common/button';
 import { EmailInput, TextInput } from '@components/common';
 import * as S from '@styles/page/my/myPage.styles';
 import { useRef, useState } from 'react';
+import { Button } from 'referlink-ui';
 
 export const MyPage = () => {
   const {
