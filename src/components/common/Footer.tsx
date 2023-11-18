@@ -1,11 +1,10 @@
 import { ReactComponent as LogoSVG } from '@styles/images/svg/logo.svg';
 import * as S from '@styles/components/common/footer.styles';
-import { Button } from '@components/common/button';
 import { EmailInput } from '@components/common/input';
 import { useForm } from 'react-hook-form';
 import { emailRegex } from '@constant/regex';
-import { fonts } from '@styles/theme';
 import { IFooterFormData } from '_types/common';
+import { Button, Fonts } from 'referlink-ui';
 
 export const Footer = () => {
   const {
@@ -56,7 +55,7 @@ export const Footer = () => {
           height="48px"
           px="16px"
           py="12px"
-          fontStyle={fonts.body}
+          fontStyle={Fonts.body}
           onClick={handleSubmit(onValid)}
         />
       </S.InputContainer>
