@@ -2,7 +2,6 @@ import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
 import { useForm } from 'react-hook-form';
 import { ISignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
-import { EmailInput, PasswordInput } from '@components/common/input';
 import * as S from '@styles/page/auth/signIn.styles';
 import useDetailNavigation from '@hooks/useDetailNavigation';
 import { useApi } from '@hooks/useApi';
@@ -10,7 +9,7 @@ import { signInByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
 import { ToastBody } from '@components/common/toast';
 import useCustomToast from '@hooks/useCustomToast';
-import { Button } from 'referlink-ui';
+import { Button, EmailInput, PasswordInput } from 'referlink-ui';
 
 export const SignIn = () => {
   const {
