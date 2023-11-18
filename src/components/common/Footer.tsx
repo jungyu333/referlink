@@ -1,10 +1,9 @@
 import { ReactComponent as LogoSVG } from '@styles/images/svg/logo.svg';
 import * as S from '@styles/components/common/footer.styles';
-import { EmailInput } from '@components/common/input';
 import { useForm } from 'react-hook-form';
 import { emailRegex } from '@constant/regex';
 import { IFooterFormData } from '_types/common';
-import { Button, Fonts } from 'referlink-ui';
+import { Button, EmailInput, Fonts } from 'referlink-ui';
 
 export const Footer = () => {
   const {
