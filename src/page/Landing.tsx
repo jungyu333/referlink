@@ -1,7 +1,11 @@
 import * as S from '@styles/page/landing.styles';
 import { Button } from 'referlink-ui';
 import { useSwitch } from '../hooks/useSwitch';
-import { ConfirmModal, EmailConfirmModal } from '../components';
+import {
+  ConfirmModal,
+  EmailConfirmModal,
+  RequestReputModal,
+} from '../components';
 
 export const Landing = () => {
   const [isOpen, onOpen, onClose] = useSwitch();
@@ -23,7 +27,7 @@ export const Landing = () => {
           onClick={onOpen}
         />
 
-        <EmailConfirmModal
+        <RequestReputModal
           isOpen={isOpen}
           onClose={onClose}
           //confirmLabel="dd"
