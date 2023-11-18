@@ -3,10 +3,10 @@ import * as S from '@styles/components/common/modal/requestReputModal.styles';
 import { ReactComponent as PhxSVG } from '@styles/images/svg/ph_x.svg';
 import { ReactComponent as FrameSVG } from '@styles/images/svg/Frame 36767.svg';
 import { useForm } from 'react-hook-form';
-import { EmailInput, TextInput } from '@components/common/input';
+import { TextInput } from '@components/common/input';
 import { IRequestReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
-import { Button, ButtonTypes, Fonts } from 'referlink-ui';
+import { Button, ButtonTypes, EmailInput, Fonts } from 'referlink-ui';
 
 type Props = {
   isOpen: boolean;
