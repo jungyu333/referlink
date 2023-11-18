@@ -1,5 +1,5 @@
-import { Button } from '@components/common/button';
 import * as S from '@styles/page/landing.styles';
+import { Button } from 'referlink-ui';
 
 export const Landing = () => {
   return (
