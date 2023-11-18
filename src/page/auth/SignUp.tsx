@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { ISignUpFormData } from '_types/auth';
 import { EmailInput, PasswordInput } from '@components/common';
 import { emailRegex, passwordRegex } from '@constant/regex';
-import { Button } from '@components/common/button';
 import * as S from '@styles/page/auth/signUp.styles';
 import { Term } from '@components/auth';
 import useAgreements from '@hooks/useAgreements';
@@ -11,6 +10,7 @@ import { registerByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
 import { ToastBody } from '@components/common/toast';
 import useCustomToast from '@hooks/useCustomToast';
+import { Button } from 'referlink-ui';
 
 export const SignUp = () => {
   const {
