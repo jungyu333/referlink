@@ -1,8 +1,7 @@
 import ReactModal from 'react-modal';
 import * as S from '@styles/components/common/modal/emailConfirmModal.styles';
 import { ReactComponent as EmailSVG } from '@styles/images/svg/ic_round-mail.svg';
-import { Button } from '@components/common/button';
-import { fonts } from '@styles/theme';
+import { Button, Fonts } from 'referlink-ui';
 
 type Props = {
   isOpen: boolean;
@@ -54,7 +53,7 @@ export const EmailConfirmModal = ({ isOpen, onClose, onConfirm }: Props) => {
           height="40px"
           px="16px"
           py="10px"
-          fontStyle={fonts.body}
+          fontStyle={Fonts.body}
         />
       </S.Content>
     </ReactModal>
