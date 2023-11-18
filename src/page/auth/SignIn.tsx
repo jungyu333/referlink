@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { ISignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import { EmailInput, PasswordInput } from '@components/common/input';
-import { Button } from '@components/common/button';
 import * as S from '@styles/page/auth/signIn.styles';
 import useDetailNavigation from '@hooks/useDetailNavigation';
 import { useApi } from '@hooks/useApi';
@@ -11,6 +10,7 @@ import { signInByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
 import { ToastBody } from '@components/common/toast';
 import useCustomToast from '@hooks/useCustomToast';
+import { Button } from 'referlink-ui';
 
 export const SignIn = () => {
   const {

@@ -2,12 +2,11 @@ import ReactModal from 'react-modal';
 import * as S from '@styles/components/common/modal/requestReputModal.styles';
 import { ReactComponent as PhxSVG } from '@styles/images/svg/ph_x.svg';
 import { ReactComponent as FrameSVG } from '@styles/images/svg/Frame 36767.svg';
-import { Button } from '@components/common/button';
 import { useForm } from 'react-hook-form';
 import { EmailInput, TextInput } from '@components/common/input';
 import { IRequestReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
-import { fonts } from '@styles/theme';
+import { Button, ButtonTypes, Fonts } from 'referlink-ui';
 
 type Props = {
   isOpen: boolean;
@@ -147,12 +146,12 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
 
         <Button
           onClick={handleSubmit(onValid)}
-          isPrimary
+          buttonType={ButtonTypes.filled}
           buttonText="작성 요청하기"
           width="580px"
           height="68px"
           px="36px"
-          fontStyle={fonts.subtitle1}
+          fontStyle={Fonts.subtitle1}
         />
       </S.Content>
     </ReactModal>

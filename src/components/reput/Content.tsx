@@ -1,6 +1,6 @@
-import { ReputButton } from '@components/common/button';
 import { ReputCard } from '@components/reput/ReputCard';
 import * as S from '@styles/components/reput/content.styles';
+import { Button, ButtonTypes, svgNote, svgShare } from 'referlink-ui';
 
 export const Content = () => {
   return (
@@ -8,8 +8,23 @@ export const Content = () => {
       <S.Header>
         <h1>내가 받은 평판</h1>
         <div>
-          <ReputButton text="평판 작성 요청" />
-          <ReputButton text="평판 공유하기" isShare />
+          <Button
+            svgIcon={svgNote}
+            width="177px"
+            height="52px"
+            px="20px"
+            py="10px"
+            buttonText="평판 작성 요청"
+          />
+          <Button
+            buttonText="평판 공유하기"
+            width="177px"
+            height="52px"
+            px="20px"
+            py="10px"
+            buttonType={ButtonTypes.outlined}
+            svgIcon={svgShare}
+          />
         </div>
       </S.Header>
 

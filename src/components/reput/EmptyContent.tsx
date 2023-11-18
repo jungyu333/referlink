@@ -1,7 +1,7 @@
-import { Button } from '@components/common/button';
 import { ReactComponent as IllustSVG } from '@styles/images/svg/Group 3028.svg';
 import * as S from '@styles/components/reput/emptyContent.styles';
-import { fonts } from '@styles/theme';
+import { Button, Fonts } from 'referlink-ui';
+
 export const EmptyContent = () => {
   return (
     <S.Wrapper>
@@ -19,7 +19,7 @@ export const EmptyContent = () => {
           height="68px"
           px="36px"
           py="24px"
-          fontStyle={fonts.subtitle1}
+          fontStyle={Fonts.subtitle1}
         />
       </main>
     </S.Wrapper>

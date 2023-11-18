@@ -1,8 +1,7 @@
-import { Button } from '@components/common/button';
-import { fonts } from '@styles/theme';
 import ReactModal from 'react-modal';
 import { ReactComponent as DangerCircleSVG } from '@styles/images/svg/solar_danger-circle-bold.svg';
 import * as S from '@styles/components/common/modal/confirmModal.styles';
+import { Button, ButtonTypes, Fonts } from 'referlink-ui';
 
 type Props = {
   isOpen: boolean;
@@ -64,12 +63,12 @@ export const ConfirmModal = ({
             <Button
               onClick={onClose}
               buttonText={cancleLabel}
-              isPrimary={false}
+              buttonType={ButtonTypes.outlined}
               width="200px"
               height="44px"
               px="16px"
               py="10px"
-              fontStyle={fonts.body}
+              fontStyle={Fonts.body}
             />
             <Button
               onClick={onConfirm}
@@ -78,7 +77,7 @@ export const ConfirmModal = ({
               height="44px"
               px="16px"
               py="10px"
-              fontStyle={fonts.body}
+              fontStyle={Fonts.body}
             />
           </S.ButtonContainer>
         </S.Content>
