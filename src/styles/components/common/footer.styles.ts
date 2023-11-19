@@ -92,17 +92,3 @@ export const Subscribe = styled.div`
     position: relative;
   }
 `;
-
-export const Logo = styled.div`
-  width: 166px;
-  height: 40px;
-  position: absolute;
-  left: 162px;
-  top: 40px;
-  overflow: hidden;
-
-  & div {
-    position: absolute;
-    inset: 0;
-  }
-`;
