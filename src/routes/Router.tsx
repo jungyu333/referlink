@@ -1,6 +1,6 @@
 import { Layout } from '@components/common';
-import { Landing } from '@page/Landing';
 import { SignIn, SignUp } from '@page/auth';
+import { Landing } from '@page/landing';
 import { MyPage } from '@page/my';
 import { MyDetailReputation, WriteReputationWithMenu } from '@page/reputation';
 import { MyReputation } from '@page/reputation/MyReputation';

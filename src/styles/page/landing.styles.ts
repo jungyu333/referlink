@@ -12,15 +12,14 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
-
+  display: flex;
+  justify-content: center;
   & main {
-    display: inline-flex;
+    margin: 323px auto;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 52px;
-    position: absolute;
-    left: 162px;
-    top: 323px;
+    align-items: center;
+    gap: 42px;
   }
 `;
 
@@ -28,4 +27,9 @@ export const MainText = styled.div`
   color: ${({ theme }) => theme.colors.grey4};
   font: ${({ theme }) => theme.fonts.display};
   letter-spacing: -0.96px;
+  text-align: center;
+
+  & b {
+    color: ${({ theme }) => theme.colors.primary1};
+  }
 `;
