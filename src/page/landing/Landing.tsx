@@ -8,13 +8,13 @@ export const Landing = () => {
         <S.MainText>
           누구나 평판 관리를 할 수 있게
           <br />
-          평판조회의 시작, 레퍼링크
+          평판조회의 시작, <b>레퍼링크</b>
         </S.MainText>
 
         <Button
-          buttonText="평판 작성 요청하기"
+          buttonText="레퍼링크 시작하기"
           py="24px"
-          width="225px"
+          width="221px"
           height="68px"
           px="36px"
         />
