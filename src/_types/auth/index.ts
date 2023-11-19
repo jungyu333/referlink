@@ -1,7 +1,10 @@
 import { IApiResponse } from '_types/common';
 
-export interface ISignInFormData {
+export interface IEmailFormData {
   email: string;
+}
+
+export interface ISignInFormData extends IEmailFormData {
   password: string;
 }
 
