@@ -1,4 +1,4 @@
-export * from './Landing';
+export * from './landing';
 export * from './auth';
 export * from './my';
 export * from './reputation';
