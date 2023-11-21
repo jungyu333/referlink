@@ -1,6 +1,6 @@
 import { emailRegex } from '@constant/regex';
 import { useForm } from 'react-hook-form';
-import { Button, EmailInput, svgLogo } from 'referlink-ui';
+import { Button, EmailInput, LineText, svgLogo } from 'referlink-ui';
 import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
 import { IEmailFormData } from '_types/auth';
 import { useEffect, useState } from 'react';
@@ -59,11 +59,8 @@ export const ServiceStart = () => {
               isDisabled={isDisable}
               onClick={handleSubmit(onValid)}
             />
-            <S.LineText>
-              <div />
-              SNS 간편 로그인
-              <div />
-            </S.LineText>
+
+            <LineText label="SNS 간편 로그인" />
 
             <S.OnGoogle>
               <GoogleSVG />
