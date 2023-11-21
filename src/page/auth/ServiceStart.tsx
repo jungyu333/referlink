@@ -1,7 +1,12 @@
 import { emailRegex } from '@constant/regex';
 import { useForm } from 'react-hook-form';
-import { Button, EmailInput, LineText, svgLogo } from 'referlink-ui';
-import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
+import {
+  Button,
+  EmailInput,
+  GoogleButton,
+  LineText,
+  svgLogo,
+} from 'referlink-ui';
 import { IEmailFormData } from '_types/auth';
 import { useEffect, useState } from 'react';
 import * as S from '@styles/page/auth/serviceStart.styles';
@@ -62,10 +67,10 @@ export const ServiceStart = () => {
 
             <LineText label="SNS 간편 로그인" />
 
-            <S.OnGoogle>
-              <GoogleSVG />
-              <div>Google로 계속하기</div>
-            </S.OnGoogle>
+            <GoogleButton
+              buttonText="Google로 계속하기"
+              onClick={() => console.log('click')}
+            />
           </S.BottomSection>
         </S.InputContainer>
       </S.Main>
