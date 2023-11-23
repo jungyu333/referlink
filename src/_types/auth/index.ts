@@ -1,10 +1,10 @@
-import { IApiResponse } from '_types/common';
+import { ApiBaseResponse, IApiResponse } from '_types/common';
 
-export interface IEmailFormData {
+export interface EmailFormData {
   email: string;
 }
 
-export interface ISignInFormData extends IEmailFormData {
+export interface ISignInFormData extends EmailFormData {
   password: string;
 }
 
@@ -19,5 +19,12 @@ export interface IRegisterByEmailApiResponse extends IApiResponse {}
 export interface ISignInByEmailApiResponse extends IApiResponse {
   data: {
     m_id: string;
+  };
+}
+
+//회원 체크 api response
+export interface CheckMemberResponse extends ApiBaseResponse {
+  data: {
+    isExist: boolean;
   };
 }

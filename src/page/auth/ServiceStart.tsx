@@ -7,9 +7,13 @@ import {
   LineText,
   svgLogo,
 } from 'referlink-ui';
-import { IEmailFormData } from '_types/auth';
+import { EmailFormData } from '_types/auth';
 import { useEffect, useState } from 'react';
 import * as S from '@styles/page/auth/serviceStart.styles';
+import { useApi } from '@hooks/useApi';
+import { checkMember } from 'api';
+import useCustomToast from '@hooks/useCustomToast';
+import { ToastBody } from '@components/common';
 
 export const ServiceStart = () => {
   const {
@@ -17,10 +21,25 @@ export const ServiceStart = () => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<IEmailFormData>();
+  } = useForm<EmailFormData>();
 
-  const onValid = (formData: IEmailFormData) => {
-    console.log(formData);
+  const { info } = useCustomToast();
+
+  const { execute } = useApi(checkMember);
+
+  const onValid = async (formData: EmailFormData) => {
+    const { email } = formData;
+
+    const responseOrError = await execute({
+      email,
+    });
+
+    if (responseOrError instanceof Error) {
+      console.log(responseOrError);
+      info(<ToastBody subText="잘못된 요청입니다." />);
+    } else {
+      console.log(responseOrError.data);
+    }
   };
 
   const emailValue = watch('email');
