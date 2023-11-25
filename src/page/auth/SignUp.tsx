@@ -116,12 +116,12 @@ export const SignUp = () => {
                 })}
               />
             </S.Inner>
-            <Term
+            {/* <Term
               allChecked={allChecked}
               toggleAgreement={toggleAgreement}
               toggleAll={toggleAll}
               agreements={agreements}
-            />
+            /> */}
           </S.InputContainer>
 
           <Button buttonText="가입하기" onClick={handleSubmit(onValid)} />

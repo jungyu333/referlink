@@ -1,13 +1,12 @@
-import * as S from '@styles/components/auth/signUp/term.styles';
-import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
-import { ReactComponent as UnCheckSVG } from '@styles/images/svg/uncheck.svg';
+import * as S from '@styles/components/auth/agree/term.styles';
 import { signUpTerms } from '@constant/terms';
+import { CheckBox, Fonts, Handler } from 'referlink-ui';
 
 type Props = {
   agreements: { [key: number]: boolean };
   allChecked: boolean;
-  toggleAll: () => void;
-  toggleAgreement: (value: number) => void;
+  toggleAll: Handler;
+  toggleAgreement: Handler<(value: number) => void>;
 };
 
 export const Term = ({
@@ -18,12 +17,12 @@ export const Term = ({
 }: Props) => {
   return (
     <S.TermsContainer>
-      <S.AllTerms>
-        <div onClick={() => toggleAll()}>
-          {allChecked ? <CheckSVG /> : <UnCheckSVG />}
-        </div>
-        모든 약관에 동의합니다.
-      </S.AllTerms>
+      <CheckBox
+        label="모든 약관에 동의합니다."
+        isChecked={allChecked}
+        onCheck={toggleAll}
+        fontStyle={Fonts.subtitle2}
+      />
 
       <S.Line />
 
@@ -33,9 +32,10 @@ export const Term = ({
             <S.TermContent
               $isOptional={element.option === 'optional' ? true : false}
             >
-              <div onClick={() => toggleAgreement(element.id)}>
-                {agreements[element.id] ? <CheckSVG /> : <UnCheckSVG />}
-              </div>
+              <CheckBox
+                isChecked={agreements[element.id]}
+                onCheck={() => toggleAgreement(element.id)}
+              />
               <h2>
                 <b>{element.option === 'required' ? '(필수)' : '(선택)'} </b>
                 {element.text}
