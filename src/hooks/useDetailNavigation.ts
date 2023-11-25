@@ -6,7 +6,8 @@ const useDetailNavigation = () => {
   const detailNavigation = (path: string, id: string) =>
     navigation(`${path}/${id}`);
 
-  const pathNavigation = (path: string) => navigation(`${path}`);
+  const pathNavigation = <T extends object>(path: string, state?: T) =>
+    navigation(`${path}`, { state });
 
   const branchNavigation = (
     path: string,

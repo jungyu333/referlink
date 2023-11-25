@@ -2,14 +2,13 @@ import { useForm } from 'react-hook-form';
 import { ISignUpFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signUp.styles';
-import { Term } from '@components/auth';
-import useAgreements from '@hooks/useAgreements';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
 import useApiNavigation from '@hooks/useApiNavigation';
 import { ToastBody } from '@components/common/toast';
 import useCustomToast from '@hooks/useCustomToast';
 import { Button, EmailInput, PasswordInput } from 'referlink-ui';
+import { useLocation } from 'react-router-dom';
 
 export const SignUp = () => {
   const {
@@ -18,22 +17,15 @@ export const SignUp = () => {
     formState: { errors },
     getValues,
   } = useForm<ISignUpFormData>();
-
+  const location = useLocation();
+  console.log(location.state);
   const { execute } = useApi(registerByEmail);
   const { info } = useCustomToast();
-
-  const {
-    agreements,
-    toggleAgreement,
-    toggleAll,
-    areRequiredChecked,
-    allChecked,
-  } = useAgreements();
 
   const apiNavigation = useApiNavigation();
 
   const onValid = async (formData: ISignUpFormData) => {
-    if (areRequiredChecked()) {
+    if (true) {
       const responseOrError = await execute({
         email: formData.email,
         password: formData.password,
@@ -116,12 +108,6 @@ export const SignUp = () => {
                 })}
               />
             </S.Inner>
-            {/* <Term
-              allChecked={allChecked}
-              toggleAgreement={toggleAgreement}
-              toggleAll={toggleAll}
-              agreements={agreements}
-            /> */}
           </S.InputContainer>
 
           <Button buttonText="가입하기" onClick={handleSubmit(onValid)} />

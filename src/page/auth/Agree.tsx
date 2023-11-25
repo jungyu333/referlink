@@ -4,6 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { Button, svgLogo } from 'referlink-ui';
 import * as S from '@styles/page/auth/agree.styles';
 import useDetailNavigation from '@hooks/useDetailNavigation';
+import { EmailFormData } from '_types/auth';
 
 export const Agree = () => {
   const location = useLocation();
@@ -39,7 +40,9 @@ export const Agree = () => {
           <Button
             buttonText="동의 및 계속"
             isDisabled={!areRequiredChecked()}
-            onClick={() => pathNavigation('/signup')}
+            onClick={() =>
+              pathNavigation<EmailFormData>('/signup', location.state)
+            }
           />
         </section>
       </S.Main>
