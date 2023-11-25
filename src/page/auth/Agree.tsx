@@ -1,7 +1,7 @@
 import { Term } from '@components/auth';
 import useAgreements from '@hooks/useAgreements';
 import { Navigate, useLocation } from 'react-router-dom';
-import { svgLogo } from 'referlink-ui';
+import { Button, svgLogo } from 'referlink-ui';
 import styled from 'styled-components';
 
 export const Agree = () => {
@@ -33,6 +33,11 @@ export const Agree = () => {
             toggleAgreement={toggleAgreement}
             toggleAll={toggleAll}
             agreements={agreements}
+          />
+
+          <Button
+            buttonText="동의 및 계속"
+            isDisabled={!areRequiredChecked()}
           />
         </section>
       </Main>
