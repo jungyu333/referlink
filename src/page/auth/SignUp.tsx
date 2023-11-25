@@ -5,10 +5,17 @@ import * as S from '@styles/page/auth/signUp.styles';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
 import { ToastBody } from '@components/common/toast';
-import { Button, EmailInput, PasswordInput } from 'referlink-ui';
+import {
+  Button,
+  EmailInput,
+  Fonts,
+  PasswordInput,
+  svgLogo,
+} from 'referlink-ui';
 import { useGetLocationState } from '@hooks/useGetLocationState';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { useApiNavigation } from '@hooks/useApiNavigation';
+import { Navigate } from 'react-router-dom';
 
 export const SignUp = () => {
   const {
@@ -47,13 +54,20 @@ export const SignUp = () => {
     }
   };
 
+  if (!locationState?.email) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <S.Wrapper>
-      <S.SignUpContainer>
-        <h1>회원가입</h1>
-        <S.SignUpForm>
-          <S.InputContainer>
-            <S.Inner>
+      <S.Main>
+        <S.Container>
+          <S.Header>
+            {svgLogo}
+            <h1>회원가입</h1>
+          </S.Header>
+          <S.SignUpContainer>
+            <S.SignUpForm>
               <EmailInput
                 placeholder="이메일을 입력해주세요."
                 label="이메일"
@@ -107,17 +121,21 @@ export const SignUp = () => {
                   required: '비밀번호를 다시 한번 입력해주세요.',
                 })}
               />
-            </S.Inner>
-          </S.InputContainer>
-
-          <Button buttonText="가입하기" onClick={handleSubmit(onValid)} />
-        </S.SignUpForm>
-      </S.SignUpContainer>
-
-      <S.BottomText>
-        이미 계정이 있으신가요?
-        <b>로그인</b>
-      </S.BottomText>
+            </S.SignUpForm>
+            <Button
+              buttonText="가입하기"
+              px="36px"
+              py="24px"
+              fontStyle={Fonts.subtitle2}
+              onClick={handleSubmit(onValid)}
+            />
+          </S.SignUpContainer>
+        </S.Container>
+        <S.BottomText>
+          이미 계정이 있으신가요?
+          <b>로그인</b>
+        </S.BottomText>
+      </S.Main>
     </S.Wrapper>
   );
 };
