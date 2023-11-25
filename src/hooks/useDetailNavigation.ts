@@ -12,8 +12,11 @@ const useDetailNavigation = () => {
     path: string,
     secondPath: string,
     flag: boolean,
+    email?: string,
   ) => {
-    flag ? navigation(`${path}`) : navigation(`${secondPath}`);
+    flag
+      ? navigation(`${path}`)
+      : navigation(`${secondPath}`, { state: { email } });
   };
 
   return { detailNavigation, pathNavigation, branchNavigation };

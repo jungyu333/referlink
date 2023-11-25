@@ -1,5 +1,5 @@
 import { Layout } from '@components/common';
-import { ServiceStart, SignIn, SignUp } from '@page/auth';
+import { Agree, ServiceStart, SignIn, SignUp } from '@page/auth';
 import { Landing } from '@page/landing';
 import { MyPage } from '@page/my';
 import { MyDetailReputation, WriteReputationWithMenu } from '@page/reputation';
@@ -80,6 +80,17 @@ export const Router = () => {
             <ProtectRouter
               layout={Layout}
               component={ServiceStart}
+              isHeaderMenu={false}
+              isAuth
+            />
+          }
+        />
+        <Route
+          path="/agree"
+          element={
+            <ProtectRouter
+              layout={Layout}
+              component={Agree}
               isHeaderMenu={false}
               isAuth
             />

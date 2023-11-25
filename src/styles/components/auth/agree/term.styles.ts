@@ -1,36 +1,24 @@
 import { styled } from 'styled-components';
 
 export const TermsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
   width: 400px;
   height: 248px;
   border-radius: 8px;
-  display: flex;
-  border: 1px solid ${({ theme }) => theme.colors.grey1};
-  position: relative;
-`;
-
-export const AllTerms = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  position: absolute;
-  top: 20px;
-  left: 16px;
-  color: ${({ theme }) => theme.colors.grey3};
-  font: ${({ theme }) => theme.fonts.subtitle2};
-  letter-spacing: -0.36px;
-
-  & svg {
-    cursor: pointer;
+  padding: 0 16px;
+  & button {
+    padding: 0;
   }
 `;
 
 export const Line = styled.div`
-  width: 399px;
+  width: 100%;
   height: 1px;
   background: rgba(96, 95, 95, 0.35);
-  position: absolute;
-  top: 64px;
+  margin-bottom: 4px;
 `;
 
 export const Terms = styled.div`
@@ -38,9 +26,6 @@ export const Terms = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  position: absolute;
-  top: 84px;
-  left: 16px;
 `;
 
 export const TermItem = styled.div`
@@ -64,10 +49,6 @@ export const TermContent = styled.div<{ $isOptional: boolean }>`
       color: ${({ theme, $isOptional }) =>
         $isOptional ? theme.colors.grey1 : theme.colors.primary1};
     }
-  }
-
-  & svg {
-    cursor: pointer;
   }
 `;
 
