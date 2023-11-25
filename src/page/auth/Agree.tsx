@@ -3,11 +3,12 @@ import useAgreements from '@hooks/useAgreements';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Button, svgLogo } from 'referlink-ui';
 import * as S from '@styles/page/auth/agree.styles';
+import useDetailNavigation from '@hooks/useDetailNavigation';
 
 export const Agree = () => {
   const location = useLocation();
   const { email } = location.state || {};
-
+  const { pathNavigation } = useDetailNavigation();
   const {
     agreements,
     toggleAgreement,
@@ -38,6 +39,7 @@ export const Agree = () => {
           <Button
             buttonText="동의 및 계속"
             isDisabled={!areRequiredChecked()}
+            onClick={() => pathNavigation('/signup')}
           />
         </section>
       </S.Main>
