@@ -1,4 +1,6 @@
 import {
+  CheckMemberResponse,
+  EmailFormData,
   IRegisterByEmailApiResponse,
   ISignInByEmailApiResponse,
   ISignInFormData,
@@ -74,7 +76,7 @@ export const signInByEmail = async (params: ISignInFormData) => {
 
       return response.data;
     } else {
-      throw new Error('Failed to singin user with Firebase Auth.');
+      throw new Error('Failed to singin user with Firebase  Auth.');
     }
   } catch (error) {
     throw error;
@@ -90,6 +92,21 @@ export const signOut = async () => {
     } else {
       return;
     }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const checkMember = async (params: EmailFormData) => {
+  try {
+    const { email } = params;
+
+    const response = await Api.get<
+      EmailFormData,
+      AxiosResponse<CheckMemberResponse>
+    >(`/api/user/check/${email}`);
+
+    return response.data;
   } catch (error) {
     throw error;
   }

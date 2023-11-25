@@ -1,7 +1,9 @@
+import useDetailNavigation from '@hooks/useDetailNavigation';
 import * as S from '@styles/page/landing.styles';
 import { Button } from 'referlink-ui';
 
 export const Landing = () => {
+  const { pathNavigation } = useDetailNavigation();
   return (
     <S.Wrapper>
       <main>
@@ -17,6 +19,7 @@ export const Landing = () => {
           width="221px"
           height="68px"
           px="36px"
+          onClick={() => pathNavigation('/service-start')}
         />
       </main>
     </S.Wrapper>

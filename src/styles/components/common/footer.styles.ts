@@ -54,20 +54,6 @@ export const InputContainer = styled.form`
   top: 36px;
 `;
 
-export const EmailInput = styled.div`
-  & input {
-    display: flex;
-    width: 265px;
-    height: 48px;
-    padding: 12px 16px;
-    align-items: center;
-    gap: 4px;
-
-    border-radius: 8px;
-    border: 1px solid ${({ theme }) => theme.colors.grey1};
-  }
-`;
-
 export const Subscribe = styled.div`
   background: ${({ theme }) => theme.colors.primary1};
   border-radius: 8px;
