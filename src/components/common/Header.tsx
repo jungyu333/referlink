@@ -1,8 +1,8 @@
 import { ReactComponent as MyPageSVG } from '@styles/images/svg/mypage.svg';
 import * as S from '@styles/components/common/header.styles';
-import useDetailNavigation from '@hooks/useDetailNavigation';
-import useGetToken from '@hooks/useGetToken';
 import { svgLogo } from 'referlink-ui';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
+import { useGetToken } from '@hooks/useGetToken';
 
 type Props = {
   isHeaderMenu?: boolean;

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastOptions } from 'react-toastify';
 import { ToastBody } from '@components/common/toast/ToastBody';
 
-export default function useApiNavigation<T extends IApiResponse>() {
+export const useApiNavigation = <T extends IApiResponse>() => {
   const navigate = useNavigate();
 
   const apiNavigation = (
@@ -25,4 +25,4 @@ export default function useApiNavigation<T extends IApiResponse>() {
   };
 
   return apiNavigation;
-}
+};

@@ -1,14 +1,14 @@
 import { useForm } from 'react-hook-form';
-import { ISignUpFormData } from '_types/auth';
+import { EmailFormData, ISignUpFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signUp.styles';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
-import useApiNavigation from '@hooks/useApiNavigation';
 import { ToastBody } from '@components/common/toast';
-import useCustomToast from '@hooks/useCustomToast';
 import { Button, EmailInput, PasswordInput } from 'referlink-ui';
-import { useLocation } from 'react-router-dom';
+import { useGetLocationState } from '@hooks/useGetLocationState';
+import { useCustomToast } from '@hooks/useCustomToast';
+import { useApiNavigation } from '@hooks/useApiNavigation';
 
 export const SignUp = () => {
   const {
@@ -17,8 +17,8 @@ export const SignUp = () => {
     formState: { errors },
     getValues,
   } = useForm<ISignUpFormData>();
-  const location = useLocation();
-  console.log(location.state);
+  const locationState = useGetLocationState<EmailFormData>();
+
   const { execute } = useApi(registerByEmail);
   const { info } = useCustomToast();
 
