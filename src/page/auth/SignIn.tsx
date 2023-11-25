@@ -18,7 +18,7 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm<ISignInFormData>();
 
-  const { pathNavigation } = useDetailNavigation('signup');
+  const { pathNavigation } = useDetailNavigation();
 
   const { execute } = useApi(signInByEmail);
   const { info } = useCustomToast();
@@ -99,7 +99,8 @@ export const SignIn = () => {
       </S.SignInForm>
 
       <h2>
-        계정이 없으신가요? <b onClick={pathNavigation}>가입하기</b>
+        계정이 없으신가요?{' '}
+        <b onClick={() => pathNavigation('/signup')}>가입하기</b>
       </h2>
     </S.Wrapper>
   );

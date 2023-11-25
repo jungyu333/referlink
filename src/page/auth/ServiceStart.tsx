@@ -14,6 +14,7 @@ import { useApi } from '@hooks/useApi';
 import { checkMember } from 'api';
 import useCustomToast from '@hooks/useCustomToast';
 import { ToastBody } from '@components/common';
+import useDetailNavigation from '@hooks/useDetailNavigation';
 
 export const ServiceStart = () => {
   const {
@@ -27,6 +28,8 @@ export const ServiceStart = () => {
 
   const { execute } = useApi(checkMember);
 
+  const { branchNavigation } = useDetailNavigation();
+
   const onValid = async (formData: EmailFormData) => {
     const { email } = formData;
 
@@ -35,10 +38,9 @@ export const ServiceStart = () => {
     });
 
     if (responseOrError instanceof Error) {
-      console.log(responseOrError);
       info(<ToastBody subText="잘못된 요청입니다." />);
     } else {
-      console.log(responseOrError.data);
+      branchNavigation('/signin', '/agree', responseOrError.data.isExist);
     }
   };
 

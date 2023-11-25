@@ -9,16 +9,16 @@ type Props = {
 };
 
 export const Header = ({ isHeaderMenu = true }: Props) => {
-  const { pathNavigation } = useDetailNavigation('');
-  const { detailNavigation } = useDetailNavigation('mypage');
+  const { pathNavigation } = useDetailNavigation();
+  const { detailNavigation } = useDetailNavigation();
   const userId = useGetToken();
   const onClickMypage = () => {
-    if (userId) detailNavigation(userId);
+    if (userId) detailNavigation('/mypage', userId);
   };
 
   return (
     <S.Wrapper>
-      <S.Logo onClick={pathNavigation}>{svgLogo}</S.Logo>
+      <S.Logo onClick={() => pathNavigation('/')}>{svgLogo}</S.Logo>
 
       {isHeaderMenu && (
         <>
