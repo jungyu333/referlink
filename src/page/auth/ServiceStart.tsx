@@ -40,7 +40,13 @@ export const ServiceStart = () => {
     if (responseOrError instanceof Error) {
       info(<ToastBody subText="잘못된 요청입니다." />);
     } else {
-      branchNavigation('/signin', '/agree', responseOrError.data.isExist);
+      console.log(email);
+      branchNavigation(
+        '/signin',
+        '/agree',
+        responseOrError.data.isExist,
+        email,
+      );
     }
   };
 
