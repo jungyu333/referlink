@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { EmailFormData, ISignUpFormData } from '_types/auth';
+import { EmailFormData, SignUpFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signUp.styles';
 import { useApi } from '@hooks/useApi';
@@ -16,41 +16,43 @@ import { useGetLocationState } from '@hooks/useGetLocationState';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { useApiNavigation } from '@hooks/useApiNavigation';
 import { Navigate } from 'react-router-dom';
+import { getErrorResponse } from '@utils/error';
 
 export const SignUp = () => {
+  const locationState = useGetLocationState<EmailFormData>();
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<ISignUpFormData>();
-  const locationState = useGetLocationState<EmailFormData>();
+  } = useForm<SignUpFormData>({
+    defaultValues: {
+      email: locationState?.email,
+      password: '',
+      passwordCheck: '',
+    },
+  });
 
   const { execute } = useApi(registerByEmail);
   const { info } = useCustomToast();
 
   const apiNavigation = useApiNavigation();
 
-  const onValid = async (formData: ISignUpFormData) => {
-    if (true) {
-      const responseOrError = await execute({
-        email: formData.email,
-        password: formData.password,
-        passwordCheck: formData.passwordCheck,
-      });
+  const onValid = async (formData: SignUpFormData) => {
+    const { email, password, passwordCheck } = formData;
+    const responseResult = await execute({
+      email,
+      password,
+      passwordCheck,
+    });
 
-      if (responseOrError instanceof Error) {
-        info(<ToastBody subText="이미 사용중인 이메일입니다." />);
-      } else {
-        apiNavigation(
-          '/signin',
-          '회원가입에 성공하였습니다.',
-          responseOrError,
-          info,
-        );
+    if (responseResult instanceof Error) {
+      const error = getErrorResponse(responseResult);
+      if (error.statusCode === 409) {
+        info(<ToastBody subText={error.message} />);
       }
     } else {
-      info(<ToastBody subText="약관 동의를 해주세요" />);
+      apiNavigation('/signin', responseResult.message, responseResult, info);
     }
   };
 

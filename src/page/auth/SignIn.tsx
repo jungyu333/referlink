@@ -1,6 +1,6 @@
 import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
 import { useForm } from 'react-hook-form';
-import { ISignInFormData } from '_types/auth';
+import { SignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signIn.styles';
 import { useApi } from '@hooks/useApi';
@@ -16,7 +16,7 @@ export const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignInFormData>();
+  } = useForm<SignInFormData>();
 
   const { pathNavigation } = useDetailNavigation();
 
@@ -24,18 +24,18 @@ export const SignIn = () => {
   const { info } = useCustomToast();
   const apiNavigation = useApiNavigation();
 
-  const onValid = async (formData: ISignInFormData) => {
+  const onValid = async (formData: SignInFormData) => {
     const { email, password } = formData;
     const responseOrError = await execute({
       email,
       password,
     });
 
-    if (responseOrError instanceof Error) {
-      info(<ToastBody subText="로그인에 실패하였습니다." />);
-    } else {
-      apiNavigation('/', '로그인에 성공하였습니다.', responseOrError, info);
-    }
+    // if (responseOrError instanceof Error) {
+    //   info(<ToastBody subText="로그인에 실패하였습니다." />);
+    // } else {
+    //   apiNavigation('/', '로그인에 성공하였습니다.', responseOrError, info);
+    // }
   };
 
   return (

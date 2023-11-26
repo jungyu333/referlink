@@ -31,18 +31,16 @@ export const ServiceStart = () => {
   const { branchNavigation } = useDetailNavigation();
   const onValid = async (formData: EmailFormData) => {
     const { email } = formData;
-
-    const responseOrError = await execute({
+    const responseResult = await execute({
       email,
     });
-
-    if (responseOrError instanceof Error) {
+    if (responseResult instanceof Error) {
       info(<ToastBody subText="잘못된 요청입니다." />);
     } else {
       branchNavigation<EmailFormData>(
         '/signin',
         '/agree',
-        responseOrError.data.isExist,
+        responseResult.data.isExist,
         true,
         { email: email },
       );

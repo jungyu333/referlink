@@ -1,10 +1,10 @@
 import {
   CheckMemberResponse,
   EmailFormData,
-  IRegisterByEmailApiResponse,
+  RegisterByEmailApiResponse,
   ISignInByEmailApiResponse,
-  ISignInFormData,
-  ISignUpFormData,
+  SignInFormData,
+  SignUpFormData,
 } from '_types/auth';
 import { apiConfig } from 'api/config';
 import Api from 'api/core/Api';
@@ -16,39 +16,29 @@ import {
 } from 'firebase/auth';
 import Cookies from 'js-cookie';
 
-export const registerByEmail = async (params: ISignUpFormData) => {
+export const registerByEmail = async (params: SignUpFormData) => {
   try {
     const { email, password } = params;
 
-    const userCredential = await createUserWithEmailAndPassword(
-      authService,
+    const response = await Api.post<
+      SignUpFormData,
+      AxiosResponse<RegisterByEmailApiResponse>
+    >(`/api/user/register`, {
       email,
       password,
-    );
-    const user = userCredential.user;
+      name: 'jungyu',
+      phone: '010-1234-5678',
+    });
 
-    if (user) {
-      const userId = user.uid;
-
-      const endPoint = `?uid=${userId}&email=${email}`;
-
-      const response = await Api.post<
-        ISignUpFormData,
-        AxiosResponse<IRegisterByEmailApiResponse>
-      >(endPoint, { prefix: apiConfig.SignUp.prefix });
-
-      return response.data;
-    } else {
-      throw new Error('Failed to create user with Firebase Auth.');
-    }
+    return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const signInByEmail = async (params: ISignInFormData) => {
+export const signInByEmail = async (params: SignInFormData) => {
   try {
-    const { email, password }: ISignInFormData = params;
+    const { email, password }: SignInFormData = params;
 
     const userCredential = await signInWithEmailAndPassword(
       authService,
@@ -64,7 +54,7 @@ export const signInByEmail = async (params: ISignInFormData) => {
       const endPoint = `?uid=${userId}&email=${email}`;
 
       const response = await Api.get<
-        ISignInFormData,
+        SignInFormData,
         AxiosResponse<ISignInByEmailApiResponse>
       >(endPoint, { prefix: apiConfig.SignIn.prefix });
 
