@@ -8,7 +8,8 @@
       "@page/*": ["./page/*"],
       "_types/*": ["./_types/*"],
       "@constant/*": ["./constant/*"],
-      "@hoc/*": ["./hoc/*"]
+      "@hoc/*": ["./hoc/*"],
+      "@utils/*": ["./utils/*"]
     }
   }
 }

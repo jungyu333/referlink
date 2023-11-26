@@ -1,67 +1,75 @@
 import { useForm } from 'react-hook-form';
-import { ISignUpFormData } from '_types/auth';
+import { EmailFormData, SignUpFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signUp.styles';
-import { Term } from '@components/auth';
-import useAgreements from '@hooks/useAgreements';
 import { useApi } from '@hooks/useApi';
 import { registerByEmail } from 'api';
-import useApiNavigation from '@hooks/useApiNavigation';
 import { ToastBody } from '@components/common/toast';
-import useCustomToast from '@hooks/useCustomToast';
-import { Button, EmailInput, PasswordInput } from 'referlink-ui';
+import {
+  Button,
+  EmailInput,
+  Fonts,
+  PasswordInput,
+  svgLogo,
+} from 'referlink-ui';
+import { useGetLocationState } from '@hooks/useGetLocationState';
+import { useCustomToast } from '@hooks/useCustomToast';
+import { useApiNavigation } from '@hooks/useApiNavigation';
+import { Navigate } from 'react-router-dom';
+import { getErrorResponse } from '@utils/error';
 
 export const SignUp = () => {
+  const locationState = useGetLocationState<EmailFormData>();
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<ISignUpFormData>();
+  } = useForm<SignUpFormData>({
+    defaultValues: {
+      email: locationState?.email,
+      password: '',
+      passwordCheck: '',
+    },
+  });
 
   const { execute } = useApi(registerByEmail);
   const { info } = useCustomToast();
 
-  const {
-    agreements,
-    toggleAgreement,
-    toggleAll,
-    areRequiredChecked,
-    allChecked,
-  } = useAgreements();
-
   const apiNavigation = useApiNavigation();
 
-  const onValid = async (formData: ISignUpFormData) => {
-    if (areRequiredChecked()) {
-      const responseOrError = await execute({
-        email: formData.email,
-        password: formData.password,
-        passwordCheck: formData.passwordCheck,
-      });
+  const onValid = async (formData: SignUpFormData) => {
+    const { email, password, passwordCheck } = formData;
+    const responseResult = await execute({
+      email,
+      password,
+      passwordCheck,
+    });
 
-      if (responseOrError instanceof Error) {
-        info(<ToastBody subText="이미 사용중인 이메일입니다." />);
-      } else {
-        apiNavigation(
-          '/signin',
-          '회원가입에 성공하였습니다.',
-          responseOrError,
-          info,
-        );
+    if (responseResult instanceof Error) {
+      const error = getErrorResponse(responseResult);
+      if (error.statusCode === 409) {
+        info(<ToastBody subText={error.message} />);
       }
     } else {
-      info(<ToastBody subText="약관 동의를 해주세요" />);
+      apiNavigation('/signin', responseResult.message, responseResult, info);
     }
   };
 
+  if (!locationState?.email) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <S.Wrapper>
-      <S.SignUpContainer>
-        <h1>회원가입</h1>
-        <S.SignUpForm>
-          <S.InputContainer>
-            <S.Inner>
+      <S.Main>
+        <S.Container>
+          <S.Header>
+            {svgLogo}
+            <h1>회원가입</h1>
+          </S.Header>
+          <S.SignUpContainer>
+            <S.SignUpForm>
               <EmailInput
                 placeholder="이메일을 입력해주세요."
                 label="이메일"
@@ -115,23 +123,21 @@ export const SignUp = () => {
                   required: '비밀번호를 다시 한번 입력해주세요.',
                 })}
               />
-            </S.Inner>
-            {/* <Term
-              allChecked={allChecked}
-              toggleAgreement={toggleAgreement}
-              toggleAll={toggleAll}
-              agreements={agreements}
-            /> */}
-          </S.InputContainer>
-
-          <Button buttonText="가입하기" onClick={handleSubmit(onValid)} />
-        </S.SignUpForm>
-      </S.SignUpContainer>
-
-      <S.BottomText>
-        이미 계정이 있으신가요?
-        <b>로그인</b>
-      </S.BottomText>
+            </S.SignUpForm>
+            <Button
+              buttonText="가입하기"
+              px="36px"
+              py="24px"
+              fontStyle={Fonts.subtitle2}
+              onClick={handleSubmit(onValid)}
+            />
+          </S.SignUpContainer>
+        </S.Container>
+        <S.BottomText>
+          이미 계정이 있으신가요?
+          <b>로그인</b>
+        </S.BottomText>
+      </S.Main>
     </S.Wrapper>
   );
 };

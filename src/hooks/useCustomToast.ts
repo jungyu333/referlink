@@ -12,7 +12,7 @@ export const defaultToastOption: ToastOptions = {
   closeButton: false,
 };
 
-const useCustomToast = () => {
+export const useCustomToast = () => {
   const info = (message: ReactNode, options: ToastOptions = {}) => {
     toast.info(message, {
       ...defaultToastOption,
@@ -41,5 +41,3 @@ const useCustomToast = () => {
     error,
   };
 };
-
-export default useCustomToast;

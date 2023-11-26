@@ -12,9 +12,9 @@ import { useEffect, useState } from 'react';
 import * as S from '@styles/page/auth/serviceStart.styles';
 import { useApi } from '@hooks/useApi';
 import { checkMember } from 'api';
-import useCustomToast from '@hooks/useCustomToast';
 import { ToastBody } from '@components/common';
-import useDetailNavigation from '@hooks/useDetailNavigation';
+import { useCustomToast } from '@hooks/useCustomToast';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 
 export const ServiceStart = () => {
   const {
@@ -29,23 +29,20 @@ export const ServiceStart = () => {
   const { execute } = useApi(checkMember);
 
   const { branchNavigation } = useDetailNavigation();
-
   const onValid = async (formData: EmailFormData) => {
     const { email } = formData;
-
-    const responseOrError = await execute({
+    const responseResult = await execute({
       email,
     });
-
-    if (responseOrError instanceof Error) {
+    if (responseResult instanceof Error) {
       info(<ToastBody subText="잘못된 요청입니다." />);
     } else {
-      console.log(email);
-      branchNavigation(
+      branchNavigation<EmailFormData>(
         '/signin',
         '/agree',
-        responseOrError.data.isExist,
-        email,
+        responseResult.data.isExist,
+        true,
+        { email: email },
       );
     }
   };

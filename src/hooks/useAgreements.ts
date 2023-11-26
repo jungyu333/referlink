@@ -1,7 +1,7 @@
 import { signUpTerms } from '@constant/terms';
 import { useState } from 'react';
 
-const useAgreements = () => {
+export const useAgreements = () => {
   const [agreements, setAgreements] = useState<{ [key: number]: boolean }>(
     signUpTerms.reduce((acc, term) => ({ ...acc, [term.id]: false }), {}),
   );
@@ -41,5 +41,3 @@ const useAgreements = () => {
     allChecked,
   };
 };
-
-export default useAgreements;

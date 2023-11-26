@@ -1,25 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 
-const useDetailNavigation = () => {
+export const useDetailNavigation = () => {
   const navigation = useNavigate();
 
   const detailNavigation = (path: string, id: string) =>
     navigation(`${path}/${id}`);
 
-  const pathNavigation = (path: string) => navigation(`${path}`);
+  const pathNavigation = <T extends object>(path: string, state?: T) =>
+    navigation(`${path}`, { state });
 
-  const branchNavigation = (
+  const branchNavigation = <T extends object>(
     path: string,
     secondPath: string,
     flag: boolean,
-    email?: string,
+    replace = false,
+    state?: T,
   ) => {
     flag
       ? navigation(`${path}`)
-      : navigation(`${secondPath}`, { state: { email } });
+      : navigation(`${secondPath}`, { replace, state });
   };
 
   return { detailNavigation, pathNavigation, branchNavigation };
 };
-
-export default useDetailNavigation;

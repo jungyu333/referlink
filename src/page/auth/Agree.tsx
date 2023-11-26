@@ -1,13 +1,16 @@
 import { Term } from '@components/auth';
-import useAgreements from '@hooks/useAgreements';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Button, svgLogo } from 'referlink-ui';
 import * as S from '@styles/page/auth/agree.styles';
+import { EmailFormData } from '_types/auth';
+import { useAgreements } from '@hooks/useAgreements';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
+import { useGetLocationState } from '@hooks/useGetLocationState';
 
 export const Agree = () => {
-  const location = useLocation();
-  const { email } = location.state || {};
+  const locationState = useGetLocationState<EmailFormData>();
 
+  const { pathNavigation } = useDetailNavigation();
   const {
     agreements,
     toggleAgreement,
@@ -16,7 +19,7 @@ export const Agree = () => {
     allChecked,
   } = useAgreements();
 
-  if (!email) {
+  if (!locationState?.email) {
     return <Navigate to="/" replace />;
   }
 
@@ -38,6 +41,9 @@ export const Agree = () => {
           <Button
             buttonText="동의 및 계속"
             isDisabled={!areRequiredChecked()}
+            onClick={() =>
+              pathNavigation<EmailFormData>('/signup', locationState)
+            }
           />
         </section>
       </S.Main>

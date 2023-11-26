@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
-export default function useGetToken() {
+export const useGetToken = () => {
   const token = Cookies.get('accessToken');
 
   return token;
-}
+};

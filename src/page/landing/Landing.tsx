@@ -1,4 +1,4 @@
-import useDetailNavigation from '@hooks/useDetailNavigation';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import * as S from '@styles/page/landing.styles';
 import { Button } from 'referlink-ui';
 

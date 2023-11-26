@@ -1,6 +1,6 @@
 import { LayoutProps } from '@components/common';
 import { useApi } from '@hooks/useApi';
-import useGetToken from '@hooks/useGetToken';
+import { useGetToken } from '@hooks/useGetToken';
 import { signOut } from 'api';
 import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
