@@ -1,11 +1,16 @@
 import { emailRegex, phoneRegex } from '@constant/regex';
 import { IMyPageEditFormData } from '_types/my';
 import { useForm } from 'react-hook-form';
-import { ReactComponent as AddPhotoSVG } from '@styles/images/svg/addPhoto.svg';
-import { ReactComponent as CloseButtonSVG } from '@styles/images/svg/closeButton.svg';
 import * as S from '@styles/page/my/myPage.styles';
 import { useRef, useState } from 'react';
-import { Button, EmailInput, TextInput } from 'referlink-ui';
+import {
+  Button,
+  EmailInput,
+  TextInput,
+  svgAvartar,
+  svgClose,
+  svgPhoto,
+} from 'referlink-ui';
 
 export const MyPage = () => {
   const {
@@ -51,7 +56,7 @@ export const MyPage = () => {
               {previewAvatar.length > 0 ? (
                 <S.Avatar src={previewAvatar} />
               ) : (
-                <S.NoAvatar />
+                <>{svgAvartar}</>
               )}
 
               <S.TextContainer>
@@ -60,11 +65,9 @@ export const MyPage = () => {
               </S.TextContainer>
             </S.Information>
             <S.UploadContainer>
-              <CloseButtonSVG onClick={handleRemoveImage} />
+              <div onClick={handleRemoveImage}>{svgClose}</div>
 
-              <label htmlFor="avatar">
-                <AddPhotoSVG />
-              </label>
+              <label htmlFor="avatar">{svgPhoto}</label>
               <input
                 type="file"
                 accept="imgae/*"
