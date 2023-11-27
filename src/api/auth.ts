@@ -46,6 +46,12 @@ export const signInByEmail = async (params: SignInFormData) => {
       AxiosResponse<SignInByEmailApiResponse>
     >(`/api/user/login`, json);
 
+    const accessToken = response.data.data.access_token;
+
+    if (accessToken) {
+      Cookies.set('accessToken', accessToken);
+    }
+
     return response.data;
   } catch (error) {
     throw error;
