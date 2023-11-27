@@ -1,6 +1,5 @@
-import { ReactComponent as MyPageSVG } from '@styles/images/svg/mypage.svg';
 import * as S from '@styles/components/common/header.styles';
-import { svgLogo } from 'referlink-ui';
+import { Button, ButtonTypes, Fonts, svgLogo, svgMy } from 'referlink-ui';
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import { useGetToken } from '@hooks/useGetToken';
 
@@ -10,11 +9,8 @@ type Props = {
 
 export const Header = ({ isHeaderMenu = true }: Props) => {
   const { pathNavigation } = useDetailNavigation();
-  const { detailNavigation } = useDetailNavigation();
-  const userId = useGetToken();
-  const onClickMypage = () => {
-    if (userId) detailNavigation('/mypage', userId);
-  };
+
+  const accessToken = useGetToken();
 
   return (
     <S.Wrapper>
@@ -29,10 +25,22 @@ export const Header = ({ isHeaderMenu = true }: Props) => {
             <S.ButtonText>내가 작성한 평판</S.ButtonText>
           </S.PassReputation>
 
-          <S.MyPageButton onClick={onClickMypage}>
-            <MyPageSVG />
-            <S.ButtonText>마이페이지</S.ButtonText>
-          </S.MyPageButton>
+          {accessToken && (
+            <S.MyPageButton>
+              <Button
+                onClick={() => pathNavigation('/my')}
+                buttonText="마이페이지"
+                isIcon
+                svgIcon={svgMy}
+                px="16px"
+                py="10px"
+                buttonType={ButtonTypes.outlined}
+                width="133px"
+                height="44px"
+                fontStyle={Fonts.body}
+              />
+            </S.MyPageButton>
+          )}
         </>
       )}
     </S.Wrapper>

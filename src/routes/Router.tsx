@@ -16,7 +16,7 @@ export const Router = () => {
           element={<ProtectRouter layout={Layout} component={Landing} />}
         />
         <Route
-          path="/mypage/:userId"
+          path="/my"
           element={
             <ProtectRouter layout={Layout} component={MyPage} requiresAuth />
           }
