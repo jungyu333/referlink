@@ -9,11 +9,8 @@ type Props = {
 
 export const Header = ({ isHeaderMenu = true }: Props) => {
   const { pathNavigation } = useDetailNavigation();
-  const { detailNavigation } = useDetailNavigation();
-  const userId = useGetToken();
-  const onClickMypage = () => {
-    if (userId) detailNavigation('/mypage', userId);
-  };
+
+  const accessToken = useGetToken();
 
   return (
     <S.Wrapper>
@@ -28,20 +25,22 @@ export const Header = ({ isHeaderMenu = true }: Props) => {
             <S.ButtonText>내가 작성한 평판</S.ButtonText>
           </S.PassReputation>
 
-          <S.MyPageButton>
-            <Button
-              onClick={onClickMypage}
-              buttonText="마이페이지"
-              isIcon
-              svgIcon={svgMy}
-              px="16px"
-              py="10px"
-              buttonType={ButtonTypes.outlined}
-              width="133px"
-              height="44px"
-              fontStyle={Fonts.body}
-            />
-          </S.MyPageButton>
+          {accessToken && (
+            <S.MyPageButton>
+              <Button
+                onClick={() => pathNavigation('/my')}
+                buttonText="마이페이지"
+                isIcon
+                svgIcon={svgMy}
+                px="16px"
+                py="10px"
+                buttonType={ButtonTypes.outlined}
+                width="133px"
+                height="44px"
+                fontStyle={Fonts.body}
+              />
+            </S.MyPageButton>
+          )}
         </>
       )}
     </S.Wrapper>
