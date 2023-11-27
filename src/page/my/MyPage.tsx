@@ -1,5 +1,5 @@
-import { emailRegex, phoneRegex } from '@constant/regex';
-import { IMyPageEditFormData } from '_types/my';
+import { emailRegex } from '@constant/regex';
+import { MyPageEditFormData } from '_types/my';
 import { useForm } from 'react-hook-form';
 import * as S from '@styles/page/my/myPage.styles';
 import { useRef, useState } from 'react';
@@ -17,12 +17,12 @@ export const MyPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IMyPageEditFormData>();
+  } = useForm<MyPageEditFormData>();
   const [avatarFile, setAvaterFile] = useState<File | null>(null);
   const [previewAvatar, setPreviewAvatar] = useState('');
   const avatarRef = useRef<HTMLInputElement>(null);
 
-  const onValid = (formData: IMyPageEditFormData) => {
+  const onValid = (formData: MyPageEditFormData) => {
     console.log(formData);
   };
 
@@ -124,34 +124,20 @@ export const MyPage = () => {
                 error={errors.job?.message}
               />
             </section>
-            <section>
-              <TextInput
-                register={register('phone', {
-                  pattern: {
-                    value: phoneRegex,
-                    message: '형식에 맞지 않는 번호입니다.',
-                  },
-                  required: '휴대폰 번호를 입력해주세요.',
-                })}
-                label="휴대폰 번호"
-                placeholder="휴대폰 번호를 입력해주세요"
-                width="330px"
-                error={errors.phone?.message}
-              />
-              <EmailInput
-                register={register('email', {
-                  pattern: {
-                    value: emailRegex,
-                    message: '형식에 맞지 않는 이메일입니다.',
-                  },
-                  required: '이메일을 입력해주세요.',
-                })}
-                label="이메일 주소"
-                placeholder="이메일을 입력해주세요."
-                width="330px"
-                error={errors.email?.message}
-              />
-            </section>
+
+            <EmailInput
+              register={register('email', {
+                pattern: {
+                  value: emailRegex,
+                  message: '형식에 맞지 않는 이메일입니다.',
+                },
+                required: '이메일을 입력해주세요.',
+              })}
+              label="이메일 주소"
+              placeholder="이메일을 입력해주세요."
+              width="700px"
+              error={errors.email?.message}
+            />
           </S.InputContent>
 
           <Button width="700px" buttonText="저장하기" />
