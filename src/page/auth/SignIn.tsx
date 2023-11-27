@@ -13,9 +13,9 @@ import {
   PasswordInput,
   svgLogo,
 } from 'referlink-ui';
-import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { useApiNavigation } from '@hooks/useApiNavigation';
+import { getErrorResponse } from '@utils/error';
 
 export const SignIn = () => {
   const {
@@ -24,24 +24,24 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm<SignInFormData>();
 
-  const { pathNavigation } = useDetailNavigation();
-
   const { execute } = useApi(signInByEmail);
   const { info } = useCustomToast();
   const apiNavigation = useApiNavigation();
 
   const onValid = async (formData: SignInFormData) => {
     const { email, password } = formData;
-    const responseOrError = await execute({
+
+    const responseResult = await execute({
       email,
       password,
     });
 
-    // if (responseOrError instanceof Error) {
-    //   info(<ToastBody subText="로그인에 실패하였습니다." />);
-    // } else {
-    //   apiNavigation('/', '로그인에 성공하였습니다.', responseOrError, info);
-    // }
+    if (responseResult instanceof Error) {
+      const error = getErrorResponse(responseResult);
+      if (error.statusCode === 409) info(<ToastBody subText={error.message} />);
+    } else {
+      apiNavigation('/', responseResult.message, responseResult, info);
+    }
   };
 
   return (
