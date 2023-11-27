@@ -23,9 +23,12 @@ export interface RegisterByEmailApiResponse extends ApiBaseResponse {
 }
 
 //로그인 api response
-export interface ISignInByEmailApiResponse extends IApiResponse {
+export interface SignInByEmailApiResponse extends ApiBaseResponse {
   data: {
-    m_id: string;
+    email: string;
+    name: string;
+    uid: string;
+    access_token: string;
   };
 }
 

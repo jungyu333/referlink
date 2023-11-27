@@ -17,6 +17,7 @@ import { useCustomToast } from '@hooks/useCustomToast';
 import { useApiNavigation } from '@hooks/useApiNavigation';
 import { Navigate } from 'react-router-dom';
 import { getErrorResponse } from '@utils/error';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 
 export const SignUp = () => {
   const locationState = useGetLocationState<EmailFormData>();
@@ -37,6 +38,7 @@ export const SignUp = () => {
   const { info } = useCustomToast();
 
   const apiNavigation = useApiNavigation();
+  const { pathNavigation } = useDetailNavigation();
 
   const onValid = async (formData: SignUpFormData) => {
     const { email, password, passwordCheck } = formData;
@@ -135,7 +137,7 @@ export const SignUp = () => {
         </S.Container>
         <S.BottomText>
           이미 계정이 있으신가요?
-          <b>로그인</b>
+          <b onClick={() => pathNavigation('/signin')}>로그인</b>
         </S.BottomText>
       </S.Main>
     </S.Wrapper>

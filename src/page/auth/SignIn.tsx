@@ -1,4 +1,3 @@
-import { ReactComponent as GoogleSVG } from '@styles/images/svg/google.svg';
 import { useForm } from 'react-hook-form';
 import { SignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
@@ -6,10 +5,17 @@ import * as S from '@styles/page/auth/signIn.styles';
 import { useApi } from '@hooks/useApi';
 import { signInByEmail } from 'api';
 import { ToastBody } from '@components/common/toast';
-import { Button, EmailInput, PasswordInput } from 'referlink-ui';
-import { useDetailNavigation } from '@hooks/useDetailNavigation';
+import {
+  Button,
+  EmailInput,
+  GoogleButton,
+  LineText,
+  PasswordInput,
+  svgLogo,
+} from 'referlink-ui';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { useApiNavigation } from '@hooks/useApiNavigation';
+import { getErrorResponse } from '@utils/error';
 
 export const SignIn = () => {
   const {
@@ -18,46 +24,47 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm<SignInFormData>();
 
-  const { pathNavigation } = useDetailNavigation();
-
   const { execute } = useApi(signInByEmail);
   const { info } = useCustomToast();
   const apiNavigation = useApiNavigation();
 
   const onValid = async (formData: SignInFormData) => {
     const { email, password } = formData;
-    const responseOrError = await execute({
+
+    const responseResult = await execute({
       email,
       password,
     });
 
-    // if (responseOrError instanceof Error) {
-    //   info(<ToastBody subText="로그인에 실패하였습니다." />);
-    // } else {
-    //   apiNavigation('/', '로그인에 성공하였습니다.', responseOrError, info);
-    // }
+    if (responseResult instanceof Error) {
+      const error = getErrorResponse(responseResult);
+      if (error.statusCode === 409) info(<ToastBody subText={error.message} />);
+    } else {
+      apiNavigation('/', responseResult.message, responseResult, info);
+    }
   };
 
   return (
     <S.Wrapper>
-      <S.SignInForm>
-        <h1>로그인</h1>
+      <S.Main>
+        <S.Header>
+          {svgLogo}
+          <h1>로그인</h1>
+        </S.Header>
 
-        <S.AuthForm>
-          <S.InputContainer>
-            <EmailInput
-              label="이메일"
-              placeholder="이메일을 입력해주세요."
-              error={errors.email?.message}
-              register={register('email', {
-                pattern: {
-                  value: emailRegex,
-                  message: '형식에 맞지 않는 이메일입니다.',
-                },
-                required: '이메일을 입력해주세요.',
-              })}
-            />
-          </S.InputContainer>
+        <S.SignInForm>
+          <EmailInput
+            label="이메일"
+            placeholder="이메일을 입력해주세요."
+            error={errors.email?.message}
+            register={register('email', {
+              pattern: {
+                value: emailRegex,
+                message: '형식에 맞지 않는 이메일입니다.',
+              },
+              required: '이메일을 입력해주세요.',
+            })}
+          />
 
           <S.InputContainer>
             <PasswordInput
@@ -78,30 +85,21 @@ export const SignIn = () => {
                 required: '비밀번호를 입력해주세요.',
               })}
             />
-            <S.HelpText>비밀번호를 잊으셨나요?</S.HelpText>
+            <S.FindPassword>비밀번호를 잊으셨나요?</S.FindPassword>
           </S.InputContainer>
 
           <S.ButtonContainer>
             <Button buttonText="로그인" onClick={handleSubmit(onValid)} />
 
-            <S.LineText>
-              <div />
-              SNS 간편 로그인
-              <div />
-            </S.LineText>
+            <LineText label="SNS 간편 로그인" />
 
-            <S.OnGoogle>
-              <GoogleSVG />
-              <div>Google로 계속하기</div>
-            </S.OnGoogle>
+            <GoogleButton
+              buttonText="Google로 계속하기"
+              onClick={() => console.log('google')}
+            />
           </S.ButtonContainer>
-        </S.AuthForm>
-      </S.SignInForm>
-
-      <h2>
-        계정이 없으신가요?{' '}
-        <b onClick={() => pathNavigation('/signup')}>가입하기</b>
-      </h2>
+        </S.SignInForm>
+      </S.Main>
     </S.Wrapper>
   );
 };
