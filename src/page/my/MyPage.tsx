@@ -1,8 +1,8 @@
 import { emailRegex } from '@constant/regex';
-import { MyPageEditFormData } from '_types/my';
+import { MyPageEditFormData, UserInfo } from '_types/my';
 import { useForm } from 'react-hook-form';
 import * as S from '@styles/page/my/myPage.styles';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Button,
   EmailInput,
@@ -11,6 +11,8 @@ import {
   svgClose,
   svgPhoto,
 } from 'referlink-ui';
+import { useApi } from '@hooks/useApi';
+import { getUserInfo } from 'api';
 
 export const MyPage = () => {
   const {
@@ -21,6 +23,10 @@ export const MyPage = () => {
   const [avatarFile, setAvaterFile] = useState<File | null>(null);
   const [previewAvatar, setPreviewAvatar] = useState('');
   const avatarRef = useRef<HTMLInputElement>(null);
+
+  const { execute } = useApi(getUserInfo);
+
+  const [userInfo, setUserInfo] = useState<UserInfo>();
 
   const onValid = (formData: MyPageEditFormData) => {
     console.log(formData);
@@ -45,6 +51,18 @@ export const MyPage = () => {
       avatarRef.current.value = '';
     }
   };
+
+  const getMyInfo = async () => {
+    const responseResult = await execute();
+
+    if (!(responseResult instanceof Error)) {
+      setUserInfo(responseResult.data);
+    }
+  };
+
+  useEffect(() => {
+    getMyInfo();
+  }, []);
 
   return (
     <S.Wrapper>
