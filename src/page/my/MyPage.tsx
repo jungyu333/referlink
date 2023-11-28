@@ -1,23 +1,34 @@
-import { emailRegex, phoneRegex } from '@constant/regex';
-import { IMyPageEditFormData } from '_types/my';
+import { emailRegex } from '@constant/regex';
+import { MyPageEditFormData, UserInfo } from '_types/my';
 import { useForm } from 'react-hook-form';
-import { ReactComponent as AddPhotoSVG } from '@styles/images/svg/addPhoto.svg';
-import { ReactComponent as CloseButtonSVG } from '@styles/images/svg/closeButton.svg';
 import * as S from '@styles/page/my/myPage.styles';
-import { useRef, useState } from 'react';
-import { Button, EmailInput, TextInput } from 'referlink-ui';
+import { useEffect, useRef, useState } from 'react';
+import {
+  Button,
+  EmailInput,
+  TextInput,
+  svgAvartar,
+  svgClose,
+  svgPhoto,
+} from 'referlink-ui';
+import { useApi } from '@hooks/useApi';
+import { getUserInfo } from 'api';
 
 export const MyPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IMyPageEditFormData>();
+  } = useForm<MyPageEditFormData>();
   const [avatarFile, setAvaterFile] = useState<File | null>(null);
   const [previewAvatar, setPreviewAvatar] = useState('');
   const avatarRef = useRef<HTMLInputElement>(null);
 
-  const onValid = (formData: IMyPageEditFormData) => {
+  const { execute } = useApi(getUserInfo);
+
+  const [userInfo, setUserInfo] = useState<UserInfo>();
+
+  const onValid = (formData: MyPageEditFormData) => {
     console.log(formData);
   };
 
@@ -41,6 +52,18 @@ export const MyPage = () => {
     }
   };
 
+  const getMyInfo = async () => {
+    const responseResult = await execute();
+
+    if (!(responseResult instanceof Error)) {
+      setUserInfo(responseResult.data);
+    }
+  };
+
+  useEffect(() => {
+    getMyInfo();
+  }, []);
+
   return (
     <S.Wrapper>
       <h1>마이페이지</h1>
@@ -51,7 +74,7 @@ export const MyPage = () => {
               {previewAvatar.length > 0 ? (
                 <S.Avatar src={previewAvatar} />
               ) : (
-                <S.NoAvatar />
+                <>{svgAvartar}</>
               )}
 
               <S.TextContainer>
@@ -60,11 +83,9 @@ export const MyPage = () => {
               </S.TextContainer>
             </S.Information>
             <S.UploadContainer>
-              <CloseButtonSVG onClick={handleRemoveImage} />
+              <div onClick={handleRemoveImage}>{svgClose}</div>
 
-              <label htmlFor="avatar">
-                <AddPhotoSVG />
-              </label>
+              <label htmlFor="avatar">{svgPhoto}</label>
               <input
                 type="file"
                 accept="imgae/*"
@@ -121,34 +142,20 @@ export const MyPage = () => {
                 error={errors.job?.message}
               />
             </section>
-            <section>
-              <TextInput
-                register={register('phone', {
-                  pattern: {
-                    value: phoneRegex,
-                    message: '형식에 맞지 않는 번호입니다.',
-                  },
-                  required: '휴대폰 번호를 입력해주세요.',
-                })}
-                label="휴대폰 번호"
-                placeholder="휴대폰 번호를 입력해주세요"
-                width="330px"
-                error={errors.phone?.message}
-              />
-              <EmailInput
-                register={register('email', {
-                  pattern: {
-                    value: emailRegex,
-                    message: '형식에 맞지 않는 이메일입니다.',
-                  },
-                  required: '이메일을 입력해주세요.',
-                })}
-                label="이메일 주소"
-                placeholder="이메일을 입력해주세요."
-                width="330px"
-                error={errors.email?.message}
-              />
-            </section>
+
+            <EmailInput
+              register={register('email', {
+                pattern: {
+                  value: emailRegex,
+                  message: '형식에 맞지 않는 이메일입니다.',
+                },
+                required: '이메일을 입력해주세요.',
+              })}
+              label="이메일 주소"
+              placeholder="이메일을 입력해주세요."
+              width="700px"
+              error={errors.email?.message}
+            />
           </S.InputContent>
 
           <Button width="700px" buttonText="저장하기" />

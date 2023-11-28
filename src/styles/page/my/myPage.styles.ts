@@ -77,10 +77,6 @@ export const Avatar = styled.img`
   background: lightgray 50%;
 `;
 
-export const NoAvatar = styled(Avatar)`
-  background: url() lightgray 50%;
-`;
-
 export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
