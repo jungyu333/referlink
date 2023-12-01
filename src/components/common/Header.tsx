@@ -2,6 +2,7 @@ import * as S from '@styles/components/common/header.styles';
 import { Button, ButtonTypes, Fonts, svgLogo, svgMy } from 'referlink-ui';
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import { useGetToken } from '@hooks/useGetToken';
+import { Navigation } from '@components/common/navigation';
 
 type Props = {
   isHeaderMenu?: boolean;
@@ -16,17 +17,26 @@ export const Header = ({ isHeaderMenu = true }: Props) => {
     <S.Wrapper>
       <S.Logo onClick={() => pathNavigation('/')}>{svgLogo}</S.Logo>
 
-      {isHeaderMenu && (
-        <>
-          <S.AcceptReputation>
-            <S.ButtonText>내가 받은 평판</S.ButtonText>
-          </S.AcceptReputation>
-          <S.PassReputation>
-            <S.ButtonText>내가 작성한 평판</S.ButtonText>
-          </S.PassReputation>
+      {isHeaderMenu && accessToken && (
+        <S.HeaderMenu>
+          <S.NavTabs>
+            <Navigation
+              to="/myreput"
+              activePath="/myreput"
+              label="내가 받은 평판"
+              width="114px"
+            />
+
+            <Navigation
+              to="/write"
+              activePath="/write"
+              label="내가 작성한 평판"
+              width="128px"
+            />
+          </S.NavTabs>
 
           {accessToken && (
-            <S.MyPageButton>
+            <>
               <Button
                 onClick={() => pathNavigation('/my')}
                 buttonText="마이페이지"
@@ -39,9 +49,9 @@ export const Header = ({ isHeaderMenu = true }: Props) => {
                 height="44px"
                 fontStyle={Fonts.body}
               />
-            </S.MyPageButton>
+            </>
           )}
-        </>
+        </S.HeaderMenu>
       )}
     </S.Wrapper>
   );
