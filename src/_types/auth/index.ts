@@ -10,6 +10,7 @@ export interface SignInFormData extends EmailFormData {
 
 export interface SignUpFormData extends SignInFormData {
   passwordCheck: string;
+  name: string;
 }
 
 //회원 가입 api response
@@ -17,7 +18,6 @@ export interface RegisterByEmailApiResponse extends ApiBaseResponse {
   data: {
     email: string;
     name: string;
-    phone: string;
     uid: string;
   };
 }

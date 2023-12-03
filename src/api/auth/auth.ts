@@ -13,13 +13,12 @@ import Cookies from 'js-cookie';
 
 export const registerByEmail = async (params: SignUpFormData) => {
   try {
-    const { email, password } = params;
+    const { email, password, name } = params;
 
     const json = {
       email: email,
       password: password,
-      name: 'jungyu',
-      phone: '010-9066-3826',
+      name: name,
     };
 
     const response = await Api.post<
