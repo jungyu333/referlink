@@ -1,7 +1,10 @@
+import { RequestReputModal } from '@components/common';
+import { useSwitch } from '@hooks/useSwitch';
 import * as S from '@styles/components/reput/emptyContent.styles';
 import { Button, Fonts, svgShareWithCircle } from 'referlink-ui';
 
 export const EmptyContent = () => {
+  const [isOpenRequest, onOpenRequest, onCloseRequest] = useSwitch();
   return (
     <S.Wrapper>
       {svgShareWithCircle}
@@ -19,7 +22,16 @@ export const EmptyContent = () => {
           px="36px"
           py="24px"
           fontStyle={Fonts.subtitle1}
+          onClick={onOpenRequest}
         />
+
+        {isOpenRequest && (
+          <RequestReputModal
+            isOpen={isOpenRequest}
+            onClose={onCloseRequest}
+            onConfirm={onCloseRequest}
+          />
+        )}
       </main>
     </S.Wrapper>
   );
