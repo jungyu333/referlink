@@ -1,4 +1,4 @@
-import { Button, Fonts, svgNote } from 'referlink-ui';
+import { Button, Fonts, ReputCard, svgNote } from 'referlink-ui';
 import styled from 'styled-components';
 
 export const WrittenReput = () => {
@@ -19,7 +19,17 @@ export const WrittenReput = () => {
         />
       </Header>
 
-      <main></main>
+      <Main>
+        {[1, 2, 3].map((item) => (
+          <ReputCard
+            mainContent="temp"
+            headContent="temp"
+            date="temp"
+            key={item}
+            onClick={() => console.log(item)}
+          />
+        ))}
+      </Main>
     </Wrapper>
   );
 };
@@ -45,4 +55,11 @@ const Header = styled.header`
     font: ${({ theme }) => theme.fonts.headline1};
     letter-spacing: -0.68px;
   }
+`;
+
+const Main = styled.main`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 40px;
+  column-gap: 24px;
 `;
