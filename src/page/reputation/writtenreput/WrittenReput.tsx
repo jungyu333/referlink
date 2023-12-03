@@ -1,10 +1,10 @@
 import { Button, Fonts, ReputCard, svgNote } from 'referlink-ui';
-import styled from 'styled-components';
+import * as S from '@styles/page/reput/writtenReput.styles';
 
 export const WrittenReput = () => {
   return (
-    <Wrapper>
-      <Header>
+    <S.Wrapper>
+      <S.Header>
         <h1>내가 작성한 평판</h1>
 
         <Button
@@ -17,9 +17,9 @@ export const WrittenReput = () => {
           px="20px"
           py="10px"
         />
-      </Header>
+      </S.Header>
 
-      <Main>
+      <S.Main>
         {[1, 2, 3].map((item) => (
           <ReputCard
             mainContent="temp"
@@ -29,37 +29,7 @@ export const WrittenReput = () => {
             onClick={() => console.log(item)}
           />
         ))}
-      </Main>
-    </Wrapper>
+      </S.Main>
+    </S.Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  background: ${({ theme }) => theme.colors.grey5};
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  gap: 101px;
-  flex-direction: column;
-  padding: 0 162px;
-  padding-top: 103px;
-  padding-bottom: 157px;
-`;
-
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  & h1 {
-    color: ${({ theme }) => theme.colors.primary1};
-    font: ${({ theme }) => theme.fonts.headline1};
-    letter-spacing: -0.68px;
-  }
-`;
-
-const Main = styled.main`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 40px;
-  column-gap: 24px;
-`;
