@@ -1,5 +1,5 @@
 import { Header, Footer } from '@components/common';
-import * as S from '@styles/components/common/layout.styles';
+import * as S from '@styles/components/common/layout/layout.styles';
 
 export type LayoutProps = {
   isFooter?: boolean;

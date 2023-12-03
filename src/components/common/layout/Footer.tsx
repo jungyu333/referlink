@@ -1,17 +1,17 @@
-import * as S from '@styles/components/common/footer.styles';
+import * as S from '@styles/components/common/layout/footer.styles';
 import { useForm } from 'react-hook-form';
 import { emailRegex } from '@constant/regex';
-import { IFooterFormData } from '_types/common';
 import { Button, EmailInput, Fonts, svgLogo } from 'referlink-ui';
+import { EmailFormData } from '_types/auth';
 
 export const Footer = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFooterFormData>();
+  } = useForm<EmailFormData>();
 
-  const onValid = (formData: IFooterFormData) => {
+  const onValid = (formData: EmailFormData) => {
     console.log(formData);
   };
 
