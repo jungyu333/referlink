@@ -1,4 +1,4 @@
-import * as S from '@styles/components/common/menu.styles';
+import * as S from '@styles/components/common/layout/menu.styles';
 
 type Props = {
   mainText: string;

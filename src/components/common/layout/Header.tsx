@@ -1,4 +1,4 @@
-import * as S from '@styles/components/common/header.styles';
+import * as S from '@styles/components/common/layout/header.styles';
 import { Button, ButtonTypes, Fonts, svgLogo, svgMy } from 'referlink-ui';
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import { useGetToken } from '@hooks/useGetToken';

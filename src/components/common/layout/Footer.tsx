@@ -1,4 +1,4 @@
-import * as S from '@styles/components/common/footer.styles';
+import * as S from '@styles/components/common/layout/footer.styles';
 import { useForm } from 'react-hook-form';
 import { emailRegex } from '@constant/regex';
 import { IFooterFormData } from '_types/common';
