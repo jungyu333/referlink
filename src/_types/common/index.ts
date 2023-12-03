@@ -24,8 +24,3 @@ export interface CustomAxiosResponse extends AxiosResponse {
 export interface ApiBaseError extends AxiosError {
   response: CustomAxiosResponse;
 }
-
-// Footer email input form data
-export interface IFooterFormData {
-  email: string;
-}
