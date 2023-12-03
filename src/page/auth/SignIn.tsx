@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { SignInFormData } from '_types/auth';
+import { EmailFormData, SignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signIn.styles';
 import { useApi } from '@hooks/useApi';
@@ -16,13 +16,21 @@ import { useCustomToast } from '@hooks/useCustomToast';
 import { useApiNavigation } from '@hooks/useApiNavigation';
 import { getErrorResponse } from '@utils/error';
 import { signInByEmail } from '@api/auth';
+import { useGetLocationState } from '@hooks/useGetLocationState';
+import { Navigate } from 'react-router-dom';
 
 export const SignIn = () => {
+  const locationState = useGetLocationState<EmailFormData>();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInFormData>();
+  } = useForm<SignInFormData>({
+    defaultValues: {
+      email: locationState?.email,
+      password: '',
+    },
+  });
 
   const { execute } = useApi(signInByEmail);
   const { info } = useCustomToast();
@@ -43,6 +51,10 @@ export const SignIn = () => {
       apiNavigation('/', responseResult.message, responseResult, info);
     }
   };
+
+  if (!locationState?.email) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <S.Wrapper>

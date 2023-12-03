@@ -17,7 +17,7 @@ export const useDetailNavigation = () => {
     state?: T,
   ) => {
     flag
-      ? navigation(`${path}`)
+      ? navigation(`${path}`, { replace, state })
       : navigation(`${secondPath}`, { replace, state });
   };
 
