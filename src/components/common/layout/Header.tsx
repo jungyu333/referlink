@@ -28,8 +28,8 @@ export const Header = ({ isHeaderMenu = true }: Props) => {
             />
 
             <Navigation
-              to="/write"
-              activePath="/write"
+              to="/writtenreput"
+              activePath="/writtenreput"
               label="내가 작성한 평판"
               width="128px"
             />
