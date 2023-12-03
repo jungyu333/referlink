@@ -3,7 +3,6 @@ import { EmailFormData, SignUpFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signUp.styles';
 import { useApi } from '@hooks/useApi';
-import { registerByEmail } from 'api';
 import { ToastBody } from '@components/common/toast';
 import {
   Button,
@@ -18,6 +17,7 @@ import { useApiNavigation } from '@hooks/useApiNavigation';
 import { Navigate } from 'react-router-dom';
 import { getErrorResponse } from '@utils/error';
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
+import { registerByEmail } from '@api/auth';
 
 export const SignUp = () => {
   const locationState = useGetLocationState<EmailFormData>();

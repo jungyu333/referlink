@@ -1,5 +1,23 @@
-import { Content } from '@components/reput';
+import { getMyReviewList } from '@api/reputation';
+import { Content, EmptyContent } from '@components/reput';
+import { useApi } from '@hooks/useApi';
+import { useEffect, useState } from 'react';
 
 export const MyReputation = () => {
-  return <Content />;
+  const { execute } = useApi(getMyReviewList);
+  const [myReviewList, setMyReviewList] = useState<any>([]);
+
+  const getMyReputationList = async () => {
+    const responseResult = await execute();
+
+    if (!(responseResult instanceof Error)) {
+      setMyReviewList(responseResult.data);
+    }
+  };
+
+  useEffect(() => {
+    getMyReputationList();
+  }, []);
+
+  return <>{myReviewList.length > 0 ? <Content /> : <EmptyContent />}</>;
 };

@@ -11,10 +11,10 @@ import { EmailFormData } from '_types/auth';
 import { useEffect, useState } from 'react';
 import * as S from '@styles/page/auth/serviceStart.styles';
 import { useApi } from '@hooks/useApi';
-import { checkMember } from 'api';
 import { ToastBody } from '@components/common';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
+import { checkMember } from '@api/auth';
 
 export const ServiceStart = () => {
   const {

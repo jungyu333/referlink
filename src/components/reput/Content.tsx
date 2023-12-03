@@ -20,15 +20,17 @@ export const Content = () => {
             px="20px"
             py="10px"
             buttonText="평판 작성 요청"
+            isIcon
           />
           <Button
             buttonText="평판 공유하기"
-            width="177px"
+            width="174px"
             height="52px"
             px="20px"
             py="10px"
             buttonType={ButtonTypes.outlined}
             svgIcon={svgShare}
+            isIcon
           />
         </div>
       </S.Header>

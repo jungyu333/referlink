@@ -1,3 +1,5 @@
+import { ApiBaseResponse } from '_types/common';
+
 export interface IWriteReputationFormData {
   name: string;
   email: string;
@@ -13,4 +15,8 @@ export interface IRequestReputationFormData {
   writerEmail: string;
   writerCompany: string;
   job: string;
+}
+
+export interface GetMyReviewListApiResponse extends ApiBaseResponse {
+  data: any;
 }

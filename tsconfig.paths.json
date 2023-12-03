@@ -9,7 +9,8 @@
       "_types/*": ["./_types/*"],
       "@constant/*": ["./constant/*"],
       "@hoc/*": ["./hoc/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@api/*": ["./api/*"]
     }
   }
 }
