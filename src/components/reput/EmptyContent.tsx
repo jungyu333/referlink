@@ -1,11 +1,10 @@
-import { ReactComponent as IllustSVG } from '@styles/images/svg/Group 3028.svg';
 import * as S from '@styles/components/reput/emptyContent.styles';
-import { Button, Fonts } from 'referlink-ui';
+import { Button, Fonts, svgShareWithCircle } from 'referlink-ui';
 
 export const EmptyContent = () => {
   return (
     <S.Wrapper>
-      <IllustSVG />
+      {svgShareWithCircle}
 
       <main>
         <S.Content>
