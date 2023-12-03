@@ -8,13 +8,13 @@ export interface IWriteReputationFormData {
   career: string;
 }
 
-export interface IRequestReputationFormData {
+export interface RequestReputationFormData {
   company: string;
   writerName: string;
   writerRole: string;
   writerEmail: string;
   writerCompany: string;
-  job: string;
+  role: string;
 }
 
 export interface GetMyReviewListApiResponse extends ApiBaseResponse {

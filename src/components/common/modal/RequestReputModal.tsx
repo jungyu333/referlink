@@ -1,6 +1,6 @@
 import * as S from '@styles/components/common/modal/requestReputModal.styles';
 import { useForm } from 'react-hook-form';
-import { IRequestReputationFormData } from '_types/reput';
+import { RequestReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import {
   Button,
@@ -24,12 +24,13 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<IRequestReputationFormData>();
+    formState: { isValid },
+  } = useForm<RequestReputationFormData>();
 
-  const onValid = (formData: IRequestReputationFormData) => {
+  const onValid = (formData: RequestReputationFormData) => {
     console.log(formData);
   };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} gap="0px" px="10px" py="20px">
       <>
@@ -52,21 +53,19 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
                   },
                   required: '함께 근무한 소속을 입력해주세요.',
                 })}
-                //error={errors.company?.message}
               />
               <TextInput
                 isLabel={false}
                 width="580px"
                 label=""
                 placeholder="당시 내 직책/직무"
-                register={register('job', {
+                register={register('role', {
                   maxLength: {
                     value: 10,
                     message: '10자 이내로 입력해주세요.',
                   },
-                  required: 'temp',
+                  required: '직책을 입력해주세요.',
                 })}
-                //error={errors.temp?.message}
               />
             </section>
 
@@ -82,7 +81,6 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
                   },
                   required: '작성자 이름을 입력해주세요.',
                 })}
-                //error={errors.writerName?.message}
               />
               <EmailInput
                 isLabel={false}
@@ -96,7 +94,6 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
                   required: '이메일을 입력해주세요.',
                 })}
                 width="580px"
-                //   error={errors.writerEmail?.message}
               />
               <TextInput
                 isLabel={false}
@@ -110,7 +107,6 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
                   },
                   required: '작성자 이름을 입력해주세요.',
                 })}
-                //error={errors.writerCompany?.message}
               />
               <TextInput
                 label=""
@@ -124,7 +120,6 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
                   },
                   required: '현재 직책을 입력해주세요.',
                 })}
-                //error={errors.writerRole?.message}
               />
             </section>
           </S.InputContainer>
@@ -138,6 +133,7 @@ export const RequestReputModal = ({ isOpen, onClose, onConfirm }: Props) => {
             px="36px"
             py="24px"
             fontStyle={Fonts.subtitle1}
+            isDisabled={!isValid}
           />
         </S.Content>
       </>
