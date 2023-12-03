@@ -9,6 +9,7 @@ import {
   EmailInput,
   Fonts,
   PasswordInput,
+  TextInput,
   svgLogo,
 } from 'referlink-ui';
 import { useGetLocationState } from '@hooks/useGetLocationState';
@@ -31,6 +32,7 @@ export const SignUp = () => {
       email: locationState?.email,
       password: '',
       passwordCheck: '',
+      name: '',
     },
   });
 
@@ -41,8 +43,9 @@ export const SignUp = () => {
   const { pathNavigation } = useDetailNavigation();
 
   const onValid = async (formData: SignUpFormData) => {
-    const { email, password, passwordCheck } = formData;
+    const { email, password, passwordCheck, name } = formData;
     const responseResult = await execute({
+      name,
       email,
       password,
       passwordCheck,
@@ -72,9 +75,18 @@ export const SignUp = () => {
           </S.Header>
           <S.SignUpContainer>
             <S.SignUpForm>
+              <TextInput
+                placeholder="이름을 입력해주세요."
+                label="이름"
+                error={errors.name?.message}
+                register={register('name', {
+                  required: '이름을 입력해주세요.',
+                })}
+              />
+
               <EmailInput
                 placeholder="이메일을 입력해주세요."
-                label="이메일"
+                label="이메일 주소"
                 error={errors.email?.message}
                 register={register('email', {
                   pattern: {
