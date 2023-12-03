@@ -1,5 +1,5 @@
+import AuthApi from '@api/core/AuthApi';
 import { GetMyReviewListApiResponse } from '_types/reput';
-import AuthApi from 'api/core/AuthApi';
 import { AxiosResponse } from 'axios';
 
 export const getMyReviewList = async () => {

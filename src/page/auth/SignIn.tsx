@@ -3,7 +3,6 @@ import { SignInFormData } from '_types/auth';
 import { emailRegex, passwordRegex } from '@constant/regex';
 import * as S from '@styles/page/auth/signIn.styles';
 import { useApi } from '@hooks/useApi';
-import { signInByEmail } from 'api';
 import { ToastBody } from '@components/common/toast';
 import {
   Button,
@@ -16,6 +15,7 @@ import {
 import { useCustomToast } from '@hooks/useCustomToast';
 import { useApiNavigation } from '@hooks/useApiNavigation';
 import { getErrorResponse } from '@utils/error';
+import { signInByEmail } from '@api/auth';
 
 export const SignIn = () => {
   const {

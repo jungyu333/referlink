@@ -12,7 +12,7 @@ import {
   svgPhoto,
 } from 'referlink-ui';
 import { useApi } from '@hooks/useApi';
-import { getUserInfo } from 'api';
+import { getUserInfo } from '@api/my';
 
 export const MyPage = () => {
   const {

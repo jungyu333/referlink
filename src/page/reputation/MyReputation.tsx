@@ -1,6 +1,6 @@
+import { getMyReviewList } from '@api/reputation';
 import { Content, EmptyContent } from '@components/reput';
 import { useApi } from '@hooks/useApi';
-import { getMyReviewList } from 'api';
 import { useEffect, useState } from 'react';
 
 export const MyReputation = () => {
