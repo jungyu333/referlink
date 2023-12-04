@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import { IWriteReputationFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
-import * as S from '@styles/page/reput/writeReputation.styles';
+import * as S from '@styles/page/review/writeReview.styles';
 import { EmailInput, TextInput } from 'referlink-ui';
 
-const WriteReputation = () => {
+const WriteRiview = () => {
   const {
     register,
     handleSubmit,
@@ -120,5 +120,4 @@ const WriteReputation = () => {
   );
 };
 
-export const WriteReputationWithMenu =
-  withMenuLayout('평판 작성')(WriteReputation);
+export const WriteReputationWithMenu = withMenuLayout('평판 작성')(WriteRiview);
