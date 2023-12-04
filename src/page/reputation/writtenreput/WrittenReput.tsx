@@ -1,7 +1,22 @@
 import { Button, Fonts, ReputCard, svgNote } from 'referlink-ui';
 import * as S from '@styles/page/reput/writtenReput.styles';
+import { useCustomToast } from '@hooks/useCustomToast';
+import { ToastBody } from '@components/common';
 
 export const WrittenReput = () => {
+  const { info } = useCustomToast();
+
+  const onClickInvite = () => {
+    console.log(window.location.href);
+    info(
+      <ToastBody
+        boldText="초대 URL"
+        mainText="이 복사되었습니다."
+        subText="붙여넣기하여 레퍼링크 평판 작성을 요청해보세요!"
+      />,
+    );
+  };
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -16,6 +31,7 @@ export const WrittenReput = () => {
           fontStyle={Fonts.subtitle2}
           px="20px"
           py="10px"
+          onClick={onClickInvite}
         />
       </S.Header>
 
