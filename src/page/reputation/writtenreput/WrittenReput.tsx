@@ -2,19 +2,25 @@ import { Button, Fonts, ReputCard, svgNote } from 'referlink-ui';
 import * as S from '@styles/page/reput/writtenReput.styles';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { ToastBody } from '@components/common';
+import { useCopyClipBoard } from '@hooks/useCopyClipBoard';
 
 export const WrittenReput = () => {
   const { info } = useCustomToast();
 
+  const [_, onCopy] = useCopyClipBoard();
+
   const onClickInvite = () => {
-    console.log(window.location.href);
-    info(
-      <ToastBody
-        boldText="초대 URL"
-        mainText="이 복사되었습니다."
-        subText="붙여넣기하여 레퍼링크 평판 작성을 요청해보세요!"
-      />,
-    );
+    const currentUrl = window.location.href;
+    onCopy(currentUrl).then((result) => {
+      if (result)
+        info(
+          <ToastBody
+            boldText="초대 URL"
+            mainText="이 복사되었습니다."
+            subText="붙여넣기하여 레퍼링크 평판 작성을 요청해보세요!"
+          />,
+        );
+    });
   };
 
   return (
