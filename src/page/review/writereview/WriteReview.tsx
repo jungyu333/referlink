@@ -1,4 +1,3 @@
-import { withMenuLayout } from '@hoc/withMenuLayout';
 import { ReactComponent as MyPageSVG } from '@styles/images/svg/mypage.svg';
 import { ReputQuestion } from '@components/common';
 import { useForm } from 'react-hook-form';
@@ -8,7 +7,7 @@ import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import * as S from '@styles/page/review/writeReview.styles';
 import { EmailInput, TextInput } from 'referlink-ui';
 
-const WriteRiview = () => {
+export const WriteRiview = () => {
   const {
     register,
     handleSubmit,
@@ -120,4 +119,4 @@ const WriteRiview = () => {
   );
 };
 
-export const WriteReputationWithMenu = withMenuLayout('평판 작성')(WriteRiview);
+// export const WriteReputationWithMenu = ('평판 작성')(WriteRiview);

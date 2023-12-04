@@ -4,7 +4,7 @@ import { Landing } from '@page/landing';
 import { MyPage } from '@page/my';
 import { MyDetailReputation, WrittenReput } from '@page/reputation';
 import { MyReputation } from '@page/reputation/myreput/MyReputation';
-import { WriteReputationWithMenu } from '@page/review';
+import { WriteRiview } from '@page/review';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ProtectRouter } from 'routes/ProtectRouter';
 
@@ -37,7 +37,7 @@ export const Router = () => {
           element={
             <ProtectRouter
               layout={Layout}
-              component={WriteReputationWithMenu}
+              component={WriteRiview}
               requiresAuth
             />
           }
