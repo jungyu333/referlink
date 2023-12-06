@@ -2,7 +2,14 @@ import { useForm } from 'react-hook-form';
 import { WriteReviewFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import * as S from '@styles/page/review/writeReview.styles';
-import { Button, CheckBox, EmailInput, Fonts, TextInput } from 'referlink-ui';
+import {
+  Button,
+  CheckBox,
+  EmailInput,
+  Fonts,
+  ReputCheckBox,
+  TextInput,
+} from 'referlink-ui';
 import { useState } from 'react';
 
 export const WriteRiview = () => {
@@ -103,9 +110,38 @@ export const WriteRiview = () => {
         <S.SelectSection>
           <h1>2. 기업 채용담당자만 확인할 수 있는 내역입니다.</h1>
           <section>
-            {/* <ReputQuestion />
-            <ReputQuestion />
-            <ReputQuestion /> */}
+            <S.SelectContainer>
+              <h2>
+                <b>2-1.</b> 지원자의 사교성에 대해 어떻게 평가하시나요?
+              </h2>
+
+              <S.SelectMain>
+                <S.SelectLabel>사교적인 편</S.SelectLabel>
+
+                <ReputCheckBox
+                  label="매우 그렇다"
+                  isChecked={false}
+                  onCheck={() => console.log('check')}
+                />
+                <ReputCheckBox
+                  label="매우 그렇다"
+                  isChecked={true}
+                  onCheck={() => console.log('check')}
+                />
+                <ReputCheckBox
+                  label="매우 그렇다"
+                  isChecked={true}
+                  onCheck={() => console.log('check')}
+                />
+                <ReputCheckBox
+                  label="매우 그렇다"
+                  isChecked={true}
+                  onCheck={() => console.log('check')}
+                />
+
+                <S.SelectLabel>타인과의 관계를 중요시하는 편</S.SelectLabel>
+              </S.SelectMain>
+            </S.SelectContainer>
           </section>
         </S.SelectSection>
       </S.Review>
