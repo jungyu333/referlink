@@ -1,75 +1,90 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 189px;
+  padding-top: 103px;
+  padding-bottom: 156px;
   width: 100%;
-  padding: 0 162px;
-  padding-top: 74px;
-  padding-bottom: 148px;
+  background-color: ${({ theme }) => theme.colors.grey5};
 `;
 
-export const HeaderContainer = styled.div`
+export const Review = styled.div`
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 80px;
 
   & h1 {
-    color: ${({ theme }) => theme.colors.grey2};
+    color: ${({ theme }) => theme.colors.primary1};
+    font: ${({ theme }) => theme.fonts.headline1};
+    letter-spacing: -0.68px;
+  }
+`;
+
+export const Infomation = styled.section`
+  display: flex;
+  /* height: 618px; */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  & h2 {
+    color: ${({ theme }) => theme.colors.grey4};
     font: ${({ theme }) => theme.fonts.headline2};
-    line-height: 146%;
     letter-spacing: -0.48px;
   }
 `;
 
 export const InputContainer = styled.div`
-  display: inline-flex;
+  display: flex;
+  width: 1116px;
+  padding: 32px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
-  margin-top: 40px;
+  gap: 10px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.white};
 
-  & > div:last-child {
+  & > section {
     display: flex;
-    width: 1115px;
+    /* height: 604px; */
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
-
-    & div {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: ${({ theme }) => theme.colors.grey3};
-      font: ${({ theme }) => theme.fonts.subtitle2};
-
-      letter-spacing: -0.36px;
-    }
   }
 `;
 
-export const ShortAnswerContainer = styled.div`
-  display: inline-flex;
+export const OpenSection = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 33px;
-  margin-top: 69px;
-
+  gap: 24px;
   & h1 {
-    width: 738px;
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle1};
-    letter-spacing: -0.4px;
+    color: ${({ theme }) => theme.colors.grey4};
+    font: ${({ theme }) => theme.fonts.headline2};
+    letter-spacing: -0.48px;
   }
 `;
 
 export const TextAreaContainer = styled.div`
   display: flex;
+  padding: 32px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 80px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.white};
 
+  & div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
   & h2 {
     color: ${({ theme }) => theme.colors.grey3};
     font: ${({ theme }) => theme.fonts.subtitle2};
@@ -82,18 +97,17 @@ export const TextAreaContainer = styled.div`
 
   & textarea {
     display: flex;
-    width: 1116px;
+    width: 1052px;
     height: 170px;
-    padding: 32px;
+    padding: 20px;
     justify-content: center;
     align-items: flex-start;
-    gap: 10px;
     border-radius: 16px;
     resize: none;
-    border: 1px solid ${({ theme }) => theme.colors.grey1};
+    border: none;
+    outline: 1px solid ${({ theme }) => theme.colors.grey1};
     &:focus {
       outline: 1px solid ${({ theme }) => theme.colors.primary1};
-      border: none;
     }
 
     &::placeholder {
@@ -104,42 +118,27 @@ export const TextAreaContainer = styled.div`
   }
 `;
 
-export const NondisclosureContainer = styled.div`
+export const SelectSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 33px;
-  margin-top: 56px;
+  gap: 24px;
 
   & h1 {
-    color: ${({ theme }) => theme.colors.grey3};
+    color: ${({ theme }) => theme.colors.grey4};
     font: ${({ theme }) => theme.fonts.subtitle1};
     width: 738px;
     letter-spacing: -0.4px;
   }
 
   & section {
-    display: inline-flex;
+    display: flex;
+    width: 1116px;
+    padding: 40px 32px;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-  }
-`;
-
-export const QuestionContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-
-  & h2 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-
-    letter-spacing: -0.36px;
-
-    & b {
-      color: ${({ theme }) => theme.colors.primary1};
-    }
+    align-items: center;
+    gap: 80px;
+    border-radius: 8px;
+    background: ${({ theme }) => theme.colors.white};
   }
 `;
