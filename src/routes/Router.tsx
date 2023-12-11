@@ -2,12 +2,9 @@ import { Layout } from '@components/common';
 import { Agree, ServiceStart, SignIn, SignUp } from '@page/auth';
 import { Landing } from '@page/landing';
 import { MyPage } from '@page/my';
-import {
-  MyDetailReputation,
-  WriteReputationWithMenu,
-  WrittenReput,
-} from '@page/reputation';
+import { MyDetailReputation, WrittenReput } from '@page/reputation';
 import { MyReputation } from '@page/reputation/myreput/MyReputation';
+import { WriteRiview } from '@page/review';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ProtectRouter } from 'routes/ProtectRouter';
 
@@ -36,11 +33,11 @@ export const Router = () => {
           }
         />
         <Route
-          path="/writereput"
+          path="/write/review"
           element={
             <ProtectRouter
               layout={Layout}
-              component={WriteReputationWithMenu}
+              component={WriteRiview}
               requiresAuth
             />
           }

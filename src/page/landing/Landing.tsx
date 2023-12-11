@@ -1,5 +1,5 @@
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
-import * as S from '@styles/page/landing.styles';
+import * as S from '@styles/page/landing/landing.styles';
 import { Button } from 'referlink-ui';
 
 export const Landing = () => {

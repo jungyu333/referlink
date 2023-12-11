@@ -1,11 +1,10 @@
 import { ApiBaseResponse } from '_types/common';
 
-export interface IWriteReputationFormData {
+export interface WriteReviewFormData {
   name: string;
   email: string;
   company: string;
   job: string;
-  career: string;
 }
 
 export interface RequestReputationFormData {
