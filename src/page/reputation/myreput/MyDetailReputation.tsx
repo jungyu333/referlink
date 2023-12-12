@@ -1,54 +1,33 @@
 import { ReputQuestion } from '@components/common';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
 import { ReactComponent as DateSVG } from '@styles/images/svg/date.svg';
-
 import * as S from '@styles/page/reput/myDetailReputation.styles';
-import { Button, ButtonTypes, svgNote, svgShare } from 'referlink-ui';
+
 export const MyDetailReputation = () => {
   return (
     <S.Wrapper>
-      <header>
-        <S.HeaderContainer>
+      <S.Header>
+        <S.HeadLine>
           <section>
-            <S.Header>
-              <h1>
-                <b>평판 상세 </b>
-                (평판 작성자 이름)
-              </h1>
+            <h1>
+              <b>평판 상세</b> (평판 작성자 이름)
+            </h1>
 
-              <S.Date>
-                <DateSVG />
-                2023.08.24
-              </S.Date>
-            </S.Header>
-            <S.ButtonContainer>
-              <Button
-                svgIcon={svgNote}
-                width="177px"
-                height="52px"
-                px="20px"
-                py="10px"
-                buttonText="평판 작성 요청"
-              />
-              <Button
-                buttonText="평판 공유하기"
-                width="177px"
-                height="52px"
-                px="20px"
-                py="10px"
-                buttonType={ButtonTypes.outlined}
-                svgIcon={svgShare}
-              />
-            </S.ButtonContainer>
+            <div>
+              <DateSVG />
+              <h2>2023.08.24</h2>
+            </div>
           </section>
+        </S.HeadLine>
 
+        <S.Warning>
           <p>
             ※ 평판자료를 채용 외 목적으로 활용하거나 정보를 유출할 경우 형사처벌
             대상이 될 수 있습니다.
           </p>
-        </S.HeaderContainer>
+        </S.Warning>
 
-        <S.WriterInforContainer>
+        {/* <S.WriterInforContainer>
           <h1>작성자 정보</h1>
           <S.Information>
             <S.InforTable>
@@ -58,8 +37,8 @@ export const MyDetailReputation = () => {
               </S.InforItem>
             </S.InforTable>
           </S.Information>
-        </S.WriterInforContainer>
-      </header>
+        </S.WriterInforContainer> */}
+      </S.Header>
 
       <main>
         <S.DisclosureContainer>

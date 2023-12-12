@@ -7,86 +7,68 @@ export const Wrapper = styled.div`
   width: 100%;
   gap: 80px;
   align-items: center;
-  padding-top: 90px;
-  padding-bottom: 177px;
+  padding: 103px 162px 82px 162px;
   background-color: ${({ theme }) => theme.colors.grey5};
-
-  & header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-  }
-
-  & main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-  }
 `;
 
-export const HeaderContainer = styled.div`
+export const Header = styled.header`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 50px;
+  gap: 40px;
+  width: 100%;
+`;
+
+export const HeadLine = styled.section`
+  display: flex;
+  align-items: center;
 
   & section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 50px;
+    gap: 16px;
+    flex-shrink: 0;
+
+    & div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      & h2 {
+        color: ${({ theme }) => theme.colors.grey2};
+        font: ${({ theme }) => theme.fonts.subtitle1};
+        letter-spacing: -0.4px;
+      }
+    }
+
+    & h1 {
+      color: ${({ theme }) => theme.colors.grey3};
+      font: ${({ theme }) => theme.fonts.headline1};
+      letter-spacing: -0.68px;
+
+      & b {
+        color: ${({ theme }) => theme.colors.primary1};
+      }
+    }
   }
+`;
+
+export const Warning = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 20px 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #fff;
 
   & p {
-    display: flex;
-    width: 1116px;
-    padding: 20px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 8px;
-    background: ${({ theme }) => theme.colors.white};
-    box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.09);
-
     color: ${({ theme }) => theme.colors.error};
     text-align: center;
     font: ${({ theme }) => theme.fonts.body};
     letter-spacing: -0.32px;
   }
-`;
-
-export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 590px;
-
-  & h1 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.headline1};
-    letter-spacing: -0.68px;
-
-    & b {
-      color: ${({ theme }) => theme.colors.primary1};
-    }
-  }
-`;
-
-export const Date = styled.div`
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  height: 24px;
-  color: ${({ theme }) => theme.colors.grey2};
-  font: ${({ theme }) => theme.fonts.subtitle1};
-  letter-spacing: -0.4px;
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
 `;
 
 export const WriterInforContainer = styled.div`

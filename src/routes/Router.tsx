@@ -23,7 +23,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/myreput/:userId"
+          path="/myreput/:reviewId"
           element={
             <ProtectRouter
               layout={Layout}
