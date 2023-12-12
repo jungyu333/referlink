@@ -1,9 +1,16 @@
 import { ReputQuestion } from '@components/common';
 import { ReactComponent as CheckSVG } from '@styles/images/svg/check.svg';
-import { ReactComponent as DateSVG } from '@styles/images/svg/date.svg';
 import * as S from '@styles/page/reput/myDetailReputation.styles';
+import { svgDate } from 'referlink-ui';
 
 export const MyDetailReputation = () => {
+  const mock = [
+    { id: 0, label: '이름', content: '작성자' },
+    { id: 1, label: '회사명', content: '비공개' },
+    { id: 2, label: '직무', content: '디자이너' },
+    { id: 3, label: '이메일', content: 'example@gmail.com' },
+  ];
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -14,7 +21,7 @@ export const MyDetailReputation = () => {
             </h1>
 
             <div>
-              <DateSVG />
+              {svgDate}
               <h2>2023.08.24</h2>
             </div>
           </section>
@@ -26,21 +33,24 @@ export const MyDetailReputation = () => {
             대상이 될 수 있습니다.
           </p>
         </S.Warning>
-
-        {/* <S.WriterInforContainer>
-          <h1>작성자 정보</h1>
-          <S.Information>
-            <S.InforTable>
-              <S.InforItem>
-                <h3>이름</h3>
-                <h4>작성자</h4>
-              </S.InforItem>
-            </S.InforTable>
-          </S.Information>
-        </S.WriterInforContainer> */}
       </S.Header>
 
-      <main>
+      <S.Information>
+        <h1>작성자 정보</h1>
+
+        <S.InforTable>
+          <section>
+            {mock.map((item) => (
+              <S.InforItem key={item.id}>
+                <h1>{item.label}</h1>
+                <p>{item.content}</p>
+              </S.InforItem>
+            ))}
+          </section>
+        </S.InforTable>
+      </S.Information>
+
+      {/* <main>
         <S.DisclosureContainer>
           <div>
             <S.Disclosure>
@@ -66,7 +76,7 @@ export const MyDetailReputation = () => {
 
           <ReputQuestion />
         </S.NonDisclosureContainer>
-      </main>
+      </main> */}
     </S.Wrapper>
   );
 };

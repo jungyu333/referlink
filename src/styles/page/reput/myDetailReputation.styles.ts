@@ -86,20 +86,33 @@ export const WriterInforContainer = styled.div`
 
 export const Information = styled.div`
   display: flex;
-  width: 1116px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+
+  & h1 {
+    color: ${({ theme }) => theme.colors.grey4};
+    font: ${({ theme }) => theme.fonts.headline2};
+    letter-spacing: -0.48px;
+  }
+`;
+
+export const InforTable = styled.div`
+  display: flex;
+  width: 100%;
   padding: 32px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.white};
-  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.09);
-`;
 
-export const InforTable = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 56px;
+  & section {
+    display: flex;
+    align-items: flex-start;
+    gap: 56px;
+  }
 `;
 
 export const InforItem = styled.div`
@@ -107,13 +120,15 @@ export const InforItem = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  color: ${({ theme }) => theme.colors.grey3};
-  & h3 {
+
+  & h1 {
+    color: ${({ theme }) => theme.colors.grey3};
     font: ${({ theme }) => theme.fonts.body};
     letter-spacing: -0.32px;
   }
 
-  & h4 {
+  & p {
+    color: ${({ theme }) => theme.colors.grey3};
     font: ${({ theme }) => theme.fonts.subtitle3};
     letter-spacing: -0.36px;
   }
