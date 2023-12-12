@@ -71,19 +71,6 @@ export const Warning = styled.div`
   }
 `;
 
-export const WriterInforContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-
-  & h1 {
-    color: ${({ theme }) => theme.colors.grey4};
-    font: ${({ theme }) => theme.fonts.headline2};
-    letter-spacing: -0.48px;
-  }
-`;
-
 export const Information = styled.div`
   display: flex;
   flex-direction: column;
@@ -134,81 +121,35 @@ export const InforItem = styled.div`
   }
 `;
 
-export const DisclosureContainer = styled.div`
+export const Main = styled.main`
   display: flex;
-  height: 211px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
-
-  & > div {
+  gap: 16px;
+  width: 100%;
+  & section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 24px;
+
+    & h1 {
+      color: ${({ theme }) => theme.colors.grey3};
+      font: ${({ theme }) => theme.fonts.subtitle1};
+      letter-spacing: -0.4px;
+    }
   }
 `;
 
-export const Disclosure = styled.div`
+export const Content = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-
-  & h1 {
-    width: 738px;
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle1};
-    letter-spacing: -0.4px;
-  }
-
-  & p {
-    display: flex;
-    width: 1116px;
-    padding: 32px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 16px;
-    background: ${({ theme }) => theme.colors.white};
-
-    box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.09);
-
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.body};
-    letter-spacing: -0.32px;
-  }
-`;
-
-export const CheckBox = styled.div`
-  display: flex;
+  padding: 32px;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
-  height: 32px;
-  cursor: pointer;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.white};
+  flex: 1 0 0;
   color: ${({ theme }) => theme.colors.grey3};
-  font: ${({ theme }) => theme.fonts.subtitle2};
-  letter-spacing: -0.36px;
-
-  & svg {
-    display: flex;
-    width: 24px;
-    height: 24px;
-    justify-content: center;
-    align-items: center;
-  }
-`;
-
-export const NonDisclosureContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  & h1 {
-    width: 738px;
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle1};
-
-    letter-spacing: -0.4px;
-  }
+  font: ${({ theme }) => theme.fonts.body};
+  letter-spacing: -0.32px;
 `;
