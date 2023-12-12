@@ -1,3 +1,4 @@
+import { InforSection } from '@components/common';
 import * as S from '@styles/page/reput/myDetailReputation.styles';
 import { useState } from 'react';
 import { CheckBox, svgDate } from 'referlink-ui';
@@ -35,20 +36,7 @@ export const MyDetailReputation = () => {
         </S.Warning>
       </S.Header>
 
-      <S.Information>
-        <h1>작성자 정보</h1>
-
-        <S.InforTable>
-          <section>
-            {mock.map((item) => (
-              <S.InforItem key={item.id}>
-                <h1>{item.label}</h1>
-                <p>{item.content}</p>
-              </S.InforItem>
-            ))}
-          </section>
-        </S.InforTable>
-      </S.Information>
+      <InforSection label="작성자 정보" information={mock} />
 
       <S.Main>
         <section>

@@ -19,3 +19,9 @@ export interface RequestReputationFormData {
 export interface GetMyReviewListApiResponse extends ApiBaseResponse {
   data: any;
 }
+
+export interface Information {
+  id: number;
+  label: string;
+  content: string;
+}
