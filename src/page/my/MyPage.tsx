@@ -79,7 +79,6 @@ export const MyPage = () => {
 
               <S.TextContainer>
                 <h1>강민지</h1>
-                <h2>한 줄 자기소개입니다.</h2>
               </S.TextContainer>
             </S.Information>
             <S.UploadContainer>

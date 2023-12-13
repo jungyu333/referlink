@@ -44,7 +44,7 @@ export const AvatarContainer = styled.div`
 export const AvatarContent = styled.div`
   display: flex;
   align-items: center;
-  gap: 327px;
+  gap: 402px;
 `;
 
 export const Information = styled.div`
@@ -87,12 +87,6 @@ export const TextContainer = styled.div`
     color: ${({ theme }) => theme.colors.grey4};
     font: ${({ theme }) => theme.fonts.headline2};
     letter-spacing: -0.48px;
-  }
-
-  & h2 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-    letter-spacing: -0.36px;
   }
 `;
 
