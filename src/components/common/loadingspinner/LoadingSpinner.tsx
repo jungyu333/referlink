@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 type Props = {
@@ -7,8 +7,19 @@ type Props = {
 };
 
 export const LoadingSpinner = ({ isLoading, children }: Props) => {
-  return isLoading ? (
-    <Wrapper>
+  const [isVisible, setIsVisible] = useState(isLoading);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => setIsVisible(false), 1000);
+
+      return () => clearTimeout(timer);
+    }
+    setIsVisible(true);
+  }, [isLoading]);
+
+  return isVisible ? (
+    <Wrapper $isVisible={isVisible}>
       <Spinner />
     </Wrapper>
   ) : (
@@ -34,15 +45,18 @@ const Spinner = styled.div`
   animation: ${rotate} 1s linear infinite;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $isVisible: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed; // 화면에 고정
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; // 전체 너비
-  height: 100%; // 전체 높이
-  background-color: rgba(255, 255, 255, 0.7); // 반투명 배경
-  z-index: 9999; // 다른 요소들 위에 표시
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 9999;
+  transition: opacity 1 ease-out;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
 `;
