@@ -7,17 +7,24 @@ export const Wrapper = styled.div`
   gap: 56px;
   background-color: ${({ theme }) => theme.colors.grey5};
   width: 100%;
-  padding: 0 162px;
-  padding-top: 90px;
-  padding-bottom: 45px;
+  padding: 90px 162px 116px 162px;
+
   & h1 {
     color: ${({ theme }) => theme.colors.primary1};
     font: ${({ theme }) => theme.fonts.headline1};
     letter-spacing: -0.68px;
   }
 
+  & > section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+    align-self: center;
+  }
+
   & main {
-    display: inline-flex;
+    display: flex;
     padding: 40px;
     flex-direction: column;
     align-items: center;
@@ -44,7 +51,7 @@ export const AvatarContainer = styled.div`
 export const AvatarContent = styled.div`
   display: flex;
   align-items: center;
-  gap: 327px;
+  gap: 402px;
 `;
 
 export const Information = styled.div`
@@ -88,12 +95,6 @@ export const TextContainer = styled.div`
     font: ${({ theme }) => theme.fonts.headline2};
     letter-spacing: -0.48px;
   }
-
-  & h2 {
-    color: ${({ theme }) => theme.colors.grey3};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-    letter-spacing: -0.36px;
-  }
 `;
 
 export const InputContainer = styled.form`
@@ -104,15 +105,38 @@ export const InputContainer = styled.form`
   gap: 56px;
 `;
 
-export const InputContent = styled.main`
+export const InputContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
 
-  & section {
+  & > section {
     display: flex;
     align-items: flex-start;
     gap: 40px;
+  }
+`;
+
+export const Footer = styled.footer`
+  display: flex;
+  width: 100%;
+  padding: 20px 40px;
+  align-items: center;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.white};
+
+  & > span {
+    color: ${({ theme }) => theme.colors.grey4};
+    font: ${({ theme }) => theme.fonts.subtitle2};
+    letter-spacing: -0.36px;
+  }
+
+  & > div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
   }
 `;
