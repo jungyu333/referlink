@@ -1,9 +1,11 @@
 import { getMyReviewList } from '@api/reputation';
+import { LoadingSpinner } from '@components/common';
 import { Content, EmptyContent } from '@components/reput';
 import { useApi } from '@hooks/useApi';
 import { useEffect, useState } from 'react';
 
 export const MyReputation = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { execute } = useApi(getMyReviewList);
   const [myReviewList, setMyReviewList] = useState<any>([]);
 
@@ -13,11 +15,16 @@ export const MyReputation = () => {
     if (!(responseResult instanceof Error)) {
       setMyReviewList(responseResult.data);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getMyReputationList();
   }, []);
 
-  return <>{myReviewList.length > 0 ? <Content /> : <EmptyContent />}</>;
+  return (
+    <LoadingSpinner isLoading={isLoading}>
+      <>{myReviewList.length > 0 ? <Content /> : <EmptyContent />}</>
+    </LoadingSpinner>
+  );
 };
