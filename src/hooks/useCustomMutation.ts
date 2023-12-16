@@ -9,7 +9,7 @@ type ApiFunction<TData, TVariables> = MutationFunction<
 interface UseCustomMutationOptions<TData, TVariables, TError>
   extends UseMutationOptions<AxiosResponse<TData>, TError, TVariables> {}
 
-export const useCustomMutation = <TData, TVariables, TError = unknown>(
+export const useCustomMutation = <TData, TVariables, TError = Error>(
   apiFunc: ApiFunction<TData, TVariables>,
   options: UseCustomMutationOptions<TData, TVariables, TError>,
 ) => {
