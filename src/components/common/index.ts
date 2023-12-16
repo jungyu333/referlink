@@ -4,4 +4,3 @@ export * from './toast';
 export * from './modal';
 export * from './navigation';
 export * from './inforsection';
-export * from './loadingspinner';

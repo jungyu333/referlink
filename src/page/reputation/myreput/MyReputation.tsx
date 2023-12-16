@@ -1,8 +1,8 @@
 import { getMyReviewList } from '@api/reputation';
-import { LoadingSpinner } from '@components/common';
 import { Content, EmptyContent } from '@components/reput';
 import { useApi } from '@hooks/useApi';
 import { useEffect, useState } from 'react';
+import { LoadingSpinner } from 'referlink-ui';
 
 export const MyReputation = () => {
   const [isLoading, setIsLoading] = useState(true);
