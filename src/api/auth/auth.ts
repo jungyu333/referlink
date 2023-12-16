@@ -51,7 +51,7 @@ export const signInByEmail = async (params: SignInFormData) => {
       Cookies.set('accessToken', accessToken);
     }
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
