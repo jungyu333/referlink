@@ -10,41 +10,44 @@ import {
 import { EmailFormData } from '_types/auth';
 import { useEffect, useState } from 'react';
 import * as S from '@styles/page/auth/serviceStart.styles';
-import { useApi } from '@hooks/useApi';
 import { ToastBody } from '@components/common';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import { checkMember } from '@api/auth';
+import { useCustomMutation } from '@hooks/useCustomMutation';
 
 export const ServiceStart = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
     watch,
   } = useForm<EmailFormData>();
 
   const { info } = useCustomToast();
 
-  const { execute } = useApi(checkMember);
+  const checkMemberMutation = useCustomMutation(checkMember, {
+    onSuccess: (response) => {
+      const responseData = response.data.data;
+      branchNavigation<EmailFormData>(
+        '/signin',
+        '/agree',
+        responseData.isExist,
+        true,
+        { email: getValues('email') },
+      );
+    },
+    onError: (error) => {
+      info(<ToastBody subText="잘못된 요청입니다." />);
+    },
+  });
 
   const { branchNavigation } = useDetailNavigation();
   const onValid = async (formData: EmailFormData) => {
     const { email } = formData;
-    const responseResult = await execute({
-      email,
-    });
-    if (responseResult instanceof Error) {
-      info(<ToastBody subText="잘못된 요청입니다." />);
-    } else {
-      branchNavigation<EmailFormData>(
-        '/signin',
-        '/agree',
-        responseResult.data.isExist,
-        true,
-        { email: email },
-      );
-    }
+
+    checkMemberMutation.mutate({ email: email });
   };
 
   const emailValue = watch('email');

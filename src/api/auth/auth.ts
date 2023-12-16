@@ -80,7 +80,7 @@ export const checkMember = async (params: EmailFormData) => {
       AxiosResponse<CheckMemberResponse>
     >(`/api/user/check/${email}`);
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
