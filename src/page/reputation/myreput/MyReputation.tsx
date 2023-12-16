@@ -16,9 +16,7 @@ export const MyReputation = () => {
     <LoadingSpinner isLoading={isLoading}>
       <>
         {!isLoading && myReviewList && (
-          <>
-            {myReviewList.data.data.length > 0 ? <Content /> : <EmptyContent />}
-          </>
+          <>{myReviewList.data.length > 0 ? <Content /> : <EmptyContent />}</>
         )}
       </>
     </LoadingSpinner>
