@@ -1,6 +1,6 @@
 import { QueryKey, UseQueryOptions, useQuery } from 'react-query';
 
-export const useCuotomQuery = <TData = unknown, TError = Error>(
+export const useCustomQuery = <TData = unknown, TError = Error>(
   queryKey: QueryKey,
   queryCallBack: () => Promise<TData>,
   options?: UseQueryOptions<TData, TError>,

@@ -9,7 +9,7 @@ export const getMyReviewList = async () => {
       AxiosResponse<GetMyReviewListApiResponse>
     >(`/api/review/list`);
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
