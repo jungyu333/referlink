@@ -7,7 +7,7 @@ type Props = {
   tendency1: string;
   tendency2: string;
   isChecked: number;
-  surveyId: number;
+  priorityId: number;
   onCheck: Handler<(groupIndex: number, checkboxIndex: number) => void>;
 };
 
@@ -17,12 +17,12 @@ export const ReviewSelector = ({
   tendency2,
   isChecked,
   onCheck,
-  surveyId,
+  priorityId,
 }: Props) => {
   return (
     <S.SelectContainer>
       <h2>
-        <b>2-1.</b> {question}
+        <b>2-{++priorityId}.</b> {question}
       </h2>
 
       <S.SelectMain>
@@ -34,7 +34,7 @@ export const ReviewSelector = ({
               key={item.id}
               label={item.label}
               isChecked={isChecked === item.priority}
-              onCheck={() => onCheck(surveyId, item.id)}
+              onCheck={() => onCheck(--priorityId, item.id)}
             />
           ) : (
             <span key={item.id} />
