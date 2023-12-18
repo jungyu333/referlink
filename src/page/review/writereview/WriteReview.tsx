@@ -5,6 +5,8 @@ import * as S from '@styles/page/review/writeReview.styles';
 import { Button, CheckBox, EmailInput, Fonts, TextInput } from 'referlink-ui';
 import { useState } from 'react';
 import { ReviewSelector } from '@components/common';
+import { useCustomQuery } from '@hooks/useCustomQuery';
+import { getSurveyList } from '@api/review';
 
 export const WriteRiview = () => {
   const {
@@ -14,6 +16,12 @@ export const WriteRiview = () => {
   } = useForm<WriteReviewFormData>();
 
   const [isAnonymous, setIsAnonymous] = useState(false);
+
+  const {
+    data: surveyList,
+    isLoading,
+    error,
+  } = useCustomQuery(['getSurveyList'], getSurveyList);
 
   const [survey, setServey] = useState<{ [key: string]: number }>({
     1: 2,
