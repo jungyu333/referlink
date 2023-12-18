@@ -1,7 +1,7 @@
 import { ApiBaseResponse } from '_types/common';
 
 export interface GetSurveyListApiResponse extends ApiBaseResponse {
-  data: any;
+  data: Survey;
 }
 
 export interface Survey {

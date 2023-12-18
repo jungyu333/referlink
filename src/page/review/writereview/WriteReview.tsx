@@ -3,7 +3,7 @@ import { WriteReviewFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import * as S from '@styles/page/review/writeReview.styles';
 import { Button, CheckBox, EmailInput, Fonts, TextInput } from 'referlink-ui';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ReviewSelector } from '@components/common';
 import { useCustomQuery } from '@hooks/useCustomQuery';
 import { getSurveyList } from '@api/review';
@@ -21,21 +21,27 @@ export const WriteRiview = () => {
     data: surveyList,
     isLoading,
     error,
-  } = useCustomQuery(['getSurveyList'], getSurveyList);
-
-  const [survey, setServey] = useState<{ [key: string]: number }>({
-    1: 2,
-    2: 0,
+  } = useCustomQuery(['getSurveyList'], getSurveyList, {
+    refetchOnWindowFocus: false,
   });
+
+  const [survey, setServey] = useState<Record<number, number>>({});
 
   const handleCheck = (groupIndex: number, checkboxIndex: number) => {
     setServey((prev) => ({ ...prev, [groupIndex]: checkboxIndex }));
   };
 
-  const mock = [
-    { surveyId: 1, category: '평소성향' },
-    { surveyId: 2, category: '평소성향' },
-  ];
+  useEffect(() => {
+    if (surveyList) {
+      const initialPriorities: Record<number, number> =
+        surveyList.data.surveyItems.reduce((acc, item) => {
+          acc[item.priority] = 0;
+          return acc;
+        }, {} as Record<number, number>);
+
+      setServey(initialPriorities);
+    }
+  }, [surveyList]);
 
   return (
     <S.Wrapper>
@@ -127,14 +133,14 @@ export const WriteRiview = () => {
         <S.SelectSection>
           <h1>2. 기업 채용담당자만 확인할 수 있는 내역입니다.</h1>
           <section>
-            {mock.map((surveyItem) => (
+            {surveyList?.data.surveyItems.map((surveyItem) => (
               <ReviewSelector
-                key={surveyItem.surveyId}
-                question="지원자의 사교성에 대해 어떻게 평가하시나요?"
-                tendency1="외향적"
-                tendency2="내향적"
-                isChecked={survey[surveyItem.surveyId]}
-                surveyId={surveyItem.surveyId}
+                key={surveyItem.id}
+                question={surveyItem.question}
+                tendency1={surveyItem.tendency1}
+                tendency2={surveyItem.tendency2}
+                isChecked={survey[surveyItem.priority]}
+                priorityId={surveyItem.priority}
                 onCheck={handleCheck}
               />
             ))}

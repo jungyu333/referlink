@@ -33,7 +33,7 @@ export const SelectMain = styled.main`
 `;
 
 export const SelectLabel = styled.div`
-  max-width: 105px;
+  max-width: 150px;
   word-break: break-all;
   color: ${({ theme }) => theme.colors.black};
   font: ${({ theme }) => theme.fonts.body2};
