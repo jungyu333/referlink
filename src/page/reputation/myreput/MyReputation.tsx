@@ -1,23 +1,24 @@
 import { getMyReviewList } from '@api/reputation';
 import { Content, EmptyContent } from '@components/reput';
-import { useApi } from '@hooks/useApi';
-import { useEffect, useState } from 'react';
+import { useCustomQuery } from '@hooks/useCustomQuery';
+import { LoadingSpinner } from 'referlink-ui';
 
 export const MyReputation = () => {
-  const { execute } = useApi(getMyReviewList);
-  const [myReviewList, setMyReviewList] = useState<any>([]);
+  const {
+    data: myReviewList,
+    isLoading,
+    error,
+  } = useCustomQuery(['myreview'], getMyReviewList, {
+    refetchOnWindowFocus: false,
+  });
 
-  const getMyReputationList = async () => {
-    const responseResult = await execute();
-
-    if (!(responseResult instanceof Error)) {
-      setMyReviewList(responseResult.data);
-    }
-  };
-
-  useEffect(() => {
-    getMyReputationList();
-  }, []);
-
-  return <>{myReviewList.length > 0 ? <Content /> : <EmptyContent />}</>;
+  return (
+    <LoadingSpinner isLoading={isLoading}>
+      <>
+        {!isLoading && myReviewList && (
+          <>{myReviewList.data.length > 0 ? <Content /> : <EmptyContent />}</>
+        )}
+      </>
+    </LoadingSpinner>
+  );
 };

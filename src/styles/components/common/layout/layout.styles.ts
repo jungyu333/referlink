@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   flex: 1;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;

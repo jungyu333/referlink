@@ -9,7 +9,7 @@ export const getUserInfo = async () => {
       AxiosResponse<GetUserInfoApiResponse>
     >(`/api/user/info`);
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }

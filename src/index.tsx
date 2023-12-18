@@ -5,6 +5,9 @@ import { CustomToast } from '@components/common/toast';
 import { theme } from 'referlink-ui';
 import GlobalStyle from './styles/global';
 import ReactModal from 'react-modal';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -14,10 +17,12 @@ ReactModal.setAppElement('#root');
 
 root.render(
   <>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <CustomToast />
-      <App />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <CustomToast />
+        <App />
+      </ThemeProvider>
+    </QueryClientProvider>
   </>,
 );

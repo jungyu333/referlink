@@ -26,7 +26,7 @@ export const registerByEmail = async (params: SignUpFormData) => {
       AxiosResponse<RegisterByEmailApiResponse>
     >(`/api/user/register`, json);
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
@@ -51,7 +51,7 @@ export const signInByEmail = async (params: SignInFormData) => {
       Cookies.set('accessToken', accessToken);
     }
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
@@ -80,7 +80,7 @@ export const checkMember = async (params: EmailFormData) => {
       AxiosResponse<CheckMemberResponse>
     >(`/api/user/check/${email}`);
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
