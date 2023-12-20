@@ -22,7 +22,7 @@ export const WriteRiview = () => {
     formState: { errors },
   } = useForm<WriteReviewFormData>();
 
-  const [isAnonymous, setIsAnonymous] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const {
     data: surveyList,
@@ -33,6 +33,8 @@ export const WriteRiview = () => {
   });
 
   const [survey, setServey] = useState<Record<number, number>>({});
+
+  const [openComment, setOpenComment] = useState<string>('');
 
   const handleCheck = (groupIndex: number, checkboxIndex: number) => {
     setServey((prev) => ({ ...prev, [groupIndex]: checkboxIndex }));
@@ -49,6 +51,14 @@ export const WriteRiview = () => {
       setServey(initialPriorities);
     }
   }, [surveyList]);
+
+  const submitReview = (formData: WriteReviewFormData) => {
+    const json = {
+      ...formData,
+      isVisible: isVisible ? 1 : 0,
+    };
+    console.log(formData, isVisible, openComment, survey);
+  };
 
   return (
     <LoadingSpinner isLoading={isLoading}>
@@ -94,9 +104,9 @@ export const WriteRiview = () => {
                     <TextInput
                       label="회사명"
                       placeholder="회사명을 입력해주세요."
-                      error={errors.company?.message}
+                      error={errors.companyName?.message}
                       width="1052px"
-                      register={register('company', {
+                      register={register('companyName', {
                         maxLength: {
                           value: 10,
                           message: '10자 이내로 입력해주세요.',
@@ -106,7 +116,7 @@ export const WriteRiview = () => {
                     />
 
                     <TextInput
-                      register={register('job', {
+                      register={register('role', {
                         maxLength: {
                           value: 10,
                           message: '10자 이내로 입력해주세요.',
@@ -116,13 +126,13 @@ export const WriteRiview = () => {
                       label="직무"
                       placeholder="직무를 입력해주세요"
                       width="1052px"
-                      error={errors.job?.message}
+                      error={errors.role?.message}
                     />
 
                     <CheckBox
                       label="익명"
-                      onCheck={() => setIsAnonymous(!isAnonymous)}
-                      isChecked={isAnonymous}
+                      onCheck={() => setIsVisible(!isVisible)}
+                      isChecked={isVisible}
                     />
                   </section>
                 </S.InputContainer>
@@ -135,7 +145,11 @@ export const WriteRiview = () => {
                     <h2>
                       <b>1-1. </b>지원자님의 장/단점을 작성해주세요.
                     </h2>
-                    <textarea placeholder="지원자님에 대한 솔직한 의견을 작성해주세요" />
+                    <textarea
+                      value={openComment}
+                      onChange={(e) => setOpenComment(e.target.value)}
+                      placeholder="지원자님에 대한 솔직한 의견을 작성해주세요"
+                    />
                   </div>
                 </S.TextAreaContainer>
               </S.OpenSection>
@@ -165,6 +179,7 @@ export const WriteRiview = () => {
               width="225px"
               height="68px"
               fontStyle={Fonts.subtitle1}
+              onClick={handleSubmit(submitReview)}
             />
           </S.Wrapper>
         )}

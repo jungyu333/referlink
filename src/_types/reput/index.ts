@@ -3,8 +3,8 @@ import { ApiBaseResponse } from '_types/common';
 export interface WriteReviewFormData {
   name: string;
   email: string;
-  company: string;
-  job: string;
+  companyName: string;
+  role: string;
 }
 
 export interface RequestReputationFormData {
