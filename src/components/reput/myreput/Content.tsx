@@ -1,4 +1,5 @@
 import * as S from '@styles/components/reput/content.styles';
+import { MyReviewItem } from '_types/reput';
 import {
   Button,
   ButtonTypes,
@@ -7,7 +8,12 @@ import {
   svgShare,
 } from 'referlink-ui';
 
-export const Content = () => {
+type Props = {
+  reviews: MyReviewItem[];
+};
+
+export const Content = ({ reviews }: Props) => {
+  console.log(reviews);
   return (
     <S.Wrapper>
       <S.Header>
