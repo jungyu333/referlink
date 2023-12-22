@@ -1,4 +1,5 @@
 import * as S from '@styles/components/reput/content.styles';
+import { formatDate } from '@utils/date';
 import { MyReviewItem } from '_types/reput';
 import {
   Button,
@@ -13,7 +14,6 @@ type Props = {
 };
 
 export const Content = ({ reviews }: Props) => {
-  console.log(reviews);
   return (
     <S.Wrapper>
       <S.Header>
@@ -42,13 +42,14 @@ export const Content = ({ reviews }: Props) => {
       </S.Header>
 
       <S.Main>
-        {[1, 2, 3].map((item) => (
+        {reviews.map((review) => (
           <ReputCard
-            mainContent="temp"
-            headContent="temp"
-            date="temp"
-            key={item}
-            onClick={() => console.log(item)}
+            mainContent={`${review.openComment}`}
+            headContent={`${review.name}/${review.companyName}/${review.role}`}
+            date={formatDate(review.createdAt)}
+            key={review.id}
+            isChecked={review.isVisible}
+            onClick={() => console.log(review)}
           />
         ))}
       </S.Main>
