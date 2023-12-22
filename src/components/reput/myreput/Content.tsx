@@ -1,3 +1,4 @@
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import * as S from '@styles/components/reput/content.styles';
 import { formatDate } from '@utils/date';
 import { MyReviewItem } from '_types/reput';
@@ -14,6 +15,8 @@ type Props = {
 };
 
 export const Content = ({ reviews }: Props) => {
+  const { detailNavigation } = useDetailNavigation();
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -49,7 +52,7 @@ export const Content = ({ reviews }: Props) => {
             date={formatDate(review.createdAt)}
             key={review.id}
             isChecked={review.isVisible}
-            onClick={() => console.log(review)}
+            onClick={() => detailNavigation('/myreput', String(review.id))}
           />
         ))}
       </S.Main>
