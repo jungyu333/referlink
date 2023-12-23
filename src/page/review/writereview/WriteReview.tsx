@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { ReviewSelector } from '@components/common';
 import { useCustomQuery } from '@hooks/useCustomQuery';
 import { getSurveyList } from '@api/review';
+import { validationSelector } from '@utils/review';
 
 export const WriteRiview = () => {
   const {
@@ -34,8 +35,6 @@ export const WriteRiview = () => {
 
   const [survey, setServey] = useState<Record<number, number>>({});
 
-  const [openComment, setOpenComment] = useState<string>('');
-
   const handleCheck = (groupIndex: number, checkboxIndex: number) => {
     setServey((prev) => ({ ...prev, [groupIndex]: checkboxIndex }));
   };
@@ -51,13 +50,12 @@ export const WriteRiview = () => {
       setServey(initialPriorities);
     }
   }, [surveyList]);
-  console.log(survey);
+
   const submitReview = (formData: WriteReviewFormData) => {
     const json = {
       ...formData,
       isVisible: isVisible ? 1 : 0,
     };
-    console.log(formData, isVisible, openComment, survey);
   };
 
   return (
