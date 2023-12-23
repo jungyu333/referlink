@@ -30,12 +30,20 @@ export const SelectMain = styled.main`
     height: 84px;
     background: rgba(96, 95, 95, 0.1);
   }
+
+  & > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 33px;
+  }
 `;
 
 export const SelectLabel = styled.div`
-  max-width: 150px;
+  max-width: 105px;
   word-break: break-all;
   color: ${({ theme }) => theme.colors.black};
   font: ${({ theme }) => theme.fonts.body2};
+  line-height: 1.5;
   letter-spacing: -0.32px;
 `;

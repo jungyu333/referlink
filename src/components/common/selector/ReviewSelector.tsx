@@ -28,18 +28,20 @@ export const ReviewSelector = ({
       <S.SelectMain>
         <S.SelectLabel>{tendency1}</S.SelectLabel>
 
-        {reviewSelectorList.map((item) =>
-          item.id !== -1 ? (
-            <ReputCheckBox
-              key={item.id}
-              label={item.label}
-              isChecked={isChecked === item.priority}
-              onCheck={() => onCheck(surveyId, item.id)}
-            />
-          ) : (
-            <span key={item.id} />
-          ),
-        )}
+        <div>
+          {reviewSelectorList.map((item) =>
+            item.id !== -1 ? (
+              <ReputCheckBox
+                key={item.id}
+                label={item.label}
+                isChecked={isChecked === item.priority}
+                onCheck={() => onCheck(surveyId, item.id)}
+              />
+            ) : (
+              <span key={item.id} />
+            ),
+          )}
+        </div>
 
         <S.SelectLabel>{tendency2}</S.SelectLabel>
       </S.SelectMain>
