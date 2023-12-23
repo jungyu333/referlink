@@ -16,6 +16,7 @@ import { useCustomQuery } from '@hooks/useCustomQuery';
 import { getSurveyList } from '@api/review';
 import { validationSelector } from '@utils/review';
 import { useCustomToast } from '@hooks/useCustomToast';
+import { getUserInfo } from '@api/my';
 
 export const WriteRiview = () => {
   const {
@@ -33,6 +34,14 @@ export const WriteRiview = () => {
     isLoading,
     error,
   } = useCustomQuery(['getSurveyList'], getSurveyList, {
+    refetchOnWindowFocus: false,
+  });
+
+  const {
+    data: userInfo,
+    isLoading: userInfoLoading,
+    error: userInfoError,
+  } = useCustomQuery(['userinfo'], getUserInfo, {
     refetchOnWindowFocus: false,
   });
 
@@ -55,7 +64,7 @@ export const WriteRiview = () => {
   }, [surveyList]);
 
   const submitReview = (formData: WriteReviewFormData) => {
-    if (surveyList && surveyList.data) {
+    if (userInfo && surveyList) {
       if (validationSelector(surveyList.data.surveyItems.length, survey)) {
         const reviewItems = Object.entries(survey).map(([key, value]) => {
           return {
@@ -67,6 +76,9 @@ export const WriteRiview = () => {
           ...formData,
           isVisible: isVisible ? 1 : 0,
           reviewItems,
+          writerId: userInfo.data.uid,
+          //하드 코딩
+          targetId: 'vhcTvB9MR',
         };
 
         console.log(json);
@@ -77,7 +89,7 @@ export const WriteRiview = () => {
   };
 
   return (
-    <LoadingSpinner isLoading={isLoading}>
+    <LoadingSpinner isLoading={isLoading && userInfoLoading}>
       <>
         {surveyList && (
           <S.Wrapper>
