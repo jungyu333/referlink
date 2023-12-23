@@ -1,5 +1,5 @@
 export const validationSelector = (
-  listLength: number,
+  listLength: number | undefined,
   surveyObject: Record<number, number>,
 ) => {
   const surveyObjectKeys = Object.keys(surveyObject);

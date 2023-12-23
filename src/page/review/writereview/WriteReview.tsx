@@ -15,6 +15,7 @@ import { ReviewSelector } from '@components/common';
 import { useCustomQuery } from '@hooks/useCustomQuery';
 import { getSurveyList } from '@api/review';
 import { validationSelector } from '@utils/review';
+import { useCustomToast } from '@hooks/useCustomToast';
 
 export const WriteRiview = () => {
   const {
@@ -24,6 +25,8 @@ export const WriteRiview = () => {
   } = useForm<WriteReviewFormData>();
 
   const [isVisible, setIsVisible] = useState(false);
+
+  const { info } = useCustomToast();
 
   const {
     data: surveyList,
@@ -52,10 +55,16 @@ export const WriteRiview = () => {
   }, [surveyList]);
 
   const submitReview = (formData: WriteReviewFormData) => {
-    const json = {
-      ...formData,
-      isVisible: isVisible ? 1 : 0,
-    };
+    if (validationSelector(surveyList?.data.surveyItems.length, survey)) {
+      const json = {
+        ...formData,
+        isVisible: isVisible ? 1 : 0,
+      };
+
+      console.log(json);
+    } else {
+      info('선택지를 모두 체크해주세요.');
+    }
   };
 
   return (
