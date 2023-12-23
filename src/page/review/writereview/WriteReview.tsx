@@ -55,15 +55,24 @@ export const WriteRiview = () => {
   }, [surveyList]);
 
   const submitReview = (formData: WriteReviewFormData) => {
-    if (validationSelector(surveyList?.data.surveyItems.length, survey)) {
-      const json = {
-        ...formData,
-        isVisible: isVisible ? 1 : 0,
-      };
+    if (surveyList && surveyList.data) {
+      if (validationSelector(surveyList.data.surveyItems.length, survey)) {
+        const reviewItems = Object.entries(survey).map(([key, value]) => {
+          return {
+            surveyItemId: key,
+            answer: String(value),
+          };
+        });
+        const json = {
+          ...formData,
+          isVisible: isVisible ? 1 : 0,
+          reviewItems,
+        };
 
-      console.log(json);
-    } else {
-      info('선택지를 모두 체크해주세요.');
+        console.log(json);
+      } else {
+        info('선택지를 모두 체크해주세요.');
+      }
     }
   };
 
