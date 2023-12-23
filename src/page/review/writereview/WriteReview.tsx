@@ -44,14 +44,14 @@ export const WriteRiview = () => {
     if (surveyList) {
       const initialPriorities: Record<number, number> =
         surveyList.data.surveyItems.reduce((acc, item) => {
-          acc[item.priority] = 0;
+          acc[item.surveyId] = 0;
           return acc;
         }, {} as Record<number, number>);
 
       setServey(initialPriorities);
     }
   }, [surveyList]);
-
+  console.log(survey);
   const submitReview = (formData: WriteReviewFormData) => {
     const json = {
       ...formData,
@@ -163,8 +163,8 @@ export const WriteRiview = () => {
                       question={surveyItem.question}
                       tendency1={surveyItem.tendency1}
                       tendency2={surveyItem.tendency2}
-                      isChecked={survey[surveyItem.priority]}
-                      priorityId={surveyItem.priority}
+                      isChecked={survey[surveyItem.id]}
+                      surveyId={surveyItem.id}
                       onCheck={handleCheck}
                     />
                   ))}
