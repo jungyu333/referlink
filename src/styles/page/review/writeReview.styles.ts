@@ -70,7 +70,7 @@ export const OpenSection = styled.div`
   }
 `;
 
-export const TextAreaContainer = styled.div`
+export const TextAreaContainer = styled.div<{ $error: string | undefined }>`
   display: flex;
   padding: 32px;
   flex-direction: column;
@@ -105,9 +105,13 @@ export const TextAreaContainer = styled.div`
     border-radius: 16px;
     resize: none;
     border: none;
-    outline: 1px solid ${({ theme }) => theme.colors.grey1};
+    outline: 1px solid
+      ${({ theme, $error }) =>
+        $error ? theme.colors.error : theme.colors.grey1};
     &:focus {
-      outline: 1px solid ${({ theme }) => theme.colors.primary1};
+      outline: 1px solid
+        ${({ theme, $error }) =>
+          $error ? theme.colors.error : theme.colors.primary1};
     }
 
     &::placeholder {
@@ -115,6 +119,16 @@ export const TextAreaContainer = styled.div`
       font: ${({ theme }) => theme.fonts.body};
       letter-spacing: -0.32px;
     }
+  }
+
+  & span {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+
+    color: ${({ theme }) => theme.colors.error};
+    font: ${({ theme }) => theme.fonts.caption};
+    letter-spacing: -0.26px;
   }
 `;
 

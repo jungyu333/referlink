@@ -5,6 +5,7 @@ export interface WriteReviewFormData {
   email: string;
   companyName: string;
   role: string;
+  prosAndCons: string;
 }
 
 export interface RequestReputationFormData {

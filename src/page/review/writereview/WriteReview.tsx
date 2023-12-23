@@ -140,16 +140,20 @@ export const WriteRiview = () => {
 
               <S.OpenSection>
                 <h1>1. 전체공개 평판 내역입니다.</h1>
-                <S.TextAreaContainer>
+                <S.TextAreaContainer $error={errors.prosAndCons?.message}>
                   <div>
                     <h2>
                       <b>1-1. </b>지원자님의 장/단점을 작성해주세요.
                     </h2>
                     <textarea
-                      value={openComment}
-                      onChange={(e) => setOpenComment(e.target.value)}
+                      {...register('prosAndCons', {
+                        required: '지원자님의 장/단점을 작성해주세요.',
+                      })}
                       placeholder="지원자님에 대한 솔직한 의견을 작성해주세요"
                     />
+                    {errors.prosAndCons && (
+                      <span>{errors.prosAndCons.message}</span>
+                    )}
                   </div>
                 </S.TextAreaContainer>
               </S.OpenSection>
