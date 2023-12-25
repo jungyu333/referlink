@@ -74,10 +74,11 @@ export const WriteRiview = () => {
         });
         const json = {
           ...formData,
+          openComment: formData.prosAndCons,
           isVisible: isVisible ? 1 : 0,
           reviewItems,
           writerId: userInfo.data.uid,
-          //하드 코딩
+          //하드 코딩 a@naver.com uid
           targetId: 'vhcTvB9MR',
         };
 

@@ -44,3 +44,16 @@ export interface MyReviewItem {
   updatedAt: string;
   writerId: number;
 }
+
+export interface WriteReviewRequestFormData {
+  email: string;
+  companyName: string;
+  isVisible: number;
+  name: string;
+  openComment: string;
+  role: string;
+  surveyId: string;
+  reviewItems: { surveyItemId: string; answer: string }[];
+  targetId: string;
+  wirterId: string;
+}
