@@ -11,12 +11,14 @@ import {
   TextInput,
 } from 'referlink-ui';
 import { useEffect, useState } from 'react';
-import { ReviewSelector } from '@components/common';
+import { ReviewSelector, ToastBody } from '@components/common';
 import { useCustomQuery } from '@hooks/useCustomQuery';
-import { getSurveyList } from '@api/review';
+import { createReview, getSurveyList } from '@api/review';
 import { validationSelector } from '@utils/review';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { getUserInfo } from '@api/my';
+import { useCustomMutation } from '@hooks/useCustomMutation';
+import { getErrorResponse } from '@utils/error';
 
 export const WriteRiview = () => {
   const {
@@ -45,6 +47,18 @@ export const WriteRiview = () => {
     refetchOnWindowFocus: false,
   });
 
+  const createReviewMutation = useCustomMutation(createReview, {
+    onSuccess: (response) => {
+      console.log(response);
+    },
+    onError: (error) => {
+      const responseError = getErrorResponse(error);
+      if (responseError.statusCode === 409) {
+        info(<ToastBody subText={responseError.message} />);
+      }
+    },
+  });
+
   const [survey, setServey] = useState<Record<number, number>>({});
 
   const handleCheck = (groupIndex: number, checkboxIndex: number) => {
@@ -68,21 +82,31 @@ export const WriteRiview = () => {
       if (validationSelector(surveyList.data.surveyItems.length, survey)) {
         const reviewItems = Object.entries(survey).map(([key, value]) => {
           return {
+            reviewId: '1',
             surveyItemId: key,
             answer: String(value),
           };
         });
+
+        const { email, companyName, name, prosAndCons, role } = formData;
         const json = {
-          ...formData,
-          openComment: formData.prosAndCons,
+          email,
+          openComment: prosAndCons,
+          name,
+          companyName,
+          role,
           isVisible: isVisible ? 1 : 0,
           reviewItems,
+          surveyId: String(surveyList.data.id),
           writerId: userInfo.data.uid,
           //하드 코딩 a@naver.com uid
           targetId: 'vhcTvB9MR',
+          career: '10',
         };
 
         console.log(json);
+
+        createReviewMutation.mutate(json);
       } else {
         info('선택지를 모두 체크해주세요.');
       }

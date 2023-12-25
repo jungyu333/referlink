@@ -55,5 +55,6 @@ export interface WriteReviewRequestFormData {
   surveyId: string;
   reviewItems: { surveyItemId: string; answer: string }[];
   targetId: string;
-  wirterId: string;
+  writerId: string;
+  career: string;
 }

@@ -20,6 +20,7 @@ export const createReview = async (param: WriteReviewRequestFormData) => {
   try {
     const response = await AuthApi.post<WriteReviewRequestFormData, any>(
       `/api/review/create`,
+      param,
     );
 
     return response;
