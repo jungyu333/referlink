@@ -94,42 +94,6 @@ export const TextAreaContainer = styled.div<{ $error: string | undefined }>`
       color: ${({ theme }) => theme.colors.primary1};
     }
   }
-
-  & textarea {
-    display: flex;
-    width: 1052px;
-    height: 170px;
-    padding: 20px;
-    justify-content: center;
-    align-items: flex-start;
-    border-radius: 16px;
-    resize: none;
-    border: none;
-    outline: 1px solid
-      ${({ theme, $error }) =>
-        $error ? theme.colors.error : theme.colors.grey1};
-    &:focus {
-      outline: 1px solid
-        ${({ theme, $error }) =>
-          $error ? theme.colors.error : theme.colors.primary1};
-    }
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.grey1};
-      font: ${({ theme }) => theme.fonts.body};
-      letter-spacing: -0.32px;
-    }
-  }
-
-  & span {
-    display: flex;
-    align-items: center;
-    align-self: stretch;
-
-    color: ${({ theme }) => theme.colors.error};
-    font: ${({ theme }) => theme.fonts.caption};
-    letter-spacing: -0.26px;
-  }
 `;
 
 export const SelectSection = styled.div`

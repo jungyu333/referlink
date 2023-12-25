@@ -8,6 +8,7 @@ import {
   EmailInput,
   Fonts,
   LoadingSpinner,
+  TextArea,
   TextInput,
 } from 'referlink-ui';
 import { useEffect, useState } from 'react';
@@ -198,15 +199,13 @@ export const WriteRiview = () => {
                     <h2>
                       <b>1-1. </b>지원자님의 장/단점을 작성해주세요.
                     </h2>
-                    <textarea
-                      {...register('prosAndCons', {
+                    <TextArea
+                      placeholder="지원자님에 대한 솔직한 의견을 작성해주세요"
+                      register={register('prosAndCons', {
                         required: '지원자님의 장/단점을 작성해주세요.',
                       })}
-                      placeholder="지원자님에 대한 솔직한 의견을 작성해주세요"
+                      error={errors.prosAndCons?.message}
                     />
-                    {errors.prosAndCons && (
-                      <span>{errors.prosAndCons.message}</span>
-                    )}
                   </div>
                 </S.TextAreaContainer>
               </S.OpenSection>
