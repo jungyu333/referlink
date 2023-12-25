@@ -70,7 +70,7 @@ export const OpenSection = styled.div`
   }
 `;
 
-export const TextAreaContainer = styled.div`
+export const TextAreaContainer = styled.div<{ $error: string | undefined }>`
   display: flex;
   padding: 32px;
   flex-direction: column;
@@ -92,28 +92,6 @@ export const TextAreaContainer = styled.div`
 
     & b {
       color: ${({ theme }) => theme.colors.primary1};
-    }
-  }
-
-  & textarea {
-    display: flex;
-    width: 1052px;
-    height: 170px;
-    padding: 20px;
-    justify-content: center;
-    align-items: flex-start;
-    border-radius: 16px;
-    resize: none;
-    border: none;
-    outline: 1px solid ${({ theme }) => theme.colors.grey1};
-    &:focus {
-      outline: 1px solid ${({ theme }) => theme.colors.primary1};
-    }
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.grey1};
-      font: ${({ theme }) => theme.fonts.body};
-      letter-spacing: -0.32px;
     }
   }
 `;
