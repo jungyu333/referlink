@@ -12,7 +12,7 @@ import {
   TextInput,
 } from 'referlink-ui';
 import { useEffect, useState } from 'react';
-import { ReviewSelector, ToastBody } from '@components/common';
+import { ConfirmModal, ReviewSelector, ToastBody } from '@components/common';
 import { useCustomQuery } from '@hooks/useCustomQuery';
 import { createReview, getSurveyList } from '@api/review';
 import { validationSelector } from '@utils/review';
@@ -20,6 +20,7 @@ import { useCustomToast } from '@hooks/useCustomToast';
 import { getUserInfo } from '@api/my';
 import { useCustomMutation } from '@hooks/useCustomMutation';
 import { getErrorResponse } from '@utils/error';
+import { useCallbackPrompt } from '@hooks/useCallbackPrompt';
 
 export const WriteRiview = () => {
   const {
@@ -31,6 +32,9 @@ export const WriteRiview = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const { info } = useCustomToast();
+  const [isOpen, setIsOpen] = useState(true);
+  const [showPrompt, confirmNavigation, cancelNavigation] =
+    useCallbackPrompt(isOpen);
 
   const {
     data: surveyList,
@@ -239,6 +243,16 @@ export const WriteRiview = () => {
             />
           </S.Wrapper>
         )}
+
+        <ConfirmModal
+          isOpen={showPrompt}
+          onClose={cancelNavigation}
+          onConfirm={confirmNavigation}
+          confirmLabel="OK"
+          cancelLable="Close"
+          mainText="test"
+          subText="test"
+        />
       </>
     </LoadingSpinner>
   );
