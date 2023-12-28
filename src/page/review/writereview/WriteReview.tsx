@@ -1,4 +1,4 @@
-import { FieldErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { WriteReviewFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import * as S from '@styles/page/review/writeReview.styles';
@@ -22,6 +22,7 @@ import { useCustomMutation } from '@hooks/useCustomMutation';
 import { getErrorResponse } from '@utils/error';
 import { useCallbackPrompt } from '@hooks/useCallbackPrompt';
 import { useSwitch } from '@hooks/useSwitch';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 
 export const WriteRiview = () => {
   const {
@@ -33,15 +34,23 @@ export const WriteRiview = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const { info } = useCustomToast();
+
   const [isOpen, setIsOpen] = useState(true);
+
   const [isOpenModifyModal, onOpenModifyModal, onCloseModifyModal] =
     useSwitch();
+
+  const [isOpenCompleteModal, onOpenCompleteModal, onCloseCompleteModal] =
+    useSwitch();
+
   const [showPrompt, confirmNavigation, cancelNavigation] =
     useCallbackPrompt(isOpen);
 
+  const { pathNavigation } = useDetailNavigation();
+
   const {
     data: surveyList,
-    isLoading,
+    isLoading: getSurveyListLoading,
     error,
   } = useCustomQuery(['getSurveyList'], getSurveyList, {
     refetchOnWindowFocus: false,
@@ -58,6 +67,7 @@ export const WriteRiview = () => {
   const createReviewMutation = useCustomMutation(createReview, {
     onSuccess: (response) => {
       console.log(response);
+      onOpenCompleteModal();
     },
     onError: (error) => {
       const responseError = getErrorResponse(error);
@@ -87,7 +97,8 @@ export const WriteRiview = () => {
 
   const submitReview = (formData: WriteReviewFormData) => {
     if (userInfo && surveyList) {
-      if (validationSelector(surveyList.data.surveyItems.length, survey)) {
+      // if (validationSelector(surveyList.data.surveyItems.length, survey)) {
+      if (true) {
         const reviewItems = Object.entries(survey).map(([key, value]) => {
           return {
             reviewId: '1',
@@ -113,8 +124,10 @@ export const WriteRiview = () => {
         };
 
         console.log(json);
-
-        createReviewMutation.mutate(json);
+        onCloseModifyModal();
+        //createReviewMutation.mutate(json);
+        // api 수정 완료되면 삭제
+        onOpenCompleteModal();
       } else {
         info('선택지를 모두 체크해주세요.');
         onCloseModifyModal();
@@ -122,12 +135,19 @@ export const WriteRiview = () => {
     }
   };
 
-  const onValidationError = (errors: FieldErrors<WriteReviewFormData>) => {
+  const onValidationError = () => {
     onCloseModifyModal();
   };
 
+  const onConfirmCompleteModal = () => {
+    setIsOpen(false);
+    pathNavigation('/myreput');
+    onCloseCompleteModal();
+    confirmNavigation();
+  };
+
   return (
-    <LoadingSpinner isLoading={isLoading && userInfoLoading}>
+    <LoadingSpinner isLoading={getSurveyListLoading && userInfoLoading}>
       <>
         {surveyList && (
           <S.Wrapper>
@@ -247,8 +267,6 @@ export const WriteRiview = () => {
               width="225px"
               height="68px"
               fontStyle={Fonts.subtitle1}
-              //onClick={handleSubmit(submitReview)}
-
               onClick={onOpenModifyModal}
             />
           </S.Wrapper>
@@ -273,6 +291,16 @@ export const WriteRiview = () => {
           mainText="작성 완료하신 평판은 수정/삭제 할 수 없습니다."
           secondLineText="작성을 완료하시겠습니까?"
           subText="작성된 평판의 권한은 지원자에게 지속됩니다."
+        />
+
+        <ConfirmModal
+          isOpen={isOpenCompleteModal}
+          onClose={onCloseCompleteModal}
+          onConfirm={onConfirmCompleteModal}
+          confirmLabel="평판 작성 요청"
+          cancelLable="나중에"
+          mainText="평판 작성이 완료되었습니다."
+          subText="더 나은 커리어 관리를 위한 평판작성을 요청해보시겠습니까?"
         />
       </>
     </LoadingSpinner>
