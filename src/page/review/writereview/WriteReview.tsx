@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { WriteReviewFormData } from '_types/reput';
 import { emailRegex } from '@constant/regex';
 import * as S from '@styles/page/review/writeReview.styles';
@@ -21,6 +21,7 @@ import { getUserInfo } from '@api/my';
 import { useCustomMutation } from '@hooks/useCustomMutation';
 import { getErrorResponse } from '@utils/error';
 import { useCallbackPrompt } from '@hooks/useCallbackPrompt';
+import { useSwitch } from '@hooks/useSwitch';
 
 export const WriteRiview = () => {
   const {
@@ -33,6 +34,8 @@ export const WriteRiview = () => {
 
   const { info } = useCustomToast();
   const [isOpen, setIsOpen] = useState(true);
+  const [isOpenModifyModal, onOpenModifyModal, onCloseModifyModal] =
+    useSwitch();
   const [showPrompt, confirmNavigation, cancelNavigation] =
     useCallbackPrompt(isOpen);
 
@@ -114,8 +117,13 @@ export const WriteRiview = () => {
         createReviewMutation.mutate(json);
       } else {
         info('선택지를 모두 체크해주세요.');
+        onCloseModifyModal();
       }
     }
+  };
+
+  const onValidationError = (errors: FieldErrors<WriteReviewFormData>) => {
+    onCloseModifyModal();
   };
 
   return (
@@ -239,7 +247,9 @@ export const WriteRiview = () => {
               width="225px"
               height="68px"
               fontStyle={Fonts.subtitle1}
-              onClick={handleSubmit(submitReview)}
+              //onClick={handleSubmit(submitReview)}
+
+              onClick={onOpenModifyModal}
             />
           </S.Wrapper>
         )}
@@ -252,6 +262,17 @@ export const WriteRiview = () => {
           cancelLable="나가기"
           mainText="평판 작성을 마무리해주세요."
           subText="페이지를 이동하면 작성된 평판은 임시저장되지 않습니다."
+        />
+
+        <ConfirmModal
+          isOpen={isOpenModifyModal}
+          onClose={onCloseModifyModal}
+          onConfirm={handleSubmit(submitReview, onValidationError)}
+          confirmLabel="완료"
+          cancelLable="취소"
+          mainText="작성 완료하신 평판은 수정/삭제 할 수 없습니다."
+          secondLineText="작성을 완료하시겠습니까?"
+          subText="작성된 평판의 권한은 지원자에게 지속됩니다."
         />
       </>
     </LoadingSpinner>
