@@ -246,12 +246,12 @@ export const WriteRiview = () => {
 
         <ConfirmModal
           isOpen={showPrompt}
-          onClose={cancelNavigation}
-          onConfirm={confirmNavigation}
-          confirmLabel="OK"
-          cancelLable="Close"
-          mainText="test"
-          subText="test"
+          onClose={confirmNavigation}
+          onConfirm={cancelNavigation}
+          confirmLabel="계속 작성하기"
+          cancelLable="나가기"
+          mainText="평판 작성을 마무리해주세요."
+          subText="페이지를 이동하면 작성된 평판은 임시저장되지 않습니다."
         />
       </>
     </LoadingSpinner>
