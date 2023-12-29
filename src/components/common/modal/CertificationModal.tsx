@@ -1,4 +1,14 @@
-import { Handler, Modal } from 'referlink-ui';
+import { emailRegex } from '@constant/regex';
+import { CertificationFormData } from '_types/reput';
+import { useForm } from 'react-hook-form';
+import {
+  Button,
+  EmailInput,
+  Fonts,
+  Handler,
+  Modal,
+  TextInput,
+} from 'referlink-ui';
 import styled from 'styled-components';
 
 type Props = {
@@ -16,6 +26,12 @@ export const CertificationModal = ({
   confirmLabel,
   cancelLabel,
 }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CertificationFormData>();
+
   return (
     <Modal px="60px" py="60px" onClose={onClose} isOpen={isOpen}>
       <Wrapper>
@@ -37,7 +53,74 @@ export const CertificationModal = ({
 
           <Line />
 
-          <div></div>
+          <InputContainer>
+            <TextInput
+              width="663px"
+              register={register('company', {
+                maxLength: {
+                  value: 20,
+                  message: '20자 이내로 입력해주세요.',
+                },
+                required: '회사명을 입력해주세요.',
+              })}
+              label=""
+              isLabel={false}
+              placeholder="회사명을 입력하세요."
+            />
+
+            <EmailInput
+              label=""
+              isLabel={false}
+              register={register('email', {
+                pattern: {
+                  value: emailRegex,
+                  message: '형식에 맞지 않는 이메일입니다.',
+                },
+                required: '이메일을 입력해주세요.',
+              })}
+              placeholder="회사에서 사용중인 업무용 메일을 입력하세요."
+              width="663px"
+            />
+            <ImageContainer>
+              <TextInput
+                width="514px"
+                register={register('registration', {
+                  required: '사업자등록증을 첨부해주세요.',
+                })}
+                isLabel={false}
+                label=""
+                placeholder="사업자등록증을 첨부하세요"
+              />
+
+              <Button
+                buttonText="첨부하기"
+                px="16px"
+                py="10px"
+                width="140px"
+                fontStyle={Fonts.body2}
+              />
+            </ImageContainer>
+
+            <ImageContainer>
+              <TextInput
+                width="514px"
+                register={register('businessCard', {
+                  required: '명함을 첨부해주세요.',
+                })}
+                isLabel={false}
+                label=""
+                placeholder="명함을 첨부하세요"
+              />
+
+              <Button
+                buttonText="첨부하기"
+                px="16px"
+                py="10px"
+                width="140px"
+                fontStyle={Fonts.body2}
+              />
+            </ImageContainer>
+          </InputContainer>
         </Main>
 
         <section></section>
@@ -84,4 +167,17 @@ const Line = styled.section`
   width: 663px;
   height: 1px;
   background: rgba(96, 95, 95, 0.35);
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 `;
