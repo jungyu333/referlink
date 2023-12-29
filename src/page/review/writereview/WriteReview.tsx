@@ -43,7 +43,7 @@ export const WriteRiview = () => {
   const [isOpenCompleteModal, onOpenCompleteModal, onCloseCompleteModal] =
     useSwitch();
 
-  const [showPrompt, confirmNavigation, cancelNavigation] =
+  const [showPrompt, confirmNavigation, cancelNavigation, isLoading] =
     useCallbackPrompt(isOpen);
 
   const { pathNavigation } = useDetailNavigation();
@@ -67,6 +67,7 @@ export const WriteRiview = () => {
   const createReviewMutation = useCustomMutation(createReview, {
     onSuccess: (response) => {
       console.log(response);
+      onCloseModifyModal();
       onOpenCompleteModal();
     },
     onError: (error) => {
@@ -97,8 +98,7 @@ export const WriteRiview = () => {
 
   const submitReview = (formData: WriteReviewFormData) => {
     if (userInfo && surveyList) {
-      // if (validationSelector(surveyList.data.surveyItems.length, survey)) {
-      if (true) {
+      if (validationSelector(surveyList.data.surveyItems.length, survey)) {
         const reviewItems = Object.entries(survey).map(([key, value]) => {
           return {
             reviewId: '1',
@@ -124,19 +124,13 @@ export const WriteRiview = () => {
         };
 
         console.log(json);
-        onCloseModifyModal();
-        //createReviewMutation.mutate(json);
-        // api 수정 완료되면 삭제
-        onOpenCompleteModal();
+
+        createReviewMutation.mutate(json);
       } else {
         info('선택지를 모두 체크해주세요.');
         onCloseModifyModal();
       }
     }
-  };
-
-  const onValidationError = () => {
-    onCloseModifyModal();
   };
 
   const onConfirmCompleteModal = () => {
@@ -147,7 +141,9 @@ export const WriteRiview = () => {
   };
 
   return (
-    <LoadingSpinner isLoading={getSurveyListLoading && userInfoLoading}>
+    <LoadingSpinner
+      isLoading={(getSurveyListLoading && userInfoLoading) || isLoading}
+    >
       <>
         {surveyList && (
           <S.Wrapper>
@@ -285,7 +281,7 @@ export const WriteRiview = () => {
         <ConfirmModal
           isOpen={isOpenModifyModal}
           onClose={onCloseModifyModal}
-          onConfirm={handleSubmit(submitReview, onValidationError)}
+          onConfirm={handleSubmit(submitReview, onCloseModifyModal)}
           confirmLabel="완료"
           cancelLable="취소"
           mainText="작성 완료하신 평판은 수정/삭제 할 수 없습니다."
