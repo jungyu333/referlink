@@ -4,6 +4,7 @@ import { Button } from 'referlink-ui';
 
 export const Landing = () => {
   const { pathNavigation } = useDetailNavigation();
+
   return (
     <S.Wrapper>
       <main>

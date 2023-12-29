@@ -8,6 +8,13 @@ export interface WriteReviewFormData {
   prosAndCons: string;
 }
 
+export interface CertificationFormData {
+  company: string;
+  email: string;
+  registration: string;
+  businessCard: string;
+}
+
 export interface RequestReputationFormData {
   company: string;
   writerName: string;

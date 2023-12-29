@@ -273,7 +273,7 @@ export const WriteRiview = () => {
           onClose={confirmNavigation}
           onConfirm={cancelNavigation}
           confirmLabel="계속 작성하기"
-          cancelLable="나가기"
+          cancelLabel="나가기"
           mainText="평판 작성을 마무리해주세요."
           subText="페이지를 이동하면 작성된 평판은 임시저장되지 않습니다."
         />
@@ -283,7 +283,7 @@ export const WriteRiview = () => {
           onClose={onCloseModifyModal}
           onConfirm={handleSubmit(submitReview, onCloseModifyModal)}
           confirmLabel="완료"
-          cancelLable="취소"
+          cancelLabel="취소"
           mainText="작성 완료하신 평판은 수정/삭제 할 수 없습니다."
           secondLineText="작성을 완료하시겠습니까?"
           subText="작성된 평판의 권한은 지원자에게 지속됩니다."
@@ -294,7 +294,7 @@ export const WriteRiview = () => {
           onClose={onCloseCompleteModal}
           onConfirm={onConfirmCompleteModal}
           confirmLabel="평판 작성 요청"
-          cancelLable="나중에"
+          cancelLabel="나중에"
           mainText="평판 작성이 완료되었습니다."
           subText="더 나은 커리어 관리를 위한 평판작성을 요청해보시겠습니까?"
         />
