@@ -3,6 +3,7 @@ import { CertificationFormData } from '_types/reput';
 import { useForm } from 'react-hook-form';
 import {
   Button,
+  ButtonTypes,
   EmailInput,
   Fonts,
   Handler,
@@ -123,7 +124,25 @@ export const CertificationModal = ({
           </InputContainer>
         </Main>
 
-        <section></section>
+        <ButtonContainer>
+          <Button
+            width="203px"
+            buttonText="다음에 요청하기"
+            buttonType={ButtonTypes.outlined}
+            fontStyle={Fonts.subtitle1}
+            px="36px"
+            py="24px"
+          />
+
+          <Button
+            width="203px"
+            buttonText="관리자 권한 요청"
+            buttonType={ButtonTypes.filled}
+            fontStyle={Fonts.subtitle1}
+            px="36px"
+            py="24px"
+          />
+        </ButtonContainer>
       </Wrapper>
     </Modal>
   );
@@ -132,6 +151,7 @@ export const CertificationModal = ({
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+
   gap: 40px;
 `;
 
@@ -180,4 +200,11 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 12px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: center;
 `;
