@@ -10,7 +10,7 @@ import {
   Modal,
   TextInput,
 } from 'referlink-ui';
-import styled from 'styled-components';
+import * as S from '@styles/components/common/modal/certificationModal.styles';
 
 type Props = {
   isOpen: boolean;
@@ -35,9 +35,9 @@ export const CertificationModal = ({
 
   return (
     <Modal px="60px" py="60px" onClose={onClose} isOpen={isOpen}>
-      <Wrapper>
-        <Main>
-          <Header>
+      <S.Wrapper>
+        <S.Main>
+          <S.Header>
             <h1>
               서류, 면접만으로는 부족한 지원자 정보 <br />
               레퍼링크하세요!
@@ -50,11 +50,11 @@ export const CertificationModal = ({
               <br /> *기업관리자 사칭은 형사처벌 대상이며, 서비스 이용이 영구
               제한됩니다.
             </p>
-          </Header>
+          </S.Header>
 
-          <Line />
+          <S.Line />
 
-          <InputContainer>
+          <S.InputContainer>
             <TextInput
               width="663px"
               register={register('company', {
@@ -82,7 +82,7 @@ export const CertificationModal = ({
               placeholder="회사에서 사용중인 업무용 메일을 입력하세요."
               width="663px"
             />
-            <ImageContainer>
+            <S.ImageContainer>
               <TextInput
                 width="514px"
                 register={register('registration', {
@@ -100,9 +100,9 @@ export const CertificationModal = ({
                 width="140px"
                 fontStyle={Fonts.body2}
               />
-            </ImageContainer>
+            </S.ImageContainer>
 
-            <ImageContainer>
+            <S.ImageContainer>
               <TextInput
                 width="514px"
                 register={register('businessCard', {
@@ -120,14 +120,14 @@ export const CertificationModal = ({
                 width="140px"
                 fontStyle={Fonts.body2}
               />
-            </ImageContainer>
-          </InputContainer>
-        </Main>
+            </S.ImageContainer>
+          </S.InputContainer>
+        </S.Main>
 
-        <ButtonContainer>
+        <S.ButtonContainer>
           <Button
             width="203px"
-            buttonText="다음에 요청하기"
+            buttonText={cancelLabel}
             buttonType={ButtonTypes.outlined}
             fontStyle={Fonts.subtitle1}
             px="36px"
@@ -136,75 +136,14 @@ export const CertificationModal = ({
 
           <Button
             width="203px"
-            buttonText="관리자 권한 요청"
+            buttonText={confirmLabel}
             buttonType={ButtonTypes.filled}
             fontStyle={Fonts.subtitle1}
             px="36px"
             py="24px"
           />
-        </ButtonContainer>
-      </Wrapper>
+        </S.ButtonContainer>
+      </S.Wrapper>
     </Modal>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  gap: 40px;
-`;
-
-const Main = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
-`;
-
-const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 38px;
-
-  & h1 {
-    width: 538px;
-    color: ${({ theme }) => theme.colors.grey4};
-    font: ${({ theme }) => theme.fonts.headline1};
-    letter-spacing: -0.68px;
-  }
-
-  & p {
-    width: 538px;
-    color: ${({ theme }) => theme.colors.grey2};
-    font: ${({ theme }) => theme.fonts.subtitle2};
-    letter-spacing: -0.36px;
-  }
-`;
-
-const Line = styled.section`
-  width: 663px;
-  height: 1px;
-  background: rgba(96, 95, 95, 0.35);
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-`;
-
-const ImageContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  align-self: center;
-`;

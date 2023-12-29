@@ -29,8 +29,8 @@ export const Landing = () => {
         isOpen={true}
         onClose={() => console.log('close')}
         onConfirm={() => console.log('confirm')}
-        cancelLabel="cancel"
-        confirmLabel="confirm"
+        cancelLabel="나중에 요청하기"
+        confirmLabel="관리자 권한요청"
       />
     </S.Wrapper>
   );
