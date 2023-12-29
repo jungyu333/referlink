@@ -1,4 +1,3 @@
-import { CertificationModal } from '@components/common';
 import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import * as S from '@styles/page/landing/landing.styles';
 import { Button } from 'referlink-ui';
@@ -24,14 +23,6 @@ export const Landing = () => {
           onClick={() => pathNavigation('/service-start')}
         />
       </main>
-
-      <CertificationModal
-        isOpen={true}
-        onClose={() => console.log('close')}
-        onConfirm={() => console.log('confirm')}
-        cancelLabel="나중에 요청하기"
-        confirmLabel="관리자 권한요청"
-      />
     </S.Wrapper>
   );
 };
