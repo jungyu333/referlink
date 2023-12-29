@@ -12,7 +12,7 @@ import {
   TextInput,
 } from 'referlink-ui';
 import { useEffect, useState } from 'react';
-import { ReviewSelector, ToastBody } from '@components/common';
+import { ConfirmModal, ReviewSelector, ToastBody } from '@components/common';
 import { useCustomQuery } from '@hooks/useCustomQuery';
 import { createReview, getSurveyList } from '@api/review';
 import { validationSelector } from '@utils/review';
@@ -20,6 +20,9 @@ import { useCustomToast } from '@hooks/useCustomToast';
 import { getUserInfo } from '@api/my';
 import { useCustomMutation } from '@hooks/useCustomMutation';
 import { getErrorResponse } from '@utils/error';
+import { useCallbackPrompt } from '@hooks/useCallbackPrompt';
+import { useSwitch } from '@hooks/useSwitch';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 
 export const WriteRiview = () => {
   const {
@@ -32,9 +35,22 @@ export const WriteRiview = () => {
 
   const { info } = useCustomToast();
 
+  const [isOpen, setIsOpen] = useState(true);
+
+  const [isOpenModifyModal, onOpenModifyModal, onCloseModifyModal] =
+    useSwitch();
+
+  const [isOpenCompleteModal, onOpenCompleteModal, onCloseCompleteModal] =
+    useSwitch();
+
+  const [showPrompt, confirmNavigation, cancelNavigation, isLoading] =
+    useCallbackPrompt(isOpen);
+
+  const { pathNavigation } = useDetailNavigation();
+
   const {
     data: surveyList,
-    isLoading,
+    isLoading: getSurveyListLoading,
     error,
   } = useCustomQuery(['getSurveyList'], getSurveyList, {
     refetchOnWindowFocus: false,
@@ -51,6 +67,8 @@ export const WriteRiview = () => {
   const createReviewMutation = useCustomMutation(createReview, {
     onSuccess: (response) => {
       console.log(response);
+      onCloseModifyModal();
+      onOpenCompleteModal();
     },
     onError: (error) => {
       const responseError = getErrorResponse(error);
@@ -110,12 +128,22 @@ export const WriteRiview = () => {
         createReviewMutation.mutate(json);
       } else {
         info('선택지를 모두 체크해주세요.');
+        onCloseModifyModal();
       }
     }
   };
 
+  const onConfirmCompleteModal = () => {
+    setIsOpen(false);
+    pathNavigation('/myreput');
+    onCloseCompleteModal();
+    confirmNavigation();
+  };
+
   return (
-    <LoadingSpinner isLoading={isLoading && userInfoLoading}>
+    <LoadingSpinner
+      isLoading={(getSurveyListLoading && userInfoLoading) || isLoading}
+    >
       <>
         {surveyList && (
           <S.Wrapper>
@@ -235,10 +263,41 @@ export const WriteRiview = () => {
               width="225px"
               height="68px"
               fontStyle={Fonts.subtitle1}
-              onClick={handleSubmit(submitReview)}
+              onClick={onOpenModifyModal}
             />
           </S.Wrapper>
         )}
+
+        <ConfirmModal
+          isOpen={showPrompt}
+          onClose={confirmNavigation}
+          onConfirm={cancelNavigation}
+          confirmLabel="계속 작성하기"
+          cancelLable="나가기"
+          mainText="평판 작성을 마무리해주세요."
+          subText="페이지를 이동하면 작성된 평판은 임시저장되지 않습니다."
+        />
+
+        <ConfirmModal
+          isOpen={isOpenModifyModal}
+          onClose={onCloseModifyModal}
+          onConfirm={handleSubmit(submitReview, onCloseModifyModal)}
+          confirmLabel="완료"
+          cancelLable="취소"
+          mainText="작성 완료하신 평판은 수정/삭제 할 수 없습니다."
+          secondLineText="작성을 완료하시겠습니까?"
+          subText="작성된 평판의 권한은 지원자에게 지속됩니다."
+        />
+
+        <ConfirmModal
+          isOpen={isOpenCompleteModal}
+          onClose={onCloseCompleteModal}
+          onConfirm={onConfirmCompleteModal}
+          confirmLabel="평판 작성 요청"
+          cancelLable="나중에"
+          mainText="평판 작성이 완료되었습니다."
+          subText="더 나은 커리어 관리를 위한 평판작성을 요청해보시겠습니까?"
+        />
       </>
     </LoadingSpinner>
   );
