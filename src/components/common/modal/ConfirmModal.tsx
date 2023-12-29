@@ -13,7 +13,7 @@ type Props = {
   onClose: Handler;
   onConfirm: Handler;
   confirmLabel: string;
-  cancelLable: string;
+  cancelLabel: string;
   mainText: string;
   subText: string;
   secondLineText?: string;
@@ -24,7 +24,7 @@ export const ConfirmModal = ({
   onClose,
   onConfirm,
   confirmLabel,
-  cancelLable,
+  cancelLabel,
   mainText,
   subText,
   secondLineText,
@@ -45,7 +45,7 @@ export const ConfirmModal = ({
           <S.ButtonContainer>
             <Button
               onClick={onClose}
-              buttonText={cancelLable}
+              buttonText={cancelLabel}
               buttonType={ButtonTypes.outlined}
               width="200px"
               height="44px"
