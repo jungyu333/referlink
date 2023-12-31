@@ -51,14 +51,28 @@ export const CertificationModal = ({
     imageInputRef: registrationRef,
   } = useImageUpload();
 
+  const {
+    imageFile: businessCardFile,
+    imageName: businessCardFileName,
+    onChangeImage: onChangeBusinessCard,
+    imageInputRef: businessCardRef,
+  } = useImageUpload();
+
   const onClickRegistrationUpload = () => {
     if (registrationRef.current) registrationRef.current.click();
+  };
+
+  const onClickBusinessCardUpload = () => {
+    if (businessCardRef.current) businessCardRef.current.click();
   };
 
   useEffect(() => {
     if (registrationFileName.length > 0)
       setValue('registration', registrationFileName);
-  }, [registrationFileName]);
+
+    if (businessCardFileName.length > 0)
+      setValue('businessCard', businessCardFileName);
+  }, [registrationFileName, businessCardFileName]);
 
   return (
     <Modal px="60px" py="60px" onClose={onClose} isOpen={isOpen}>
@@ -155,6 +169,14 @@ export const CertificationModal = ({
                 py="10px"
                 width="140px"
                 fontStyle={Fonts.body2}
+                onClick={onClickBusinessCardUpload}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                id="businessCard"
+                onChange={onChangeBusinessCard}
+                ref={businessCardRef}
               />
             </S.ImageContainer>
           </S.InputContainer>
