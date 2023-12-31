@@ -132,6 +132,7 @@ export const CertificationModal = ({
                 isLabel={false}
                 label=""
                 placeholder="사업자등록증을 첨부하세요"
+                readonly
               />
 
               <Button
@@ -161,6 +162,7 @@ export const CertificationModal = ({
                 isLabel={false}
                 label=""
                 placeholder="명함을 첨부하세요"
+                readonly
               />
 
               <Button
