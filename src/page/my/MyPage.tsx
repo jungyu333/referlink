@@ -16,6 +16,8 @@ import {
 import { getUserInfo } from '@api/my';
 import { useCustomQuery } from '@hooks/useCustomQuery';
 import { useImageUpload } from '@hooks/useImageUpload';
+import Cookies from 'js-cookie';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 
 export const MyPage = () => {
   const {
@@ -41,8 +43,18 @@ export const MyPage = () => {
     refetchOnWindowFocus: false,
   });
 
+  const { pathNavigation } = useDetailNavigation();
+
   const onValid = (formData: MyPageEditFormData) => {
     console.log(formData);
+  };
+
+  const onClickLogout = () => {
+    console.log('logout');
+    //임시 cookie remove code
+
+    Cookies.remove('accessToken');
+    pathNavigation('/');
   };
 
   return (
@@ -156,6 +168,7 @@ export const MyPage = () => {
                 buttonType={ButtonTypes.outlined}
                 width="90px"
                 height="44px"
+                onClick={onClickLogout}
               />
             </div>
           </S.Footer>
