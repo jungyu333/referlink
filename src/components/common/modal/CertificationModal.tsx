@@ -11,6 +11,8 @@ import {
   TextInput,
 } from 'referlink-ui';
 import * as S from '@styles/components/common/modal/certificationModal.styles';
+import { useImageUpload } from '@hooks/useImageUpload';
+import { useEffect } from 'react';
 
 type Props = {
   isOpen: boolean;
@@ -32,6 +34,7 @@ export const CertificationModal = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<CertificationFormData>();
 
@@ -40,6 +43,36 @@ export const CertificationModal = ({
     onClose();
     onOpenConfirm();
   };
+
+  const {
+    imageFile: registrationFile,
+    imageName: registrationFileName,
+    onChangeImage: onChangeRegistartion,
+    imageInputRef: registrationRef,
+  } = useImageUpload();
+
+  const {
+    imageFile: businessCardFile,
+    imageName: businessCardFileName,
+    onChangeImage: onChangeBusinessCard,
+    imageInputRef: businessCardRef,
+  } = useImageUpload();
+
+  const onClickRegistrationUpload = () => {
+    if (registrationRef.current) registrationRef.current.click();
+  };
+
+  const onClickBusinessCardUpload = () => {
+    if (businessCardRef.current) businessCardRef.current.click();
+  };
+
+  useEffect(() => {
+    if (registrationFileName.length > 0)
+      setValue('registration', registrationFileName);
+
+    if (businessCardFileName.length > 0)
+      setValue('businessCard', businessCardFileName);
+  }, [registrationFileName, businessCardFileName]);
 
   return (
     <Modal px="60px" py="60px" onClose={onClose} isOpen={isOpen}>
@@ -99,6 +132,7 @@ export const CertificationModal = ({
                 isLabel={false}
                 label=""
                 placeholder="사업자등록증을 첨부하세요"
+                readonly
               />
 
               <Button
@@ -107,6 +141,15 @@ export const CertificationModal = ({
                 py="10px"
                 width="140px"
                 fontStyle={Fonts.body2}
+                onClick={onClickRegistrationUpload}
+              />
+
+              <input
+                type="file"
+                accept="image/*"
+                id="registration"
+                onChange={onChangeRegistartion}
+                ref={registrationRef}
               />
             </S.ImageContainer>
 
@@ -119,6 +162,7 @@ export const CertificationModal = ({
                 isLabel={false}
                 label=""
                 placeholder="명함을 첨부하세요"
+                readonly
               />
 
               <Button
@@ -127,6 +171,14 @@ export const CertificationModal = ({
                 py="10px"
                 width="140px"
                 fontStyle={Fonts.body2}
+                onClick={onClickBusinessCardUpload}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                id="businessCard"
+                onChange={onChangeBusinessCard}
+                ref={businessCardRef}
               />
             </S.ImageContainer>
           </S.InputContainer>

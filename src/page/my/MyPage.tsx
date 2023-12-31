@@ -2,7 +2,6 @@ import { emailRegex } from '@constant/regex';
 import { MyPageEditFormData } from '_types/my';
 import { useForm } from 'react-hook-form';
 import * as S from '@styles/page/my/myPage.styles';
-import { useRef, useState } from 'react';
 import {
   Button,
   ButtonTypes,
@@ -16,6 +15,7 @@ import {
 } from 'referlink-ui';
 import { getUserInfo } from '@api/my';
 import { useCustomQuery } from '@hooks/useCustomQuery';
+import { useImageUpload } from '@hooks/useImageUpload';
 
 export const MyPage = () => {
   const {
@@ -23,9 +23,15 @@ export const MyPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<MyPageEditFormData>();
-  const [avatarFile, setAvaterFile] = useState<File | null>(null);
-  const [previewAvatar, setPreviewAvatar] = useState('');
-  const avatarRef = useRef<HTMLInputElement>(null);
+
+  const {
+    imageFile,
+    preview,
+    imageName,
+    onChangeImage,
+    onRemoveImage,
+    imageInputRef,
+  } = useImageUpload();
 
   const {
     data: userInfo,
@@ -39,26 +45,6 @@ export const MyPage = () => {
     console.log(formData);
   };
 
-  const onChangeAvater = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event && event.target.files) {
-      const file = event.target.files[0];
-
-      if (file) {
-        setAvaterFile(file);
-        setPreviewAvatar(URL.createObjectURL(file));
-      }
-    }
-  };
-
-  const handleRemoveImage = () => {
-    setAvaterFile(null);
-    setPreviewAvatar('');
-
-    if (avatarRef.current) {
-      avatarRef.current.value = '';
-    }
-  };
-
   return (
     <LoadingSpinner isLoading={isLoading}>
       <S.Wrapper>
@@ -68,8 +54,8 @@ export const MyPage = () => {
             <S.AvatarContainer>
               <S.AvatarContent>
                 <S.Information>
-                  {previewAvatar.length > 0 ? (
-                    <S.Avatar src={previewAvatar} />
+                  {preview.length > 0 ? (
+                    <S.Avatar src={preview} />
                   ) : (
                     <>{svgAvartar}</>
                   )}
@@ -79,15 +65,15 @@ export const MyPage = () => {
                   </S.TextContainer>
                 </S.Information>
                 <S.UploadContainer>
-                  <div onClick={handleRemoveImage}>{svgClose}</div>
+                  <div onClick={onRemoveImage}>{svgClose}</div>
 
                   <label htmlFor="avatar">{svgPhoto}</label>
                   <input
                     type="file"
                     accept="imgae/*"
                     id="avatar"
-                    onChange={onChangeAvater}
-                    ref={avatarRef}
+                    onChange={onChangeImage}
+                    ref={imageInputRef}
                   />
                 </S.UploadContainer>
               </S.AvatarContent>

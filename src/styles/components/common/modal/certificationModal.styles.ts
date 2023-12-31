@@ -52,6 +52,10 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 12px;
+
+  & > input {
+    display: none;
+  }
 `;
 
 export const ButtonContainer = styled.div`
