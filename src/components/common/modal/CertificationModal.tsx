@@ -11,6 +11,8 @@ import {
   TextInput,
 } from 'referlink-ui';
 import * as S from '@styles/components/common/modal/certificationModal.styles';
+import { useImageUpload } from '@hooks/useImageUpload';
+import { useEffect } from 'react';
 
 type Props = {
   isOpen: boolean;
@@ -32,6 +34,7 @@ export const CertificationModal = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<CertificationFormData>();
 
@@ -40,6 +43,22 @@ export const CertificationModal = ({
     onClose();
     onOpenConfirm();
   };
+
+  const {
+    imageFile: registrationFile,
+    imageName: registrationFileName,
+    onChangeImage: onChangeRegistartion,
+    imageInputRef: registrationRef,
+  } = useImageUpload();
+
+  const onClickRegistrationUpload = () => {
+    if (registrationRef.current) registrationRef.current.click();
+  };
+
+  useEffect(() => {
+    if (registrationFileName.length > 0)
+      setValue('registration', registrationFileName);
+  }, [registrationFileName]);
 
   return (
     <Modal px="60px" py="60px" onClose={onClose} isOpen={isOpen}>
@@ -107,6 +126,15 @@ export const CertificationModal = ({
                 py="10px"
                 width="140px"
                 fontStyle={Fonts.body2}
+                onClick={onClickRegistrationUpload}
+              />
+
+              <input
+                type="file"
+                accept="image/*"
+                id="registration"
+                onChange={onChangeRegistartion}
+                ref={registrationRef}
               />
             </S.ImageContainer>
 
