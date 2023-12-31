@@ -18,6 +18,7 @@ type Props = {
   onConfirm: Handler;
   confirmLabel: string;
   cancelLabel: string;
+  onOpenConfirm: Handler;
 };
 
 export const CertificationModal = ({
@@ -26,12 +27,19 @@ export const CertificationModal = ({
   onConfirm,
   confirmLabel,
   cancelLabel,
+  onOpenConfirm,
 }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CertificationFormData>();
+
+  const onValid = (formData: CertificationFormData) => {
+    console.log(formData);
+    onClose();
+    onOpenConfirm();
+  };
 
   return (
     <Modal px="60px" py="60px" onClose={onClose} isOpen={isOpen}>
@@ -132,6 +140,7 @@ export const CertificationModal = ({
             fontStyle={Fonts.subtitle1}
             px="36px"
             py="24px"
+            onClick={onClose}
           />
 
           <Button
@@ -141,6 +150,7 @@ export const CertificationModal = ({
             fontStyle={Fonts.subtitle1}
             px="36px"
             py="24px"
+            onClick={handleSubmit(onValid)}
           />
         </S.ButtonContainer>
       </S.Wrapper>

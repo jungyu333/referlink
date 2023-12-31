@@ -13,9 +13,10 @@ type Props = {
   onClose: Handler;
   onConfirm: Handler;
   confirmLabel: string;
-  cancelLabel: string;
+
   mainText: string;
   subText: string;
+  cancelLabel?: string;
   secondLineText?: string;
 };
 
@@ -24,9 +25,9 @@ export const ConfirmModal = ({
   onClose,
   onConfirm,
   confirmLabel,
-  cancelLabel,
   mainText,
   subText,
+  cancelLabel,
   secondLineText,
 }: Props) => {
   return (
@@ -43,16 +44,18 @@ export const ConfirmModal = ({
           </section>
 
           <S.ButtonContainer>
-            <Button
-              onClick={onClose}
-              buttonText={cancelLabel}
-              buttonType={ButtonTypes.outlined}
-              width="200px"
-              height="44px"
-              px="16px"
-              py="10px"
-              fontStyle={Fonts.body}
-            />
+            {cancelLabel && (
+              <Button
+                onClick={onClose}
+                buttonText={cancelLabel}
+                buttonType={ButtonTypes.outlined}
+                width="200px"
+                height="44px"
+                px="16px"
+                py="10px"
+                fontStyle={Fonts.body}
+              />
+            )}
             <Button
               onClick={onConfirm}
               buttonText={confirmLabel}
