@@ -57,15 +57,11 @@ export const signInByEmail = async (params: SignInFormData) => {
   }
 };
 
-export const signOut = async () => {
+export const logOut = async () => {
   try {
-    const currentUser = authService.currentUser;
-    if (currentUser) {
-      await authService.signOut();
-      Cookies.remove('accessToken');
-    } else {
-      return;
-    }
+    //logout api call
+
+    Cookies.remove('accessToken');
   } catch (error) {
     throw error;
   }
