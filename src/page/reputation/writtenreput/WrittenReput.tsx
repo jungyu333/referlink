@@ -3,11 +3,21 @@ import * as S from '@styles/page/reput/writtenReput.styles';
 import { useCustomToast } from '@hooks/useCustomToast';
 import { ToastBody } from '@components/common';
 import { useCopyClipBoard } from '@hooks/useCopyClipBoard';
+import { useCustomQuery } from '@hooks/useCustomQuery';
+import { getWrittenReviewList } from '@api/reputation';
 
 export const WrittenReput = () => {
   const { info } = useCustomToast();
 
   const [_, onCopy] = useCopyClipBoard();
+
+  const {
+    data: writtenReviewList,
+    isLoading,
+    error,
+  } = useCustomQuery(['writtenReview'], getWrittenReviewList, {
+    refetchOnWindowFocus: false,
+  });
 
   const onClickInvite = () => {
     const currentUrl = window.location.href;

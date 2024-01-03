@@ -28,6 +28,10 @@ export interface GetMyReviewListApiResponse extends ApiBaseResponse {
   data: MyReviewItem[];
 }
 
+export interface GetWrittenReviewListApiResponse extends ApiBaseResponse {
+  data: WrittenReviewItem[];
+}
+
 export interface Information {
   id: number;
   label: string;
@@ -51,6 +55,8 @@ export interface MyReviewItem {
   updatedAt: string;
   writerId: number;
 }
+
+export interface WrittenReviewItem extends MyReviewItem {}
 
 export interface WriteReviewRequestFormData {
   email: string;
