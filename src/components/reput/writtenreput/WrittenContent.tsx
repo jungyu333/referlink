@@ -1,10 +1,18 @@
 import { ToastBody } from '@components/common';
 import { useCopyClipBoard } from '@hooks/useCopyClipBoard';
 import { useCustomToast } from '@hooks/useCustomToast';
+import { useDetailNavigation } from '@hooks/useDetailNavigation';
 import * as S from '@styles/components/reput/writtenContent.styles';
+import { formatDate } from '@utils/date';
+import { WrittenReviewItem } from '_types/reput';
 import { Button, Fonts, ReputCard, svgNote } from 'referlink-ui';
 
-export const WrittenContent = () => {
+type Props = {
+  reviews: WrittenReviewItem[];
+};
+
+export const WrittenContent = ({ reviews }: Props) => {
+  const { detailNavigation } = useDetailNavigation();
   const { info } = useCustomToast();
 
   const [_, onCopy] = useCopyClipBoard();
@@ -41,13 +49,14 @@ export const WrittenContent = () => {
       </S.Header>
 
       <S.Main>
-        {[1, 2, 3].map((item) => (
+        {reviews.map((review) => (
           <ReputCard
-            mainContent="temp"
-            headContent="temp"
-            date="temp"
-            key={item}
-            onClick={() => console.log(item)}
+            mainContent={`${review.openComment}`}
+            headContent={`${review.name}/${review.companyName}/${review.role}`}
+            date={formatDate(review.createdAt)}
+            key={review.id}
+            isChecked={review.isVisible}
+            onClick={() => detailNavigation('/myreput', String(review.id))}
           />
         ))}
       </S.Main>

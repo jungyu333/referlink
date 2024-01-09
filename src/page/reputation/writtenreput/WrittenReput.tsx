@@ -18,7 +18,7 @@ export const WrittenReput = () => {
         {!isLoading && writtenReviewList && (
           <>
             {writtenReviewList.data.length > 0 ? (
-              <WrittenContent />
+              <WrittenContent reviews={writtenReviewList.data} />
             ) : (
               <EmptyContent />
             )}
